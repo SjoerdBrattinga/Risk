@@ -3,6 +3,7 @@
 };
 
 var createGameBtn;
+var gameInstructionsBtn;
 var creditsBtn;
 
 GameStates.MainMenu.prototype = {
@@ -15,8 +16,10 @@ GameStates.MainMenu.prototype = {
         
         
         createGameBtn = this.add.button(this.world.centerX, this.world.centerY, 'createGameBtn', this.createGameBtnOnClick, this);
-        creditsBtn = this.add.button(this.world.centerX, this.world.centerY, 'creditsBtn', this.creditsBtnOnClick, this);
+        gameInstructionsBtn = this.add.button(this.world.centerX, this.world.centerY, 'gameInstructionsBtn', this.createGameInstructionsBtnOnClick, this);
+        creditsBtn = this.add.button(this.world.centerX, this.world.centerY, 'creditsBtn', this.createCreditsBtnOnClick, this);
         createGameBtn.anchor.setTo(0.6, 3);
+        gameInstructionsBtn.anchor.setTo(0.6, 1.5);
         creditsBtn.anchor.setTo(0.7, 0.5);
         this.enterKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 
@@ -31,7 +34,11 @@ GameStates.MainMenu.prototype = {
         this.state.start('CreateGame');
     },
 
-    creditsBtnOnClick: function() {
+    createGameInstructionsBtnOnClick: function () {
+        this.state.start('Instructions');
+    }
+
+    createCreditsBtnOnClick: function() {
         this.state.start('Credit');
     }
 };
