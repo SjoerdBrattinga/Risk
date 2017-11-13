@@ -15,6 +15,7 @@ GameStates.Preloader.prototype = {
         this.load.image('creditsBtn', 'assets/button_credits.png');
         this.load.image('startGameBtn', 'assets/button_start-game.png');
         this.load.image('gameInstructionsBtn', 'assets/button_game-instructions.png');
+        this.load.image('mainmenu-background', 'assets/mainmenu-background.png');
     },
 
     create: function () {
