@@ -36,7 +36,7 @@ GameStates.MainMenu.prototype = {
 
     createGameInstructionsBtnOnClick: function () {
         this.state.start('Instructions');
-    }
+    },
 
     createCreditsBtnOnClick: function() {
         this.state.start('Credit');
