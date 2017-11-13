@@ -15,9 +15,12 @@
     this.getNumberOfArmies = getNumberOfArmies;
     this.addArmies = addArmies;
     this.removeArmies = removeArmies;
+
     this.getNumberOfExtraArmies = getNumberOfExtraArmies;
+    this.setNumberOfExtraArmies = setNumberOfExtraArmies;
 
     this.getTerritoriesOwned = getTerritoriesOwned;
+    this.setTerritoriesOwned = setTerritoriesOwned;
 }
 
 function setColor(color) {
@@ -40,6 +43,10 @@ function getNumberOfExtraArmies() {
     return this.extraArmies;
 }
 
+function setNumberOfExtraArmies() {
+    
+}
+
 function addArmies(armiesToAdd) {
     this.numberOfArmies += armiesToAdd;
 }
@@ -50,4 +57,8 @@ function removeArmies(armiesToRemove) {
 
 function getTerritoriesOwned() {
     return this.territoriesOwned;
+}
+
+function setTerritoriesOwned() {
+    this.territoriesOwned = territoriesOwned;
 }

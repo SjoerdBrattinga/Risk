@@ -1,0 +1,12 @@
+Beginscherm  
+	- Create Game (btn)
+	- Game Instructions (btn)
+	
+Creategame
+	- Ad bots 
+	- Set player colors
+	- Start game (btn)
+	
+Eindscherm(en)
+	- You won! (txt)
+	- You lost! (txt)
