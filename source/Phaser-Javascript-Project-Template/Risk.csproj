@@ -23,6 +23,9 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ai\average.js" />
+    <Content Include="ai\easy.js" />
+    <Content Include="ai\hard.js" />
     <Content Include="app.css" />
     <Content Include="app.js" />
     <Content Include="assets\2000px-Risk_Game_Graph.png" />
@@ -31,13 +34,16 @@
     <Content Include="assets\button_start.png" />
     <Content Include="assets\phaser2.png" />
     <Content Include="assets\preloader-bar.png" />
-    <Content Include="boot.js" />
-    <Content Include="creategame.js" />
-    <Content Include="game.js" />
+    <Content Include="core\card.js" />
+    <Content Include="core\continent.js" />
+    <Content Include="core\country.js" />
+    <Content Include="states\boot.js" />
+    <Content Include="states\creategame.js" />
+    <Content Include="states\game.js" />
     <Content Include="index.html" />
-    <Content Include="mainmenu.js" />
-    <Content Include="player.js" />
-    <Content Include="preloader.js" />
+    <Content Include="states\mainmenu.js" />
+    <Content Include="core\player.js" />
+    <Content Include="states\preloader.js" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>

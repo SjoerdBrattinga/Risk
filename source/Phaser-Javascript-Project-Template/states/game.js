@@ -24,6 +24,7 @@ GameStates.Game.prototype = {
 
         var player2 = new Player(1, 'bot', 'green');
         console.log(player, player2);
+        console.log(this);
 
     },
 
