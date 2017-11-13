@@ -3,6 +3,10 @@
 // declare the object that will hold all game states
 var GameStates = {
     //quite common to add game variables/constants in here
+    players: [],
+    countries: [],
+    continents: [],
+    currentPlayer: {}
 };
 
 GameStates.Boot = function (game) {  //declare the boot state
