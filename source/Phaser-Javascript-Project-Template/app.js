@@ -8,6 +8,7 @@ window.onload = function () {
     game.state.add('MainMenu', GameStates.MainMenu);
     game.state.add('CreateGame', GameStates.CreateGame);
     game.state.add('Game', GameStates.Game);
+    game.state.add('Credit', GameStates.Credit);
 
     //  Now start the Boot state.
     game.state.start('Boot');
