@@ -13,6 +13,7 @@ GameStates.Preloader.prototype = {
         this.load.image('riskWorldGraph', 'assets/595px-Risk_Game_Graph.png');
         this.load.image('createGameBtn', 'assets/button_create-new-game.png');
         this.load.image('creditsBtn', 'assets/button_credits.png');
+        this.load.image('startGameBtn', 'assets/button_start-game.png');
     },
 
     create: function () {

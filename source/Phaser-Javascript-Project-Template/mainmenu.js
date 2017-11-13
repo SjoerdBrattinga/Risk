@@ -20,15 +20,15 @@ GameStates.MainMenu.prototype = {
         creditsBtn.anchor.setTo(0.7, 0.5);
         this.enterKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 
-        this.enterKey.onDown.add(this.playGame, this);
+        this.enterKey.onDown.add(this.createGameBtnOnClick, this);
     },
 
-    playGame: function () {
-        //this.state.start('Game');
-    },
+    // playGame: function () {
+    //   //this.state.start('Game');
+    // },
 
-    createGameBtnOnClick: function() {
-        this.state.start('Game');
+      createGameBtnOnClick: function() {
+        this.state.start('CreateGame');
     },
 
     creditsBtnOnClick: function() {
