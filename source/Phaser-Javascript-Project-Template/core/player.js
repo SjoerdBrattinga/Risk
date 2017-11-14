@@ -21,6 +21,8 @@
 
     this.getTerritoriesOwned = getTerritoriesOwned;
     this.setTerritoriesOwned = setTerritoriesOwned;
+
+    this.tradeInCards = tradeInCards;
 }
 
 function setColor(color) {
@@ -43,8 +45,8 @@ function getNumberOfExtraArmies() {
     return this.extraArmies;
 }
 
-function setNumberOfExtraArmies() {
-    
+function setNumberOfExtraArmies(extraArmies) {
+    this.extraArmies = extraArmies;
 }
 
 function addArmies(armiesToAdd) {
@@ -59,6 +61,10 @@ function getTerritoriesOwned() {
     return this.territoriesOwned;
 }
 
-function setTerritoriesOwned() {
+function setTerritoriesOwned(territoriesOwned) {
     this.territoriesOwned = territoriesOwned;
+}
+
+function tradeInCards(card1, card2, card3) {
+    //
 }
