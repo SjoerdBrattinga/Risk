@@ -1,6 +1,7 @@
 window.onload = function () {
 
-    var game = new Phaser.Game(800, 600, Phaser.AUTO, '');
+    //Can get scaling to windowscreen by using window.innerWidth & window.innerHeight
+    var game = new Phaser.Game(1500, 650, Phaser.AUTO, '');
 
     //  Add the States your game has.
     game.state.add('Boot', GameStates.Boot);
@@ -9,6 +10,8 @@ window.onload = function () {
     game.state.add('CreateGame', GameStates.CreateGame);
     game.state.add('Game', GameStates.Game);
     game.state.add('Credit', GameStates.Credit);
+    game.state.add('Instructions', GameStates.Instructions);
+    game.state.add('EndScreen', GameStates.EndScreen);
 
     //  Now start the Boot state.
     game.state.start('Boot');

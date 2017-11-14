@@ -3,7 +3,7 @@ Beginscherm:
 	- Create Game (btn)
 		(done w/ redirect)
 	- Game Instructions (btn)
-	(needs implementation)
+	(done w/ redirect)
 	- Credits (btn)			(done w/ redirect)
 
 
@@ -19,13 +19,12 @@ Creategame
 	
 Eindscherm(en):
 
-	- You won! (txt)		(not started)
-
-	- You lost! (txt)		(not started)
+	- You won! (txt)		(done w/ redirect (to mainmenu))
+	- You lost! (txt)		(done w/ redirect (to mainmenu))
 
 Extra schermen:
-	- Game Instructions 		(in progress)
-	- Credits 			(done)
+	- Game Instructions 		(done, needs text (see below))
+	- Credits 			(done w/ redirect (to mainmenu))
 
 Game Instructions:
 	- How to play the game		(not started)
@@ -33,4 +32,4 @@ Game Instructions:
 	- Rules (?)(txt)		(not started)
 
 Credits:
-	- Credits (txt)			(done, needs polishing)
+	- Credits (txt)			(done)

@@ -1,0 +1,2 @@
+Is het verstandig om het spel met responsive webdesign te maken?
+Hoe zit dat dan met de tiles (landen)? Zijn de begrenzingen dan ook responsive?
