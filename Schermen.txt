@@ -1,12 +1,36 @@
-Beginscherm  
+Beginscherm:
+
 	- Create Game (btn)
+		(done w/ redirect)
 	- Game Instructions (btn)
-	
+	(needs implementation)
+	- Credits (btn)			(done w/ redirect)
+
+
 Creategame
+:	
 	- Ad bots 
+			(not started)
 	- Set player colors
-	- Start game (btn)
+		(not started)
+	- Start game (btn)		(done w/ redirect)
 	
-Eindscherm(en)
-	- You won! (txt)
-	- You lost! (txt)
+
+	
+Eindscherm(en):
+
+	- You won! (txt)		(not started)
+
+	- You lost! (txt)		(not started)
+
+Extra schermen:
+	- Game Instructions 		(in progress)
+	- Credits 			(done)
+
+Game Instructions:
+	- How to play the game		(not started)
+	- How the game is played	(not started)
+	- Rules (?)(txt)		(not started)
+
+Credits:
+	- Credits (txt)			(done, needs polishing)
