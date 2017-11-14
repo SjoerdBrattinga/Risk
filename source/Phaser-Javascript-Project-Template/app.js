@@ -9,6 +9,8 @@ window.onload = function () {
     game.state.add('CreateGame', GameStates.CreateGame);
     game.state.add('Game', GameStates.Game);
     game.state.add('Credit', GameStates.Credit);
+    game.state.add('Instructions', GameStates.Instructions);
+    game.state.add('EndScreen', GameStates.EndScreen);
 
     //  Now start the Boot state.
     game.state.start('Boot');
