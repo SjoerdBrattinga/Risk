@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f5351f79-b050-4ec8-8706-655b4c63cd0f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/instructions.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/app.js" afterPath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/index.html" afterPath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/credit.js" afterPath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/credit.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/game.js" afterPath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/preloader.js" afterPath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/preloader.js" />
-    </list>
+    <list default="true" id="f5351f79-b050-4ec8-8706-655b4c63cd0f" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -245,16 +237,15 @@
       <option name="presentableId" value="Default" />
       <updated>1510567770438</updated>
       <workItem from="1510567773401" duration="13292000" />
-      <workItem from="1510652678726" duration="2535000" />
+      <workItem from="1510652678726" duration="3135000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15827000" />
+    <option name="totallyTimeSpent" value="16427000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20375" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
