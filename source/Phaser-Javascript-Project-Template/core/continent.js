@@ -3,22 +3,27 @@
     this.extraArmies = extraArmies;
     this.territoriesInContinent = territoriesInContinent;
 
+    this.territoriesInContinent = [];
+    this.borderTerritories = [];
+
+    this.color = 0;
+
 };
 
 function isOwned() {
-  //code...
+    //code...
 };
 
-function getOwned() {
-    //code...
+function getOwner() {
+
 };
 
 function getTerritoriesInContinent() {
-    //code...
+    return this.territoriesInContinent;
 };
 
 function getBorderTerritories() {
-    //code...
+    this.borderTerritories;
 };
 
 function setColor(color) {
