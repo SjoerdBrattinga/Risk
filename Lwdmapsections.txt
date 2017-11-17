@@ -1,0 +1,15 @@
+MAP ID:
+Use this to load and import.
+	-	EnnAqRRkLo
+
+SHARE LINK:
+Use on social media.
+	-	https://www.scribblemaps.com/maps/view/Browsergame/EnnAqRRkLo
+
+EDIT LINK:
+A quick way to load your map into Scribble Maps later.
+	-	https://www.scribblemaps.com/create/#id=EnnAqRRkLo
+
+IMAGE LINK:
+A link to your map as an image. Great for blogs.
+	-	https://www.scribblemaps.com/api/maps/images/450/450/EnnAqRRkLo.png
