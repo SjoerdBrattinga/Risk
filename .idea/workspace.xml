@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f5351f79-b050-4ec8-8706-655b4c63cd0f" name="Default" comment="" />
+    <list default="true" id="f5351f79-b050-4ec8-8706-655b4c63cd0f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lwdmapsections.txt" afterPath="$PROJECT_DIR$/Lwdmapsections.txt" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -236,16 +238,15 @@
       <workItem from="1510652678726" duration="3135000" />
       <workItem from="1510663770853" duration="3051000" />
       <workItem from="1510740417631" duration="40000" />
-      <workItem from="1510908042496" duration="4155000" />
+      <workItem from="1510908042496" duration="4733000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23673000" />
+    <option name="totallyTimeSpent" value="24251000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="814" height="867" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27944863" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
