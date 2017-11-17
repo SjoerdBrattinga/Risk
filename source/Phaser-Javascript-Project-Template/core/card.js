@@ -4,5 +4,5 @@
 }
 
 function getTerritoryName() {
-    // code...
+    return this.territoryName;
 };

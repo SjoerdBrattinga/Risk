@@ -14,8 +14,8 @@ function isOwned() {
     //code...
 };
 
-function getOwner() {
-
+function getOwner(player) {
+    return player;
 };
 
 function getTerritoriesInContinent() {
@@ -23,9 +23,9 @@ function getTerritoriesInContinent() {
 };
 
 function getBorderTerritories() {
-    this.borderTerritories;
+    return this.borderTerritories;
 };
 
 function setColor(color) {
-    //code...
+    return this.color;
 }
