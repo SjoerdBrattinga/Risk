@@ -1,33 +1,26 @@
-﻿function Continent (name, extraArmies, territoriesInContinet)
-{
-    var name;
-    var extraArmies;
-    var territoriesInContinet;
-    var borderTerritories;
-    var color;
+﻿function Continent (name, extraArmies, territoriesInContinent) {
+    this.name = name;
+    this.extraArmies = extraArmies;
+    this.territoriesInContinent = territoriesInContinent;
+
 };
 
-function isOwned()
-{
+function isOwned() {
   //code...
 };
 
-function getOwned()
-{
+function getOwned() {
     //code...
 };
 
-function getTerritoriesInContinet()
-{
+function getTerritoriesInContinent() {
     //code...
 };
 
-function getBorderTerritories()
-{
+function getBorderTerritories() {
     //code...
 };
 
-function setColor(color)
-{
+function setColor(color) {
     //code...
 }
