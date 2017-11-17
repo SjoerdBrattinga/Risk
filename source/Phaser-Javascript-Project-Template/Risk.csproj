@@ -36,12 +36,15 @@
     <Content Include="assets\preloader-bar.png" />
     <Content Include="core\card.js" />
     <Content Include="core\continent.js" />
+    <Content Include="core\riskcontroller.js" />
     <Content Include="core\territory.js" />
     <Content Include="states\credit.js" />
     <Content Include="states\boot.js" />
     <Content Include="states\creategame.js" />
+    <Content Include="states\endscreen.js" />
     <Content Include="states\game.js" />
     <Content Include="index.html" />
+    <Content Include="states\instructions.js" />
     <Content Include="states\mainmenu.js" />
     <Content Include="core\player.js" />
     <Content Include="states\preloader.js" />
