@@ -5,4 +5,4 @@
 
 function getTerritoryName() {
     return this.territoryName;
-};
+}

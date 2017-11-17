@@ -8,23 +8,23 @@
 
     this.color = 0;
 
-};
+}
 
 function isOwned() {
     //code...
-};
+}
 
 function getOwner(player) {
     return player;
-};
+}
 
 function getTerritoriesInContinent() {
     return this.territoriesInContinent;
-};
+}
 
 function getBorderTerritories() {
     return this.borderTerritories;
-};
+}
 
 function setColor(color) {
     return this.color;
