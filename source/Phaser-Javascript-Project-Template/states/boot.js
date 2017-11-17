@@ -3,10 +3,15 @@
 // declare the object that will hold all game states
 var GameStates = {
     //quite common to add game variables/constants in here
-    players: [],
-    countries: [],
-    continents: [],
-    currentPlayer: {}
+    STATE_NEW_GAME: 0,
+    STATE_TRADE_CARDS: 1,
+    STATE_PLACE_ARMIES: 2,
+    STATE_ATTACK: 3,
+    STATE_DEFEND: 4,
+    STATE_FORTIFYING: 5,
+
+    MAX_PLAYERS: 6,
+    MAX_CARDS: 44
 };
 
 GameStates.Boot = function (game) {  //declare the boot state
