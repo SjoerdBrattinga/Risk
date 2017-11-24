@@ -6,6 +6,15 @@
     this.armies = 0;
     this.color = 0;
     this.borderTerritories = [];
+
+    this.setOwner = setOwner;
+    this.getOwner = getOwner;
+    this.getNumberOfArmies = getNumberOfArmies;
+    this.addArmies = addArmies;
+    this.removeArmies = removeArmies;
+    this.getBorderTerritories = getBorderTerritories;
+    this.setBorderTerritories = setBorderTerritories;
+
 }
 
 function setOwner(player) {
@@ -21,6 +30,7 @@ function getNumberOfArmies() {
 }
 
 function addArmies(armiesToAdd) {
+    debugger;
     this.armies += armiesToAdd;
 }
 

@@ -1,5 +1,5 @@
 ﻿GameStates.MainMenu = function (game) {
-    
+
 };
 
 var mainMenuBackground;
@@ -32,7 +32,7 @@ GameStates.MainMenu.prototype = {
     //   //this.state.start('Game');
     // },
 
-      createGameBtnOnClick: function() {
+    createGameBtnOnClick: function () {
         this.state.start('CreateGame');
     },
 
@@ -40,7 +40,7 @@ GameStates.MainMenu.prototype = {
         this.state.start('Instructions');
     },
 
-    createCreditsBtnOnClick: function() {
+    createCreditsBtnOnClick: function () {
         this.state.start('Credit');
     }
 };

@@ -29,7 +29,14 @@ GameStates.Boot.prototype = {
         // scale, input etc..
         //this.scale.setGameSize(2000, 2000);
         // call next state
+        //setTerritories();
+        addPlayer(0, 'Sjoerd', 'blue');
+        addPlayer(0, 'Benjamin', 'green');
         this.state.start('Preloader');
     }
 };
 
+function setTerritories() {
+    //territories.push(new Territory('Bilgaard'));
+    //territories.push(new Territory('Vrijheidswijk'));
+}
