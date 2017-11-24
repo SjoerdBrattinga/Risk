@@ -18,6 +18,7 @@ GameStates.Preloader.prototype = {
         this.load.image('mainmenu-background', 'assets/mainmenu-background.png');
         this.load.image('backBtn', 'assets/button_return.png');
         this.load.image('continueBtn', 'assets/button_continue.png');
+        this.load.image('addPlayerBtn', 'assets/button_add-player.png');
     },
 
     create: function () {
