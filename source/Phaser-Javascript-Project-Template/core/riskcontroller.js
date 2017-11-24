@@ -29,5 +29,5 @@ function newGame() {
 
 function addPlayer(type, name, color) {
     var player = new Player(type, name, color);
-    players.add(player);
+    players.push(player);
 }

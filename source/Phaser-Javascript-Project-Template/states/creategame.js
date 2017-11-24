@@ -4,6 +4,7 @@
 
 var text;
 var startGameBtn;
+var addPlayerBtn;
 
 GameStates.CreateGame.prototype = {
     create: function () {
@@ -19,7 +20,7 @@ GameStates.CreateGame.prototype = {
     },
 
     addPlayerOnClick: function () {
-        this.players.add(player);
+        addPlayer(0, 'sjors', 'yellow');
     },
 
 
