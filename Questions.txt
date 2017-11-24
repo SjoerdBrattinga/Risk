@@ -1,2 +1,7 @@
-Is het verstandig om het spel met responsive webdesign te maken?
+Is het verstandig om het spel met responsive webdesign te maken?			
+(Beantwoord, "Als het alleen in de browser is, is het verstandig om het een fixed position mee te geven.")
 Hoe zit dat dan met de tiles (landen)? Zijn de begrenzingen dan ook responsive?
+(Beantwoord, "Ja.")
+
+Hoe maak je een (simpele) input (text)field aan? Dit is zodat spelers hun namen kunnen invullen.
+
