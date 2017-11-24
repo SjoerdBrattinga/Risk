@@ -16,18 +16,7 @@ GameStates.Game.prototype = {
         continueBtn.anchor.setTo(-2,-1.5);
         //logo.scale.setTo(0.2, 0.2);
         //this.add.tween(logo.scale).to({ x: 1, y: 1 }, 2000, Phaser.Easing.Bounce.Out, true);
-        var player = new Player(0, 'henk', 'blue');
-
-        console.log(player);
-
-        player.addArmies(45);
-        player.addArmies(5);
-        player.setColor('red');
-        player.extraArmies = 3;
-
-        var player2 = new Player(1, 'bot', 'green');
-        console.log(player, player2);
-        console.log(this);
+        newGame();
 
     },
 
