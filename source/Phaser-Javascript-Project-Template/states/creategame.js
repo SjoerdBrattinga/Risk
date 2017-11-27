@@ -5,6 +5,7 @@
 var text;
 var startGameBtn;
 var addPlayerBtn;
+$("#name").val('');
 //var input;
 
 GameStates.CreateGame.prototype = {
@@ -21,6 +22,11 @@ GameStates.CreateGame.prototype = {
     },
 
     addPlayerOnClick: function () {
-        addPlayer(0, 'sjors', 'yellow');
+        $(document).ready(function(){
+                var value = $("#name").val();
+                console.log(value);
+                $("#form1").hide();
+
+        });
     },
 };
