@@ -4,4 +4,6 @@ Hoe zit dat dan met de tiles (landen)? Zijn de begrenzingen dan ook responsive?
 (Beantwoord, "Ja.")
 
 Hoe maak je een (simpele) input (text)field aan? Dit is zodat spelers hun namen kunnen invullen.
-
+(Beantwoord, "Simpel, maak een textfield in html, zichtbaarheid doormiddel van jQuery. Gebruik .show() of .hide() 
+om de div waar de tekst ingevuld moet worden te laten zien of te verbergen. Verder kun je doormiddel van .val() de waarde
+ophalen. Vergeet niet om eerst je variabele leeg te zetten door var value = ('yourvalue').val(''); te gebruiken."
