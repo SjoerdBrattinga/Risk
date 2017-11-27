@@ -16,10 +16,28 @@ var usedCards = [];
 var gameState = 0;
 var attacker = {};
 var defender = {};
-var conqueredTerritory = false;
+var conqueredTerritory;
+var playing = false;
 
 function newGame() {
+    if (players.length < 2) return;
+    if (gameState === GameStates.NEW_GAME) {
+        //cards = shuffleCards();
+        var startingArmies = 30;
+
+        for (var i = 0; i < players.length; i++) {
+            players[i].addArmies = startingArmies;
+        }
+
+        currentPlayer = getRandomPlayer();
+        gameState = GameStates.PLACE_ARMIES;
+        conqueredTerritory = false;
+
+        playing = true;
+        startGame();
+    }
     
+
     //addPlayers
     //setTerritories
     //setContinents
@@ -27,6 +45,39 @@ function newGame() {
     //setCards
 
 }
+
+function startGame() {
+    while (playing) {
+        
+    }
+  
+}
+
+function setGameState() {
+    
+}
+
+function getRandomPlayer() {
+    return players[Math.floor(Math.random() * players.length)];
+}
+
+function setCurrentPlayer() {
+    var currentIndex = players.indexOf(currentPlayer);
+
+    if (currentIndex !== players.length - 1)
+        currentPlayer = players[currentIndex + 1];
+    else
+        currentPlayer = players[0];
+}
+
+//function shuffleCards() {
+//    for (var i = 0; i < shuffleCnt; i++) {
+//        var rndNo = getRandomInt(1, 52);
+//        var card = cards[i];
+//        cards[i] = cards[rndNo];
+//        cards[rndNo] = card;
+//    }
+//}
 
 function addPlayer(type, name, color) {
     var player = new Player(type, name, color);
