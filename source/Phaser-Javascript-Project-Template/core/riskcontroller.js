@@ -117,9 +117,6 @@ function attackTerritory(attacker, defender) {
         }
 
     }
-
-
-
 }
 
 function getBattleResult() {
