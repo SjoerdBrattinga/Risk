@@ -32,12 +32,6 @@ GameStates.Boot.prototype = {
         //this.scale.setGameSize(2000, 2000);
         // call next state
         //setTerritories();
-        addPlayer(0, 'a', 'blue');
-        addPlayer(0, 'b', 'green');
-        addPlayer(0, 'c', 'blue');
-        addPlayer(0, 'd', 'green');
-        addPlayer(0, 'e', 'blue');
-        addPlayer(0, 'f', 'green');
 
         this.state.start('Preloader');
     }

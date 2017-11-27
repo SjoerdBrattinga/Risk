@@ -19,14 +19,26 @@ GameStates.CreateGame.prototype = {
 
     startGameOnClick: function () {
         this.state.start('Game');
+        $(document).ready(function() {
+            $("#form1").hide();
+        });
     },
 
     addPlayerOnClick: function () {
-        $(document).ready(function(){
-                var value = $("#name").val();
-                console.log(value);
-                $("#form1").hide();
+        if(players.length < GameStates.MAX_PLAYERS){
+            var value = $("#name").val();
+            console.log(value);
+            var color = getColorFromCOLORS();
+            addPlayer(0, value, color);
+            $("#name").val('');
+        }
+        if(players.length === GameStates.MAX_PLAYERS)  addPlayerBtn.visible = false;
 
-        });
+        document.getElementById("overview").innerHTML += value + " " + color + "</br>";
+
     },
+
 };
+function getColorFromCOLORS(){
+    return GameStates.COLORS[players.length];
+}
