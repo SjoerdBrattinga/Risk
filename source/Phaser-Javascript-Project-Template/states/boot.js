@@ -11,7 +11,9 @@ var GameStates = {
     FORTIFYING: 5,
 
     MAX_PLAYERS: 6,
-    MAX_CARDS: 44
+    MAX_CARDS: 44,
+
+    COLORS: ['blue', 'red', 'green', 'yellow', 'purple', 'darkorange']
 };
 
 GameStates.Boot = function (game) {  //declare the boot state

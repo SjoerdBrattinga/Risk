@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5351f79-b050-4ec8-8706-655b4c63cd0f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/core/riskcontroller.js" afterPath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/core/riskcontroller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/index.html" afterPath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/creategame.js" afterPath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/creategame.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/boot.js" afterPath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/boot.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -60,7 +61,8 @@
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1511779077812" expanded="true" signature="1046:1091" ph="{...}" />
+                <marker date="1511782184526" expanded="true" signature="1119:1164" ph="{...}" />
+                <marker date="1511782184526" expanded="true" signature="1119:1166" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -89,8 +91,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="84" lean-forward="false" selection-start-line="28" selection-start-column="84" selection-end-line="28" selection-end-column="84" />
+            <state relative-caret-position="544">
+              <caret line="32" column="41" lean-forward="false" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -109,10 +111,20 @@
       <file leaf-file-name="riskcontroller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/core/riskcontroller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="84" column="18" lean-forward="false" selection-start-line="84" selection-start-column="18" selection-end-line="84" selection-end-column="18" />
+            <state relative-caret-position="629">
+              <caret line="88" column="18" lean-forward="false" selection-start-line="88" selection-start-column="18" selection-end-line="88" selection-end-column="18" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
+                <marker date="1511782184522" expanded="true" signature="1017:1023" ph="{...}" />
+                <marker date="1511782184522" expanded="true" signature="2261:2263" ph="{...}" />
+                <marker date="1511782184522" expanded="true" signature="2310:2859" ph="{...}" />
+                <marker date="1511782184522" expanded="true" signature="2370:2857" ph="{...}" />
+                <marker date="1511782184522" expanded="true" signature="2424:2850" ph="{...}" />
+                <marker date="1511782184522" expanded="true" signature="2716:2840" ph="{...}" />
+                <marker date="1511782184522" expanded="true" signature="2888:2954" ph="{...}" />
+                <marker date="1511782184522" expanded="true" signature="2994:3184" ph="{...}" />
+                <marker date="1511782184522" expanded="true" signature="3088:3118" ph="{...}" />
+                <marker date="1511782184522" expanded="true" signature="3152:3182" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -156,8 +168,8 @@
         <option value="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/mainmenu.js" />
         <option value="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/app.js" />
         <option value="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/core/riskcontroller.js" />
-        <option value="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/index.html" />
         <option value="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/creategame.js" />
+        <option value="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/index.html" />
       </list>
     </option>
   </component>
@@ -254,12 +266,12 @@
       <workItem from="1510740417631" duration="40000" />
       <workItem from="1510908042496" duration="4733000" />
       <workItem from="1511513611598" duration="7777000" />
-      <workItem from="1511775234683" duration="2263000" />
+      <workItem from="1511775234683" duration="2899000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34291000" />
+    <option name="totallyTimeSpent" value="34927000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -585,7 +597,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1511779077812" expanded="true" signature="1046:1091" ph="{...}" />
+            <marker date="1511782184526" expanded="true" signature="1119:1164" ph="{...}" />
+            <marker date="1511782184526" expanded="true" signature="1119:1166" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -616,10 +629,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/core/riskcontroller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="84" column="18" lean-forward="false" selection-start-line="84" selection-start-column="18" selection-end-line="84" selection-end-column="18" />
+        <state relative-caret-position="629">
+          <caret line="88" column="18" lean-forward="false" selection-start-line="88" selection-start-column="18" selection-end-line="88" selection-end-column="18" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+            <marker date="1511782184522" expanded="true" signature="1017:1023" ph="{...}" />
+            <marker date="1511782184522" expanded="true" signature="2261:2263" ph="{...}" />
+            <marker date="1511782184522" expanded="true" signature="2310:2859" ph="{...}" />
+            <marker date="1511782184522" expanded="true" signature="2370:2857" ph="{...}" />
+            <marker date="1511782184522" expanded="true" signature="2424:2850" ph="{...}" />
+            <marker date="1511782184522" expanded="true" signature="2716:2840" ph="{...}" />
+            <marker date="1511782184522" expanded="true" signature="2888:2954" ph="{...}" />
+            <marker date="1511782184522" expanded="true" signature="2994:3184" ph="{...}" />
+            <marker date="1511782184522" expanded="true" signature="3088:3118" ph="{...}" />
+            <marker date="1511782184522" expanded="true" signature="3152:3182" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -642,8 +665,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="84" lean-forward="false" selection-start-line="28" selection-start-column="84" selection-end-line="28" selection-end-column="84" />
+        <state relative-caret-position="544">
+          <caret line="32" column="41" lean-forward="false" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
           <folding />
         </state>
       </provider>
