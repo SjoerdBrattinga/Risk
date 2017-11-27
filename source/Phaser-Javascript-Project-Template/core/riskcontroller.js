@@ -47,9 +47,13 @@ function newGame() {
 }
 
 function startGame() {
-    while (playing) {
-        
-    }
+    for (var i = 1; i < 6; i++) {
+        if (GameStates.PLACE_ARMIES) {
+            var armiesToPlace = currentPlayer.getNumberOfExtraArmies();
+
+            
+        }
+    }  
   
 }
 
@@ -96,6 +100,10 @@ function removePlayer(name) {
     } else {
         console.warn('No player to remove!');
     }
+}
+
+function placeArmies() {
+    
 }
 
 function attackTerritory(attacker, defender) {
