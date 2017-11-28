@@ -29,13 +29,7 @@ GameStates.Boot.prototype = {
         
     },
     create: function () {
-        // setup game environment
-        // scale, input etc..
-        //this.scale.setGameSize(2000, 2000);
-        // call next state
         setTerritories();
-        
-
         this.state.start('Preloader');
     }
 };
