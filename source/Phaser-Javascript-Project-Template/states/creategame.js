@@ -22,5 +22,16 @@ GameStates.CreateGame.prototype = {
 
     addPlayerOnClick: function () {
         addPlayer(0, 'sjors', 'yellow');
-    },
+    }
 };
+
+function assignTerritories() {
+    var numberOfTerritories = Math.floor(territories.length / players.length);
+    var leftOverTerritories = territories.length % players.length;
+    for (var i = 0; i < territories.length; i++) {
+        if (territories[i].getOwner() !== undefined) {
+            var player = getRandomPlayer();
+            territories[i].setOwner(player);
+        }
+    }
+}
