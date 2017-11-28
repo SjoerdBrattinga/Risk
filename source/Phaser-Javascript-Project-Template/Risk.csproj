@@ -34,6 +34,7 @@
     <Content Include="assets\button_start.png" />
     <Content Include="assets\phaser2.png" />
     <Content Include="assets\preloader-bar.png" />
+    <Content Include="assets\spritesheets\LWD.png" />
     <Content Include="core\card.js" />
     <Content Include="core\continent.js" />
     <Content Include="core\riskcontroller.js" />
@@ -69,7 +70,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="assets\spritesheets\" />
     <Folder Include="assets\tilemaps\" />
     <Folder Include="lib\" />
   </ItemGroup>

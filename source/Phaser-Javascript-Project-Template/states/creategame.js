@@ -25,22 +25,32 @@ GameStates.CreateGame.prototype = {
     },
 
     addPlayerOnClick: function () {
-        if(players.length < GameStates.MAX_PLAYERS){
+        if (players.length < GameStates.MAX_PLAYERS) {
             var nameInput = $("#name").val();
             console.log(nameInput);
             var color = getColorFromCOLORS();
             value = validateNameInput(nameInput);
-            if(value)
-            {
+            if (value) {
                 addPlayer(0, value, color);
-                if(players.length === GameStates.MAX_PLAYERS)  addPlayerBtn.visible = false;
+                if (players.length === GameStates.MAX_PLAYERS) addPlayerBtn.visible = false;
                 document.getElementById("overview").innerHTML += value + " " + color + "</br>";
             }
             $("#name").val('');
         }
-    },
-
+    }
 };
+
+function assignTerritories() {
+    var numberOfTerritories = Math.floor(territories.length / players.length);
+    var leftOverTerritories = territories.length % players.length;
+    for (var i = 0; i < territories.length; i++) {
+        if (territories[i].getOwner() !== undefined) {
+            var player = getRandomPlayer();
+            territories[i].setOwner(player);
+        }
+    }
+};
+
 function getColorFromCOLORS(){
     return GameStates.COLORS[players.length];
 }

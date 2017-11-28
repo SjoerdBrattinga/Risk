@@ -34,9 +34,9 @@ function newGame() {
         conqueredTerritory = false;
 
         playing = true;
-        startGame();
+        turn();
     }
-    
+
 
     //addPlayers
     //setTerritories
@@ -46,19 +46,44 @@ function newGame() {
 
 }
 
-function startGame() {
-    for (var i = 1; i < 6; i++) {
-        if (GameStates.PLACE_ARMIES) {
-            var armiesToPlace = currentPlayer.getNumberOfExtraArmies();
 
-            
-        }
+function turn() {
+    if (gameState === GameStates.PLACE_ARMIES) {
+        console.log(currentPlayer.name);
+        console.log("place armies");
+
+    }
+    if (gameState === GameStates.ATTACK) {
+        console.log('attack');
+
+    }
+    if (gameState === GameStates.FORTIFYING) {
+        console.log('fortifying');
+
+    }
+    if (gameState === GameStates.END_TURN) {
+        console.log('end turn');
+        
+
     }  
-  
+
 }
 
+function endTurn() {
+    setCurrentPlayer();
+    turn();
+}
+
+$(document).ready(function () {
+    $('#test_btn').click(function () {
+        
+        if (gameState === 4) gameState = 1;
+        else gameState++;
+    });
+});
+
 function setGameState() {
-    
+
 }
 
 function getRandomPlayer() {
@@ -102,8 +127,8 @@ function removePlayer(name) {
     }
 }
 
-function placeArmies() {
-    
+function placeArmies(armiesToPlace) {
+
 }
 
 function attackTerritory(attacker, defender) {
