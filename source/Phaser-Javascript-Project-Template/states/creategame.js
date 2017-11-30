@@ -22,22 +22,13 @@ GameStates.CreateGame.prototype = {
     },
 
     startGameOnClick: function () {
-        var message = "";
-        if(players.length < 1) {
-            message = "No players added!";
-            document.getElementById("message").innerHTML = message + "<br/>";
-        }
-        else if (players.length < 2) {
-            message = "Need to have atleast 2 players.";
-            document.getElementById("message").innerHTML = message +  "</br>";
-        }
-        else {
+        var checkNumberOfPlayers = checkIfEnoughPlayersAreAdded()
+        if (checkNumberOfPlayers) {
             this.state.start('Game');
-            $(document).ready(function() {
+            $(document).ready(function () {
                 $("#form1").hide();
             });
         }
-
     },
 
     addPlayerOnClick: function () {
@@ -112,5 +103,20 @@ function validateNameInput (nameInput) {
     }
     else {
         return nameInput;
+    }
+}
+
+function checkIfEnoughPlayersAreAdded(){
+    var message = "";
+    if(players.length < 1) {
+        message = "No players added!";
+        document.getElementById("message").innerHTML = message + "<br/>";
+    }
+    else if (players.length < 2) {
+        message = "Need to have atleast 2 players.";
+        document.getElementById("message").innerHTML = message +  "</br>";
+    }
+    else {
+        return true;
     }
 }
