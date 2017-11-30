@@ -22,10 +22,22 @@ GameStates.CreateGame.prototype = {
     },
 
     startGameOnClick: function () {
-        this.state.start('Game');
-        $(document).ready(function() {
-            $("#form1").hide();
-        });
+        var message = "";
+        if(players.length < 1) {
+            message = "No players added!";
+            document.getElementById("message").innerHTML = message + "<br/>";
+        }
+        else if (players.length < 2) {
+            message = "Need to have atleast 2 players.";
+            document.getElementById("message").innerHTML = message +  "</br>";
+        }
+        else {
+            this.state.start('Game');
+            $(document).ready(function() {
+                $("#form1").hide();
+            });
+        }
+
     },
 
     addPlayerOnClick: function () {
