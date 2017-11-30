@@ -107,14 +107,14 @@ function validateNameInput (nameInput) {
 }
 
 function checkIfEnoughPlayersAreAdded(){
-    var message = "";
+    var message;
+    message = document.getElementById("message");
+    message.innerHTML = "";
     if(players.length < 1) {
-        message = "No players added!";
-        document.getElementById("message").innerHTML = message + "<br/>";
+       message.innerHTML = "No players added!";
     }
     else if (players.length < 2) {
-        message = "Need to have atleast 2 players.";
-        document.getElementById("message").innerHTML = message +  "</br>";
+        message.innerHTML = "Need atleast 2 players to play.";
     }
     else {
         return true;
