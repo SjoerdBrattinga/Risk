@@ -58,6 +58,12 @@ function removeArmies(armiesToRemove) {
 }
 
 function getTerritoriesOwned() {
+    //debugger;
+    //for (var i = 0; i < territories.length; i++) {
+    //    if (territories[i].getOwner === this.Player) {
+    //        this.territoriesOwned.push(territories[i]);
+    //    }
+    //}
     return this.territoriesOwned;
 }
 

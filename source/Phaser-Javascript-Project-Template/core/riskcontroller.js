@@ -90,6 +90,10 @@ function getRandomPlayer() {
     return players[Math.floor(Math.random() * players.length)];
 }
 
+function getRandomTerritory() {
+    return territories[Math.floor(Math.random() * territories.length)];
+}
+
 function setCurrentPlayer() {
     var currentIndex = players.indexOf(currentPlayer);
 
