@@ -19,10 +19,12 @@ GameStates.CreateGame.prototype = {
         startGameBtn.anchor.setTo(0.7, 0.2);
         addPlayerBtn.anchor.setTo(0.7, 2);
         //removePlayerBtn.anchor.setTo(3.5, 2);
+        var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle"}
+            $("#form1").show();
     },
 
     startGameOnClick: function () {
-        var checkNumberOfPlayers = checkIfEnoughPlayersAreAdded()
+        var checkNumberOfPlayers = checkIfEnoughPlayersAreAdded();
         if (checkNumberOfPlayers) {
             this.state.start('Game');
             $(document).ready(function () {
@@ -33,7 +35,6 @@ GameStates.CreateGame.prototype = {
 
     addPlayerOnClick: function () {
         if (players.length < GameStates.MAX_PLAYERS) {
-
             var nameInput = $("#name").val();
             console.log(nameInput);
             var color = getColorFromCOLORS();
@@ -42,21 +43,33 @@ GameStates.CreateGame.prototype = {
                 var player = addPlayer(0, value, color);
                 console.log(player, 'added');
                 console.log(players);
-                if (players.length === GameStates.MAX_PLAYERS) addPlayerBtn.visible = false;
+                if (players.length === GameStates.MAX_PLAYERS) {
+                    addPlayerBtn.visible = false;
+                    $("#form1").hide();
+                }
                 this.showPlayers(player);
             }
             $("#name").val('');
         }
     },
     showPlayers: function(player){
+        var message;
+        message = document.getElementById("overview");
         console.log(players);
-        document.getElementById("overview").innerHTML += player.name + " " + player.color +  "</br>";
-        removePlayerBtn = this.add.button(this.world.centerX, this.world.centerY*players.length/2, 'removePlayerBtn', function(){ removePlayer(player.name)}, this);
+        message.innerHTML += player.name + " " + player.color +  "</br>";
+        removePlayerBtn = this.add.button(this.world.centerX, this.world.centerY*players.length/2, 'removePlayerBtn', function(){
+            removePlayer(player.name);
+            if(players.length < GameStates.MAX_PLAYERS)
+                addPlayerBtn.visible = true;
+        }, this);
         removePlayerBtn.anchor.setTo(3, 5.8);
+
     },
+
     removePlayerOnClick: function(name) {
         debugger;
         removePlayer(name);
+
     }
 };
 
