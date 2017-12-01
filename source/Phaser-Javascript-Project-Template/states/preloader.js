@@ -20,6 +20,7 @@ GameStates.Preloader.prototype = {
         this.load.image('backBtn', 'assets/button_return.png');
         this.load.image('continueBtn', 'assets/button_continue.png');
         this.load.image('addPlayerBtn', 'assets/button_add-player.png');
+        this.load.image('removePlayerBtn', 'assets/button_remove-player.png');
     },
 
     create: function () {
