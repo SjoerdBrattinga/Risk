@@ -45,14 +45,6 @@ GameStates.CreateGame.prototype = {
         // //  We'll set the bounds to be from x0, y100 and be 800px wide by 100px high
         // text.setTextBounds(0, 100, 800, 100);
 
-        count = 0;
-
-        text = this.add.text(this.game.world.centerX, this.world.centerY, "- You have clicked -\n0 times !", {
-            font: "65px Arial",
-            fill: "#ff0044",
-            align: "center"
-        });
-
         text.anchor.setTo(0.5, 0.5);
 
             $("#form1").show();
@@ -233,18 +225,3 @@ function checkIfEnoughPlayersAreAdded(){
     }
 }
 
-
-function create() {
-    //whatever
-
-}
-
-function update() {
-    this.input.onDown.addOnce(updateText, this);
-}
-
-function updateText() {
-    count++;
-
-    text.setText("- You have clicked -\n" + count + " times !");
-}
