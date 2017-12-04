@@ -1,0 +1,29 @@
+WAT MOET ER NOG GEBEUREN?
+- Spel logica
+	=> Speler 1 is aan de beurt, wat kan / mag speler 1 doen?
+	=> Speler 1 heeft zijn zet gedaan, wat kan / mag speler 1 nu doen?
+	=> Speler 1 eindigt zijn beurt, wat gebeurt er nu?
+	=> Speler 2 is aan de beurt (kijk naar Speler1)
+
+- Spelersweergave 
+	=> Spelersnaam (in Phaser)
+	=> Spelerskleur 
+	=> Verwijder knop
+
+- Spel
+	=> Map
+		-> Strategisch welke landen kunnen waar aanvallen.
+	=> Territories
+		-> Verdelen tussen spelers
+	=> Continenten
+		-> Grenzen van continenten
+		-> Kleurranden als speler contintent bezit
+	=> Legers
+		-> Weergave, hoeveel legers heeft de speler
+		-> Kleur, geef de bollen dezelfde kleur als de speler
+	=> Kaarten
+		-> Welke kaarten zijn er?
+		-> Hoe worden die verdeeld?
+		-> Kaarten aanmaken
+		-> Kaarten implementeren
+	  

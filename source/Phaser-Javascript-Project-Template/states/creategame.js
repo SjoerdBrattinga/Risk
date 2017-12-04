@@ -6,6 +6,9 @@ var text;
 var startGameBtn;
 var addPlayerBtn;
 var removePlayerBtn;
+var mess;
+var count;
+var textp1;
 $("#name").val('');
 //var input;
 
@@ -20,7 +23,38 @@ GameStates.CreateGame.prototype = {
         startGameBtn.anchor.setTo(0.7, 0.2);
         addPlayerBtn.anchor.setTo(0.7, 2);
         //removePlayerBtn.anchor.setTo(3.5, 2);
-        var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle"}
+
+        // var bar = this.add.graphics();
+        // bar.beginFill(0x000000, 0.2);
+        // bar.drawRect(0, 100, 800, 100);
+        //
+        // var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
+        //
+        // //var mess = "Test tekst";
+        // //  The Text is positioned at 0, 100
+        // count = 0;
+        //
+        // textp1 = this.add.text(375, 0, "- You have clicked -\n0 times !", style);
+        // textp2 = this.add.text(375, 30, "Test 2", style);
+        // textp3 = this.add.text(375, 60, "Test 3", style);
+        // textp4 = this.add.text(375, 90, "Test 4", style);
+        // textp5 = this.add.text(375, 120, "Test 5", style);
+        // textp6 = this.add.text(375, 150, "Test 6", style);
+        // //text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
+        //
+        // //  We'll set the bounds to be from x0, y100 and be 800px wide by 100px high
+        // text.setTextBounds(0, 100, 800, 100);
+
+        count = 0;
+
+        text = this.add.text(this.game.world.centerX, this.world.centerY, "- You have clicked -\n0 times !", {
+            font: "65px Arial",
+            fill: "#ff0044",
+            align: "center"
+        });
+
+        text.anchor.setTo(0.5, 0.5);
+
             $("#form1").show();
     },
 
@@ -63,10 +97,24 @@ GameStates.CreateGame.prototype = {
         }
     },
     showPlayers: function(player){
-        var message;
         message = document.getElementById("overview");
         console.log(players);
-        message.innerHTML += player.name + " " + player.color +  "</br>";
+        mess = player.name + " " + player.color +  "</br>";
+
+        var bar = this.game.add.graphics();
+        bar.beginFill(0x000000, 0.2);
+        bar.drawRect(0, 100, 800, 100);
+
+        var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
+
+        //var mess = "Test tekst";
+        //  The Text is positioned at 0, 100
+        text = this.game.add.text(0, 0, "Test tekst", style);
+        text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
+
+        //  We'll set the bounds to be from x0, y100 and be 800px wide by 100px high
+        text.setTextBounds(0, 100, 800, 100);
+
         removePlayerBtn = this.add.button(this.world.centerX, this.world.centerY*players.length/2, 'removePlayerBtn', function(){
             removePlayer(player.name);
             if(players.length < GameStates.MAX_PLAYERS)
@@ -183,4 +231,20 @@ function checkIfEnoughPlayersAreAdded(){
     else {
         return true;
     }
+}
+
+
+function create() {
+    //whatever
+
+}
+
+function update() {
+    this.input.onDown.addOnce(updateText, this);
+}
+
+function updateText() {
+    count++;
+
+    text.setText("- You have clicked -\n" + count + " times !");
 }
