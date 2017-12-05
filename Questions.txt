@@ -7,3 +7,8 @@ Hoe maak je een (simpele) input (text)field aan? Dit is zodat spelers hun namen 
 (Beantwoord, "Simpel, maak een textfield in html, zichtbaarheid doormiddel van jQuery. Gebruik .show() of .hide() 
 om de div waar de tekst ingevuld moet worden te laten zien of te verbergen. Verder kun je doormiddel van .val() de waarde
 ophalen. Vergeet niet om eerst je variabele leeg te zetten door var value = ('yourvalue').val(''); te gebruiken."
+
+We vinden het lastig om de logica er in te zetten, hoe kunnen we dat het beste aanpakken?
+(Beantwoord, "Zorg ervoor dat je stap bij stap precies weet hoe een spelersbeurt werkt. Schrijf op wat er gebeurt wanneer 
+speler 1 aan de beurt is. Wat mag speler 1 als eerste doen en wat gebeurt er daarna? Daarna is het simpel een kwestie van
+hetgeen erin programmeren.")
