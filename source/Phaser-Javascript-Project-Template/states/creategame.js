@@ -91,18 +91,22 @@ GameStates.CreateGame.prototype = {
     showPlayers: function(player){
         message = document.getElementById("overview");
         console.log(players);
-        mess = player.name + " " + player.color +  "</br>";
+        var haiku = "Turtles and mushrooms\nYou are in the wrong castle\nFireball mustache";
+        var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
+        message = this.game.add.text(0,0,player.name + " " + player.color +  "\n", style);
+        message.setShadow(3,3, 'rgba(0,0,0,0,5)', 2);
+        message.setTextBounds(0, 100, 600, 100);
 
         var bar = this.game.add.graphics();
         bar.beginFill(0x000000, 0.2);
         bar.drawRect(0, 100, 800, 100);
 
-        var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
+
 
         //var mess = "Test tekst";
         //  The Text is positioned at 0, 100
-        text = this.game.add.text(0, 0, "Test tekst", style);
-        text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
+        // text = this.game.add.text(0, 0, "Test tekst", style);
+        // text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
 
         //  We'll set the bounds to be from x0, y100 and be 800px wide by 100px high
         text.setTextBounds(0, 100, 800, 100);
