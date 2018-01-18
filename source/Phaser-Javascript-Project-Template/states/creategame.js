@@ -75,14 +75,19 @@ GameStates.CreateGame.prototype = {
                     player1.setText(player.name + " " + player.color);
                     removePlayerBtn = this.add.button(this.world.centerX, this.world.centerY*players.length/2, 'removePlayerBtn', function(){
                         removePlayer(player.name);
+                    player1.setText("");
+                    removePlayerBtn.visible = false;
                         if(players.length < GameStates.MAX_PLAYERS)
                             addPlayerBtn.visible = true;
                     }, this);
                 }
                 if(players.length == 2){
                     player2.setText(player.name + " " + player.color);
+                    //Maybe give every player their own remove button?
                     removePlayerBtn = this.add.button(this.world.centerX, this.world.centerY*players.length/2.8, 'removePlayerBtn', function(){
                         removePlayer(player.name);
+                    player2.setText("");
+                    removePlayerBtn.visible = false;
                         if(players.length < GameStates.MAX_PLAYERS)
                             addPlayerBtn.visible = true;
                     }, this);
@@ -91,6 +96,8 @@ GameStates.CreateGame.prototype = {
                     player3.setText(player.name + " " + player.color);
                     removePlayerBtn = this.add.button(this.world.centerX, this.world.centerY*players.length/3.3, 'removePlayerBtn', function(){
                         removePlayer(player.name);
+                    player3.setText("");
+                    removePlayerBtn.visible = false;
                         if(players.length < GameStates.MAX_PLAYERS)
                             addPlayerBtn.visible = true;
                     }, this);
@@ -99,6 +106,8 @@ GameStates.CreateGame.prototype = {
                     player4.setText(player.name + " " + player.color);
                     removePlayerBtn = this.add.button(this.world.centerX, this.world.centerY*players.length/3.7, 'removePlayerBtn', function(){
                         removePlayer(player.name);
+                    player4.setText("");
+                    removePlayerBtn.visible = false;
                         if(players.length < GameStates.MAX_PLAYERS)
                             addPlayerBtn.visible = true;
                     }, this);
@@ -107,6 +116,8 @@ GameStates.CreateGame.prototype = {
                     player5.setText(player.name + " " + player.color);
                     removePlayerBtn = this.add.button(this.world.centerX, this.world.centerY*players.length/3.9, 'removePlayerBtn', function(){
                         removePlayer(player.name);
+                    player5.setText("");
+                    removePlayerBtn.visible = false;
                         if(players.length < GameStates.MAX_PLAYERS)
                             addPlayerBtn.visible = true;
                     }, this);
@@ -115,8 +126,11 @@ GameStates.CreateGame.prototype = {
                     player6.setText(player.name + " " + player.color);
                     removePlayerBtn = this.add.button(this.world.centerX, this.world.centerY*players.length/4.0, 'removePlayerBtn', function(){
                         removePlayer(player.name);
+                    player6.setText("");
+                    removePlayerBtn.visible = false;
                         if(players.length < GameStates.MAX_PLAYERS)
                             addPlayerBtn.visible = true;
+                            $("#form1").show();
                     }, this);
                 }
                 console.log(player, 'added');
