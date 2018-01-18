@@ -16,8 +16,8 @@
       <file leaf-file-name="creategame.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/creategame.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="132" column="47" lean-forward="false" selection-start-line="132" selection-start-column="47" selection-end-line="132" selection-end-column="47" />
+            <state relative-caret-position="357">
+              <caret line="79" column="46" lean-forward="false" selection-start-line="79" selection-start-column="46" selection-end-line="79" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -284,12 +284,12 @@
       <workItem from="1515407412839" duration="604000" />
       <workItem from="1515490456895" duration="625000" />
       <workItem from="1516267883839" duration="1881000" />
-      <workItem from="1516281141609" duration="1650000" />
+      <workItem from="1516281141609" duration="3220000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91364000" />
+    <option name="totallyTimeSpent" value="92934000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
@@ -663,8 +663,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/creategame.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="132" column="47" lean-forward="false" selection-start-line="132" selection-start-column="47" selection-end-line="132" selection-end-column="47" />
+        <state relative-caret-position="357">
+          <caret line="79" column="46" lean-forward="false" selection-start-line="79" selection-start-column="46" selection-end-line="79" selection-end-column="46" />
           <folding />
         </state>
       </provider>
