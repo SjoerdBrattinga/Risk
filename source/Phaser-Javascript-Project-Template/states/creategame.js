@@ -38,29 +38,6 @@ GameStates.CreateGame.prototype = {
         player4.setTextBounds(0, 250, 600, 100);
         player5.setTextBounds(0, 300, 600, 100);
         player6.setTextBounds(0, 350, 600, 100);
-        //player1.setBackgroundColor(3,3, 'rgba(255,255,255)', 2);
-        //removePlayerBtn.anchor.setTo(3.5, 2);
-
-        // var bar = this.add.graphics();
-        // bar.beginFill(0x000000, 0.2);
-        // bar.drawRect(0, 100, 800, 100);
-        //
-        // var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
-        //
-        // //var mess = "Test tekst";
-        // //  The Text is positioned at 0, 100
-        // count = 0;
-        //
-        // textp1 = this.add.text(375, 0, "- You have clicked -\n0 times !", style);
-        // textp2 = this.add.text(375, 30, "Test 2", style);
-        // textp3 = this.add.text(375, 60, "Test 3", style);
-        // textp4 = this.add.text(375, 90, "Test 4", style);
-        // textp5 = this.add.text(375, 120, "Test 5", style);
-        // textp6 = this.add.text(375, 150, "Test 6", style);
-        // //text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
-        //
-        // //  We'll set the bounds to be from x0, y100 and be 800px wide by 100px high
-        // text.setTextBounds(0, 100, 800, 100);
 
         text.anchor.setTo(0.5, 0.5);
 
@@ -156,24 +133,9 @@ GameStates.CreateGame.prototype = {
     showPlayers: function(player){
         message = document.getElementById("overview");
         console.log(players);
-        var haiku = "Turtles and mushrooms\nYou are in the wrong castle\nFireball mustache";
-        // var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
-        // message = this.game.add.text(0,0,"TEKST ", style);
-        // message.setShadow(3,3, 'rgba(0,0,0,0,5)', 2);
-        // message.setTextBounds(0, 100, 600, 100);
         var bar = this.game.add.graphics();
         bar.beginFill(0x000000, 0.2);
         bar.drawRect(0, 100, 800, 100);
-
-
-
-        //var mess = "Test tekst";
-        //  The Text is positioned at 0, 100
-        // text = this.game.add.text(0, 0, "Test tekst", style);
-        // text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
-
-        //  We'll set the bounds to be from x0, y100 and be 800px wide by 100px high
-        //text.setTextBounds(0, 100, 800, 100);
     },
 
     removePlayerOnClick: function(name) {
