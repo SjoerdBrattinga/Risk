@@ -20,7 +20,12 @@ GameStates.Preloader.prototype = {
         this.load.image('backBtn', 'assets/button_return.png');
         this.load.image('continueBtn', 'assets/button_continue.png');
         this.load.image('addPlayerBtn', 'assets/button_add-player.png');
-        this.load.image('removePlayerBtn', 'assets/button_remove-player.png');
+        this.load.image('removePlayer1Btn', 'assets/button_remove-player.png');
+        this.load.image('removePlayer2Btn', 'assets/button_remove-player.png');
+        this.load.image('removePlayer3Btn', 'assets/button_remove-player.png');
+        this.load.image('removePlayer4Btn', 'assets/button_remove-player.png');
+        this.load.image('removePlayer5Btn', 'assets/button_remove-player.png');
+        this.load.image('removePlayer6Btn', 'assets/button_remove-player.png');
     },
 
     create: function () {

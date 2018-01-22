@@ -74,60 +74,60 @@ GameStates.CreateGame.prototype = {
                 if(players.length === 1){
                     player1.setText(player.name + " " + player.color);
                     //Maybe give every player their own remove button?
-                    removePlayerBtn = this.add.button(this.world.centerX, this.world.centerY*players.length/2, 'removePlayerBtn', function(){
+                    removePlayer1Btn = this.add.button(this.world.centerX, this.world.centerY*players.length/2, 'removePlayer1Btn', function(){
                         removePlayer(player.name);
                     player1.setText("");
-                    removePlayerBtn.destroy();
+                    removePlayer1Btn.destroy();
                         if(players.length < GameStates.MAX_PLAYERS)
                             addPlayerBtn.visible = true;
                     }, this);
                 }
                 if(players.length === 2){
                     player2.setText(player.name + " " + player.color);
-                    removePlayerBtn = this.add.button(this.world.centerX, this.world.centerY*players.length/2.8, 'removePlayerBtn', function(){
+                    removePlayer2Btn = this.add.button(this.world.centerX, this.world.centerY*players.length/2.8, 'removePlayer2Btn', function(){
                         removePlayer(player.name);
                     player2.setText("");
-                    removePlayerBtn.destroy();
+                    removePlayer2Btn.destroy();
                         if(players.length < GameStates.MAX_PLAYERS)
                             addPlayerBtn.visible = true;
                     }, this);
                 }
                 if(players.length === 3){
                     player3.setText(player.name + " " + player.color);
-                    removePlayerBtn = this.add.button(this.world.centerX, this.world.centerY*players.length/3.3, 'removePlayerBtn', function(){
+                    removePlayer3Btn = this.add.button(this.world.centerX, this.world.centerY*players.length/3.3, 'removePlayer3Btn', function(){
                         removePlayer(player.name);
                     player3.setText("");
-                    removePlayerBtn.destroy();
+                    removePlayer3Btn.destroy();
                         if(players.length < GameStates.MAX_PLAYERS)
                             addPlayerBtn.visible = true;
                     }, this);
                 }
                 if(players.length === 4){
                     player4.setText(player.name + " " + player.color);
-                    removePlayerBtn = this.add.button(this.world.centerX, this.world.centerY*players.length/3.7, 'removePlayerBtn', function(){
+                    removePlayer4Btn = this.add.button(this.world.centerX, this.world.centerY*players.length/3.7, 'removePlayer4Btn', function(){
                         removePlayer(player.name);
                     player4.setText("");
-                    removePlayerBtn.destroy();
+                    removePlayer4Btn.destroy();
                         if(players.length < GameStates.MAX_PLAYERS)
                             addPlayerBtn.visible = true;
                     }, this);
                 }
                 if(players.length === 5){
                     player5.setText(player.name + " " + player.color);
-                    removePlayerBtn = this.add.button(this.world.centerX, this.world.centerY*players.length/3.9, 'removePlayerBtn', function(){
+                    removePlayer5Btn = this.add.button(this.world.centerX, this.world.centerY*players.length/3.9, 'removePlayer5Btn', function(){
                         removePlayer(player.name);
                     player5.setText("");
-                    removePlayerBtn.destroy();
+                    removePlayer5Btn.destroy();
                         if(players.length < GameStates.MAX_PLAYERS)
                             addPlayerBtn.visible = true;
                     }, this);
                 }
                 if(players.length === 6){
                     player6.setText(player.name + " " + player.color);
-                    removePlayerBtn = this.add.button(this.world.centerX, this.world.centerY*players.length/4.0, 'removePlayerBtn', function(){
+                    removePlayer6Btn = this.add.button(this.world.centerX, this.world.centerY*players.length/4.0, 'removePlayer6Btn', function(){
                         removePlayer(player.name);
                     player6.setText("");
-                    removePlayerBtn.destroy();
+                    removePlayer6Btn.destroy();
                         if(players.length < GameStates.MAX_PLAYERS)
                             addPlayerBtn.visible = true;
                             $("#form1").show();
@@ -236,7 +236,7 @@ function validateNameInput(nameInput) {
         message.innerHTML = "Name can not be empty!";
     }
     else if (!isNaN(nameInput)) {
-        message.innerHTML = "Name can not contain only numbers.";
+        message.innerHTML = "Name can not contain numbers only.";
     }
     else if (playerNameExists) {
         message.innerHTML = "Name already exists, please choose a different name."
