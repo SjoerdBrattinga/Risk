@@ -161,23 +161,64 @@ function attackTerritory(attacker, defender) {
     }
 }
 
-function getBattleResult() {
-    var attackResult = [];
-    var defenseResult = [];
-}
 
+function battle() {
+    debugger;
+    attacker = territories[0];
+    attacker.addArmies(3);
+    defender = territories[1];
+    defender.addArmies(1);
+    var numberOfAttackDice = getMaxAttackDice();
+    var numberOfDefenseDice = getMaxDefenceDice();
+    var attackResult = rollDice(numberOfAttackDice);
+    var defenseResult = rollDice(numberOfDefenseDice);
 
-function battle(numberOfDice) {
-    var attackResult = rollDie(numberOfDice);
-    var defenseResult = rollDie(numberOfDice);
+    for (var i = 0; i < defenseResult.length; i++){
+        if(attackResult[i] > defenseResult[i]) {
+            console.log("attack won");
+            defender.removeArmies(numberOfDefenseDice);
 
+        } else {
+            console.log("defense won");
+            attacker.removeArmies(numberOfDefenseDice);
+        }
 
+        }
     return attackResult, defenseResult;
 }
 
 function rollDice(numberOfDice) {
     //TO DO: Logic, sort the array of both attacking and defending side.
     //       Check which die has a higher number (who won).
+    var result = [];
+    for(var i = 0; i<numberOfDice; i++){
+        result.push(rollDie());
+    }
+    return result.sort(function(a, b){return b-a});
+}
+
+function getMaxAttackDice(){
+
+    if(attacker.getNumberOfArmies() > 2){
+        maxAttackDice = 3;
+    }
+    else if (attacker.getNumberOfArmies() === 2){
+        maxAttackDice = 2;
+    }
+    else {
+        maxAttackDice = 1;
+    }
+        return maxAttackDice;
+}
+
+function getMaxDefenceDice(){
+    if(defender.getNumberOfArmies() >= 2){
+        maxDefenseDice = 2;
+    } else {
+        maxDefenseDice = 1;
+    }
+
+    return maxDefenseDice;
 }
 
 function rollDie(){
