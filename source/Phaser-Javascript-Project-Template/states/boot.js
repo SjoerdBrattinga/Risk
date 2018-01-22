@@ -63,11 +63,5 @@ function setTerritories(game) {
     territories.push(new Territory(game, 'Westeinde', 197, 125));
     territories.push(new Territory(game, 'Vossenparkwijk', 290, 221));
     territories.push(new Territory(game, 'Industrieterrein-west', 198, 260));
-    //for (var i = 0; i < territories.length; i++) {
-    //    territories[i].addGraphics();
-    //}
 }
 
-for (var i = 0; i < nrOfDice; i++) {
-    rollDie();
-}

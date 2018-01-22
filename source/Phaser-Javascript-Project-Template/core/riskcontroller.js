@@ -162,10 +162,6 @@ function attackTerritory(attacker, defender) {
 }
 
 function battle(numberOfDice) {
-    var attackResult = rollDie(numberOfDice);
-    var defenseResult = rollDie(numberOfDice);;
-
-    return attackResult, defenseResult;
 }
 
 function rollDice(numberOfDice) {

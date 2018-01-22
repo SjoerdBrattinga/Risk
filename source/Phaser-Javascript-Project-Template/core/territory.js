@@ -27,10 +27,12 @@ Territory.prototype = {
 
     addArmies: function (armiesToAdd) {
         this.armies += armiesToAdd;
+        this.armiesText.setText(this.armies);
     },
 
     removeArmies: function (armiesToRemove) {
         this.armies -= armiesToRemove;
+        this.armiesText.setText(this.armies);
     },
 
     setArmiesText: function () {
