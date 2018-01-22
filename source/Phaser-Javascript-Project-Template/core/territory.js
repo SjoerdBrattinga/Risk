@@ -7,44 +7,52 @@
     this.color = 0;
     this.borderTerritories = [];
 
-    this.setOwner = setOwner;
-    this.getOwner = getOwner;
-  
-    this.getNumberOfArmies = getNumberOfArmies;
-    this.addArmies = addArmies;
-    this.removeArmies = removeArmies;
-    this.getBorderTerritories = getBorderTerritories;
-    this.setBorderTerritories = setBorderTerritories;
+    this.setOwner = function(player) {
+        this.owner = player;
+        player.territoriesOwned.push(this);
+        this.drawCircle();
+    }
+
+    this.getOwner = function getOwner() {
+        return this.owner;
+    }
+
+    this.getNumberOfArmies = function getNumberOfArmies() {
+        return this.armies;
+    }
+
+    this.addArmies = function addArmies(armiesToAdd) {
+        this.armies += armiesToAdd;
+    }
+
+    this.removeArmies = function removeArmies(armiesToRemove) {
+        this.armies -= armiesToRemove;
+    }
+
+    this.getBorderTerritories = function getBorderTerritories() {
+        return this.borderTerritories;
+    }
+
+    this.setBorderTerritories = function setBorderTerritories(borderTerritories) {
+        this.borderTerritories = borderTerritories;
+    }
+
+    this.drawCircle = function() {
+        circleGraphics.beginFill(this.owner.getHexaColor(), 1);
+        circleGraphics.drawCircle(this.positionX, this.positionY, 25);
+    }
+
+    this.changeCircleColor = function changeCircleColor() {
+        circleGraphics.beginFill(GameStates.HEXA_COLORS[Math.floor(Math.random() * GameStates.HEXA_COLORS.length)], 1);
+        circleGraphics.drawCircle(this.positionX, this.positionY, 25);
+    }
 }
 
-Territory.prototype.owner = {
-    
-}
 
-function setOwner(player) {
-    this.owner = player;
-}
 
-function getOwner() {
-    return this.owner;
-}
 
-function getNumberOfArmies() {
-    return this.armies;
-}
 
-function addArmies(armiesToAdd) {
-    this.armies += armiesToAdd;
-}
 
-function removeArmies(armiesToRemove) {
-    this.armies -= armiesToRemove;
-}
 
-function getBorderTerritories() {
-    return this.borderTerritories;
-}
 
-function setBorderTerritories(borderTerritories) {
-    this.borderTerritories = borderTerritories;
-}
+

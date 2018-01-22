@@ -41,15 +41,13 @@ GameStates.CreateGame.prototype = {
 
         text.anchor.setTo(0.5, 0.5);
 
-            $("#form1").show();
+        $("#form1").show();
     },
 
     startGameOnClick: function () {
         var checkNumberOfPlayers = checkIfEnoughPlayersAreAdded();
-        //players.push(new Player());
-        //players.push(new Player());
-        //players.push(new Player());
-        assignTerritories();
+        
+
         this.state.start('Game');
         $(document).ready(function () {
             $("#form1").hide();
@@ -144,75 +142,22 @@ GameStates.CreateGame.prototype = {
             $("#name").val('');
         }
     },
-    showPlayers: function(player){
+    showPlayers: function (player) {
         message = document.getElementById("overview");
         console.log(players);
+
         var bar = this.game.add.graphics();
         bar.beginFill(0x000000, 0.2);
         bar.drawRect(0, 100, 800, 100);
+
     },
 
-    removePlayerOnClick: function(name) {
+    removePlayerOnClick: function (name) {
         debugger;
         removePlayer(name);
 
     }
 };
-
-
-
-function assignTerritories() {
-    var numberOfTerritories = Math.floor(territories.length / players.length);
-    var leftOverTerritories = territories.length % players.length;
-
-    shuffle(territories);
-   
-    for (var i = 0; i < players.length; i++) {
-        for (var j = 0; j < territories.length; j++) {
-            if (j >= numberOfTerritories * i && j < numberOfTerritories * (i + 1)) {
-                players[i].territoriesOwned.push(territories[j]);
-            }
-        }
-    }
-    console.log(players[0].getTerritoriesOwned());
-    console.log(players[1].getTerritoriesOwned());
-    console.log(players[2].getTerritoriesOwned());
-    //var count = 0;
-    //while (count < numberOfTerritories) {
-
-    //    var territory = getRandomTerritory();
-
-    //    if (!territory.getOwner()) {
-    //        territory.setOwner(players[i]);
-    //        players[i].territoriesOwned.push(territory);
-    //        count++;
-    //    }
-
-    //}
-    //for (var i = 0; i < territories.length; i++) {
-    //    if (territories[i].getOwner() !== undefined) {
-    //        var player = getRandomPlayer();
-    //        if (player.getTerritoriesOwned !== numberOfTerritories);
-    //            territories[i].setOwner(player);
-
-    //    }
-    //}
-}
-
-function hasOwner(territory) {
-    var owner = territory.getOwner();
-    
-}
-
-function shuffle(a) {
-    var j, x, i;
-    for (i = a.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
-        x = a[i];
-        a[i] = a[j];
-        a[j] = x;
-    }
-}
 
 function getColorFromCOLORS() {
     return GameStates.COLORS[players.length];
@@ -239,19 +184,19 @@ function validateNameInput(nameInput) {
         message.innerHTML = "Name can not contain numbers only.";
     }
     else if (playerNameExists) {
-        message.innerHTML = "Name already exists, please choose a different name."
+        message.innerHTML = "Name already exists, please choose a different name.";
     }
     else {
         return nameInput;
     }
 }
 
-function checkIfEnoughPlayersAreAdded(){
+function checkIfEnoughPlayersAreAdded() {
     var message;
     message = document.getElementById("message");
     message.innerHTML = "";
-    if(players.length < 1) {
-       message.innerHTML = "No players added!";
+    if (players.length < 1) {
+        message.innerHTML = "No players added!";
     }
     else if (players.length < 2) {
         message.innerHTML = "Need atleast 2 players to play.";

@@ -29,7 +29,7 @@ GameStates.Boot.prototype = {
         
     },
     create: function () {
-        setTerritories();
+        setTerritories(this);
         this.state.start('Preloader');
     }
 };
@@ -62,4 +62,7 @@ function setTerritories() {
     territories.push(new Territory('Westeinde', 197, 125));
     territories.push(new Territory('Vossenparkwijk', 290, 221));
     territories.push(new Territory('Industrieterrein-west', 198, 260));
+    //for (var i = 0; i < territories.length; i++) {
+    //    territories[i].addGraphics();
+    //}
 }

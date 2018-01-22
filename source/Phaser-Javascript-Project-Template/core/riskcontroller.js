@@ -18,10 +18,14 @@ var attacker = {};
 var defender = {};
 var conqueredTerritory;
 var playing = false;
+var riskGame;
 
-function newGame() {
+function newGame(game) {
+    riskGame = game;
     if (players.length < 2) return;
+
     if (gameState === GameStates.NEW_GAME) {
+        //assignTerritories();
         //cards = shuffleCards();
         var startingArmies = 30;
 

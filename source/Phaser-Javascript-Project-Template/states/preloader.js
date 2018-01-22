@@ -1,7 +1,7 @@
 ﻿// Preloader will load all of the assets like graphics and audio
-GameStates.Preloader = function (game) {
+GameStates.Preloader = function(game) {
     this.preloadBar = null;
-}
+};
 
 GameStates.Preloader.prototype = {
     preload: function () {

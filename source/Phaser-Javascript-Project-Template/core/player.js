@@ -11,6 +11,7 @@
 
     this.setColor = setColor;
     this.getColor = getColor;
+    this.getHexaColor = getHexaColor;
 
     this.getNumberOfArmies = getNumberOfArmies;
     this.addArmies = addArmies;
@@ -20,7 +21,7 @@
     this.setNumberOfExtraArmies = setNumberOfExtraArmies;
 
     this.getTerritoriesOwned = getTerritoriesOwned;
-    this.setTerritoriesOwned = setTerritoriesOwned;
+    //this.setTerritoriesOwned = setTerritoriesOwned;
 
     this.tradeInCards = tradeInCards;
 }
@@ -31,6 +32,18 @@ function setColor(color) {
 
 function getColor() {
     return this.color;
+}
+
+function getHexaColor() {
+    //var color;
+    for (var i = 0; i < GameStates.COLORS.length; i++) {
+        //console.log(GameStates.HEXA_COLORS[i]);
+        if (GameStates.COLORS[i] === this.getColor()) {
+            //console.log(this.getColor());
+            return GameStates.HEXA_COLORS[i];
+        } 
+    }
+    return null;
 }
 
 function getNumberOfArmies() {
@@ -67,9 +80,9 @@ function getTerritoriesOwned() {
     return this.territoriesOwned;
 }
 
-function setTerritoriesOwned(territoriesOwned) {
-    this.territoriesOwned = territoriesOwned;
-}
+//function setTerritoriesOwned(territoriesOwned) {
+//    this.territoriesOwned = territoriesOwned;
+//}
 
 function tradeInCards(card1, card2, card3) {
     //
