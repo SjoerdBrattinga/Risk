@@ -162,31 +162,21 @@ function attackTerritory(attacker, defender) {
 }
 
 function getBattleResult() {
-    var attackResult;
-    var defenseResult;
+    var attackResult = [];
+    var defenseResult = [];
+
 
     return true;
 }
 
-function rollAttackDice(numberOfDice) {
-    if (numberOfDice === 1) {
-        //do something
-    }
-    else if (numberOfDice === 2) {
-        //do something
-    }
-    else if (numberOfDice === 3) {
-        //do something
-    }
+function rollAttackDice(maxDice) {
+
+
+
 }
 
-function rollDefenceDice(numberOfDice) {
-    if (numberOfDice === 1) {
-        //do something
-    }
-    else if (numberOfDice === 2) {
-        //do something
-    }
+function rollDefenceDice(maxDice) {
+
 }
 
 function getDieNumber() {
