@@ -4,7 +4,7 @@
 
 var mapLeeuwarden;
 var continueBtn;
-var circleGraphics;
+
 
 GameStates.Game.prototype = {
     drawCircles: drawCircles,
@@ -17,7 +17,7 @@ GameStates.Game.prototype = {
         continueBtn = this.add.button(this.world.centerX, this.world.centerY, 'continueBtn', this.continueOnClick, this);
         continueBtn.anchor.setTo(-2, -1.5);
         
-        circleGraphics = this.add.graphics(0, 0);
+        //circleGraphics = this.add.graphics(0, 0);
         
         assignTerritories();
         //drawCircles();
@@ -26,12 +26,14 @@ GameStates.Game.prototype = {
         newGame(this);
     },
     continueOnClick: function () {
-        territories[0].changeCircleColor(circleGraphics);
+        territories[0].changeCircleColor();
        
     },
 
     update: function () {
-        
+        //for (var i = 0; i < territories.length; i++) {
+        //    territories[i].setArmieText();
+        //}
     },
 
     render: function () { }
@@ -41,6 +43,10 @@ function drawCircles() {
     for (var i = 0; i < territories.length; i++) {
         territories[i].drawCircle();
     }
+}
+
+function DrawNumberOfArmies() {
+    
 }
 
 function assignTerritories() {

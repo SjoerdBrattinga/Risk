@@ -47,11 +47,6 @@ GameStates.CreateGame.prototype = {
     startGameOnClick: function () {
         var checkNumberOfPlayers = checkIfEnoughPlayersAreAdded();
         
-
-        this.state.start('Game');
-        $(document).ready(function () {
-            $("#form1").hide();
-        });
         if (checkNumberOfPlayers) {
             this.state.start('Game');
             $(document).ready(function () {
@@ -192,14 +187,15 @@ function validateNameInput(nameInput) {
 }
 
 function checkIfEnoughPlayersAreAdded() {
-    var message;
-    message = document.getElementById("message");
+    var message = document.getElementById("message");
     message.innerHTML = "";
     if (players.length < 1) {
         message.innerHTML = "No players added!";
+        return false;
     }
     else if (players.length < 2) {
         message.innerHTML = "Need atleast 2 players to play.";
+        return false;
     }
     else {
         return true;

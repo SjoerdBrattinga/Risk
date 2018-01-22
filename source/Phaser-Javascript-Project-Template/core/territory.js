@@ -1,4 +1,5 @@
-﻿function Territory(name, positionX, positionY) {
+﻿function Territory(game, name, positionX, positionY) {
+    this.game = game;
     this.name = name;
     this.positionX = positionX;
     this.positionY = positionY;
@@ -6,47 +7,63 @@
     this.armies = 0;
     this.color = 0;
     this.borderTerritories = [];
+    this.armiesText = 0;
+}
 
-    this.setOwner = function(player) {
+Territory.prototype = {
+    setOwner: function (player) {
         this.owner = player;
         player.territoriesOwned.push(this);
         this.drawCircle();
-    }
+    },
 
-    this.getOwner = function getOwner() {
+    getOwner: function () {
         return this.owner;
-    }
+    },
 
-    this.getNumberOfArmies = function getNumberOfArmies() {
+    getNumberOfArmies: function () {
         return this.armies;
-    }
+    },
 
-    this.addArmies = function addArmies(armiesToAdd) {
+    addArmies: function (armiesToAdd) {
         this.armies += armiesToAdd;
-    }
+    },
 
-    this.removeArmies = function removeArmies(armiesToRemove) {
+    removeArmies: function (armiesToRemove) {
         this.armies -= armiesToRemove;
-    }
+    },
 
-    this.getBorderTerritories = function getBorderTerritories() {
+    setArmiesText: function () {
+        this.armiesText = this.game.add.text(this.positionX, this.positionY, this.armies, {
+            font: '20px Arial',
+            fill: '#fff',
+            align: 'center'
+        });
+        this.armiesText.anchor.setTo(0.5,0.4);
+    },
+
+    getBorderTerritories: function () {
         return this.borderTerritories;
-    }
+    },
 
-    this.setBorderTerritories = function setBorderTerritories(borderTerritories) {
+    setBorderTerritories: function (borderTerritories) {
         this.borderTerritories = borderTerritories;
-    }
+    },
 
-    this.drawCircle = function() {
-        circleGraphics.beginFill(this.owner.getHexaColor(), 1);
-        circleGraphics.drawCircle(this.positionX, this.positionY, 25);
-    }
+    drawCircle: function () {
+        var circle = this.game.add.graphics(0, 0);
+        circle.beginFill(this.owner.getHexaColor(), 1);
+        circle.drawCircle(this.positionX, this.positionY, 25);
+        this.setArmiesText();
+    },
 
-    this.changeCircleColor = function changeCircleColor() {
-        circleGraphics.beginFill(GameStates.HEXA_COLORS[Math.floor(Math.random() * GameStates.HEXA_COLORS.length)], 1);
-        circleGraphics.drawCircle(this.positionX, this.positionY, 25);
+    changeCircleColor: function () {
+        var circle = this.game.add.graphics(0, 0);
+        circle.beginFill(GameStates.HEXA_COLORS[Math.floor(Math.random() * GameStates.HEXA_COLORS.length)], 1);
+        circle.drawCircle(this.positionX, this.positionY, 25);
+        this.setArmiesText();
     }
-}
+};
 
 
 

@@ -146,7 +146,7 @@ function attackTerritory(attacker, defender) {
             var defendingPlayer = defender.getOwner();
 
 
-            var result = getBattleResult();
+            var result = battle();
 
             if (result) {
                 defender.removeArmies(10);
@@ -160,30 +160,27 @@ function attackTerritory(attacker, defender) {
     }
 }
 
-function getBattleResult() {
-    var attackResult;
-    var defenseResult;
+function battle(numberOfDice) {
+    var attackResult = rollDie(numberOfDice);
+    var defenseResult = rollDie(numberOfDice);;
 
-    return true;
+    return attackResult, defenseResult;
 }
 
-function rollAttackDice(numberOfDice) {
-    if (numberOfDice === 1) {
+function rollDice(numberOfDice) {
+
+
+}
+
+function rollDefenceDice(maxDice) {
+    if (maxDice === 1) {
         //do something
     }
-    else if (numberOfDice === 2) {
-        //do something
-    }
-    else if (numberOfDice === 3) {
+    else if (maxDice === 2) {
         //do something
     }
 }
 
-function rollDefenceDice(numberOfDice) {
-    if (numberOfDice === 1) {
-        //do something
-    }
-    else if (numberOfDice === 2) {
-        //do something
-    }
+function rollDie() {
+    
 }
