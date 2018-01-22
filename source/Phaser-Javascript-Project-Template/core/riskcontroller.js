@@ -19,6 +19,7 @@ var defender = {};
 var conqueredTerritory;
 var playing = false;
 var riskGame;
+var numberOfEyesThrown;
 
 function newGame(game) {
     riskGame = game;
@@ -186,4 +187,8 @@ function rollDefenceDice(numberOfDice) {
     else if (numberOfDice === 2) {
         //do something
     }
+}
+
+function getDieNumber() {
+    return Math.floor(Math.random() * 6) + 1;
 }
