@@ -19,6 +19,7 @@ var defender = {};
 var conqueredTerritory;
 var playing = false;
 var riskGame;
+var numberOfEyesThrown;
 
 function newGame(game) {
     riskGame = game;
@@ -181,6 +182,3 @@ function rollDefenceDice(maxDice) {
     }
 }
 
-function rollDie() {
-    
-}

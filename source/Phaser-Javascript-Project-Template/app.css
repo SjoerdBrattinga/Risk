@@ -3,6 +3,12 @@
     background: blue;
 }
 
+#form1 {
+    position: fixed;
+    top: 5em;
+    left: 23em;
+}
+
 .green {
     background-color: green;
 }
