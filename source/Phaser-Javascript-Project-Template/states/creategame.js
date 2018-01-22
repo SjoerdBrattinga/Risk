@@ -22,28 +22,22 @@ GameStates.CreateGame.prototype = {
         //removePlayerBtn = this.add.button(this.world.centerX, this.world.centerY, 'removePlayerBtn', this.removePlayerOnClick, this);
         startGameBtn.anchor.setTo(0.7, 0.2);
         addPlayerBtn.anchor.setTo(0.7, 2);
-        //removePlayerBtn.anchor.setTo(3.5, 2);
 
-        // var bar = this.add.graphics();
-        // bar.beginFill(0x000000, 0.2);
-        // bar.drawRect(0, 100, 800, 100);
-        //
-        // var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
-        //
-        // //var mess = "Test tekst";
-        // //  The Text is positioned at 0, 100
-        // count = 0;
-        //
-        // textp1 = this.add.text(375, 0, "- You have clicked -\n0 times !", style);
-        // textp2 = this.add.text(375, 30, "Test 2", style);
-        // textp3 = this.add.text(375, 60, "Test 3", style);
-        // textp4 = this.add.text(375, 90, "Test 4", style);
-        // textp5 = this.add.text(375, 120, "Test 5", style);
-        // textp6 = this.add.text(375, 150, "Test 6", style);
-        // //text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
-        //
-        // //  We'll set the bounds to be from x0, y100 and be 800px wide by 100px high
-        // text.setTextBounds(0, 100, 800, 100);
+
+        var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
+        player1 = this.game.add.text(0,0," ", style);
+        player2 = this.game.add.text(0,0," ",style);
+        player3 = this.game.add.text(0,0," ",style);
+        player4 = this.game.add.text(0,0," ", style);
+        player5 = this.game.add.text(0,0," ",style);
+        player6 = this.game.add.text(0,0," ",style);
+        //message.setShadow(3,3, 'rgba(0,0,0,0,5)', 2);
+        player1.setTextBounds(0, 100, 600, 100);
+        player2.setTextBounds(0, 150, 600, 100);
+        player3.setTextBounds(0, 200, 600, 100);
+        player4.setTextBounds(0, 250, 600, 100);
+        player5.setTextBounds(0, 300, 600, 100);
+        player6.setTextBounds(0, 350, 600, 100);
 
         text.anchor.setTo(0.5, 0.5);
 
@@ -75,6 +69,68 @@ GameStates.CreateGame.prototype = {
             value = validateNameInput(nameInput);
             if (value) {
                 var player = addPlayer(0, value, color);
+                if(players.length === 1){
+                    player1.setText(player.name + " " + player.color);
+                    //Maybe give every player their own remove button?
+                    removePlayerBtn = this.add.button(this.world.centerX, this.world.centerY*players.length/2, 'removePlayerBtn', function(){
+                        removePlayer(player.name);
+                    player1.setText("");
+                    removePlayerBtn.destroy();
+                        if(players.length < GameStates.MAX_PLAYERS)
+                            addPlayerBtn.visible = true;
+                    }, this);
+                }
+                if(players.length === 2){
+                    player2.setText(player.name + " " + player.color);
+                    removePlayerBtn = this.add.button(this.world.centerX, this.world.centerY*players.length/2.8, 'removePlayerBtn', function(){
+                        removePlayer(player.name);
+                    player2.setText("");
+                    removePlayerBtn.destroy();
+                        if(players.length < GameStates.MAX_PLAYERS)
+                            addPlayerBtn.visible = true;
+                    }, this);
+                }
+                if(players.length === 3){
+                    player3.setText(player.name + " " + player.color);
+                    removePlayerBtn = this.add.button(this.world.centerX, this.world.centerY*players.length/3.3, 'removePlayerBtn', function(){
+                        removePlayer(player.name);
+                    player3.setText("");
+                    removePlayerBtn.destroy();
+                        if(players.length < GameStates.MAX_PLAYERS)
+                            addPlayerBtn.visible = true;
+                    }, this);
+                }
+                if(players.length === 4){
+                    player4.setText(player.name + " " + player.color);
+                    removePlayerBtn = this.add.button(this.world.centerX, this.world.centerY*players.length/3.7, 'removePlayerBtn', function(){
+                        removePlayer(player.name);
+                    player4.setText("");
+                    removePlayerBtn.destroy();
+                        if(players.length < GameStates.MAX_PLAYERS)
+                            addPlayerBtn.visible = true;
+                    }, this);
+                }
+                if(players.length === 5){
+                    player5.setText(player.name + " " + player.color);
+                    removePlayerBtn = this.add.button(this.world.centerX, this.world.centerY*players.length/3.9, 'removePlayerBtn', function(){
+                        removePlayer(player.name);
+                    player5.setText("");
+                    removePlayerBtn.destroy();
+                        if(players.length < GameStates.MAX_PLAYERS)
+                            addPlayerBtn.visible = true;
+                    }, this);
+                }
+                if(players.length === 6){
+                    player6.setText(player.name + " " + player.color);
+                    removePlayerBtn = this.add.button(this.world.centerX, this.world.centerY*players.length/4.0, 'removePlayerBtn', function(){
+                        removePlayer(player.name);
+                    player6.setText("");
+                    removePlayerBtn.destroy();
+                        if(players.length < GameStates.MAX_PLAYERS)
+                            addPlayerBtn.visible = true;
+                            $("#form1").show();
+                    }, this);
+                }
                 console.log(player, 'added');
                 console.log(players);
                 if (players.length === GameStates.MAX_PLAYERS) {
@@ -89,28 +145,10 @@ GameStates.CreateGame.prototype = {
     showPlayers: function (player) {
         message = document.getElementById("overview");
         console.log(players);
-        mess = player.name + " " + player.color + "</br>";
 
         var bar = this.game.add.graphics();
         bar.beginFill(0x000000, 0.2);
         bar.drawRect(0, 100, 800, 100);
-
-        var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
-
-        //var mess = "Test tekst";
-        //  The Text is positioned at 0, 100
-        text = this.game.add.text(0, 0, "Test tekst", style);
-        text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
-
-        //  We'll set the bounds to be from x0, y100 and be 800px wide by 100px high
-        text.setTextBounds(0, 100, 800, 100);
-
-        removePlayerBtn = this.add.button(this.world.centerX, this.world.centerY * players.length / 2, 'removePlayerBtn', function () {
-            removePlayer(player.name);
-            if (players.length < GameStates.MAX_PLAYERS)
-                addPlayerBtn.visible = true;
-        }, this);
-        removePlayerBtn.anchor.setTo(3, 5.8);
 
     },
 
