@@ -55,7 +55,7 @@ function newGame(game) {
 function turn() {
     if (gameState === GameStates.PLACE_ARMIES) {
         console.log(currentPlayer.name);
-        console.log("place armies");
+        console.log('place armies');
 
     }
     if (gameState === GameStates.ATTACK) {
@@ -68,9 +68,9 @@ function turn() {
     }
     if (gameState === GameStates.END_TURN) {
         console.log('end turn');
-        
 
-    }  
+
+    }
 
 }
 
@@ -81,7 +81,7 @@ function endTurn() {
 
 $(document).ready(function () {
     $('#test_btn').click(function () {
-        
+
         if (gameState === 4) gameState = 1;
         else gameState++;
     });
@@ -161,20 +161,71 @@ function attackTerritory(attacker, defender) {
     }
 }
 
-function battle(numberOfDice) {
+
+function battle() {
+    debugger;
+    attacker = territories[0];
+    attacker.addArmies(3);
+    defender = territories[1];
+    defender.addArmies(1);
+    var numberOfAttackDice = getMaxAttackDice();
+    var numberOfDefenseDice = getMaxDefenceDice();
+    var attackResult = rollDice(numberOfAttackDice);
+    var defenseResult = rollDice(numberOfDefenseDice);
+
+    for (var i = 0; i < defenseResult.length; i++) {
+        if (attackResult[i] > defenseResult[i]) {
+            console.log('attack won');
+            defender.removeArmies(numberOfDefenseDice);
+
+        } else {
+            console.log('defense won');
+            attacker.removeArmies(numberOfDefenseDice);
+        }
+
+    }
+    return attackResult, defenseResult;
 }
 
 function rollDice(numberOfDice) {
-
-
+    //TO DO: Logic, sort the array of both attacking and defending side.
+    //       Check which die has a higher number (who won).
+    var result = [];
+    for (var i = 0; i < numberOfDice; i++) {
+        result.push(rollDie());
+    }
+    return result.sort(function (a, b) { return b - a });
 }
 
-function rollDefenceDice(maxDice) {
-    if (maxDice === 1) {
-        //do something
+function getMaxAttackDice() {
+    var maxAttackDice;
+
+    if (attacker.getNumberOfArmies() > 2) {
+        maxAttackDice = 3;
     }
-    else if (maxDice === 2) {
-        //do something
+    else if (attacker.getNumberOfArmies() === 2) {
+        maxAttackDice = 2;
     }
+    else {
+        maxAttackDice = 1;
+    }
+
+    return maxAttackDice;
+}
+
+function getMaxDefenceDice() {
+    var maxDefenseDice;
+
+    if (defender.getNumberOfArmies() >= 2) {
+        maxDefenseDice = 2;
+    } else {
+        maxDefenseDice = 1;
+    }
+
+    return maxDefenseDice;
+}
+
+function rollDie() {
+    return Math.floor(Math.random() * 6) + 1;
 }
 
