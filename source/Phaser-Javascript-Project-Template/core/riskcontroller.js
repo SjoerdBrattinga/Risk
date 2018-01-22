@@ -147,7 +147,7 @@ function attackTerritory(attacker, defender) {
             var defendingPlayer = defender.getOwner();
 
 
-            var result = getBattleResult();
+            var result = battle();
 
             if (result) {
                 defender.removeArmies(10);
@@ -164,21 +164,23 @@ function attackTerritory(attacker, defender) {
 function getBattleResult() {
     var attackResult = [];
     var defenseResult = [];
-
-
-    return true;
 }
 
-function rollAttackDice(maxDice) {
+
+function battle(numberOfDice) {
+    var attackResult = rollDie(numberOfDice);
+    var defenseResult = rollDie(numberOfDice);
 
 
-
+    return attackResult, defenseResult;
 }
 
-function rollDefenceDice(maxDice) {
-
+function rollDice(numberOfDice) {
+    //TO DO: Logic, sort the array of both attacking and defending side.
+    //       Check which die has a higher number (who won).
 }
 
-function getDieNumber() {
+function rollDie(){
     return Math.floor(Math.random() * 6) + 1;
 }
+

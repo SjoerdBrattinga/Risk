@@ -51,17 +51,13 @@ GameStates.CreateGame.prototype = {
     },
 
     startGameOnClick: function () {
-        var checkNumberOfPlayers = checkIfEnoughPlayersAreAdded();
-
-        if (checkNumberOfPlayers) {
+        if (checkIfEnoughPlayersAreAdded()) {
             this.state.start('Game');
             $(document).ready(function () {
                 $("#form1").hide();
             });
         }
-
     },
-
     addPlayerOnClick: function () {
         if (players.length < GameStates.MAX_PLAYERS) {
             var nameInput = $("#name").val();
@@ -193,8 +189,7 @@ function validateNameInput(nameInput) {
 }
 
 function checkIfEnoughPlayersAreAdded() {
-    var message;
-    message = document.getElementById("message");
+    var message = document.getElementById("message");
     message.innerHTML = "";
     if (players.length < 1) {
         message.innerHTML = "<span style='color: red;'>No players added!</span>";
