@@ -67,7 +67,3 @@ function setTerritories(game) {
     //    territories[i].addGraphics();
     //}
 }
-
-for (var i = 0; i < nrOfDice; i++) {
-    rollDie();
-}
