@@ -16,6 +16,7 @@ $('#name').val('');
 
 GameStates.CreateGame.prototype = {
     create: function () {
+        setTerritories();
         text = this.add.text(155, 30, 'Set up your game.', {
             fontSize: '32px', fill: '#fff'
         });
@@ -191,3 +192,33 @@ function checkIfEnoughPlayersAreAdded() {
     }
 }
 
+function setTerritories(game) {
+
+    territories.push(new Territory(game, 'Bilgaard', 370, 56));
+    territories.push(new Territory(game, 'Havankpark', 462, 12));
+    territories.push(new Territory(game, 'Vrijheidswijk', 488, 62));
+    territories.push(new Territory(game, 'Blitsaerd', 606, 13));
+    territories.push(new Territory(game, 'Camminghaburen', 712, 123));
+    territories.push(new Territory(game, 'Heechterp', 574, 94));
+    territories.push(new Territory(game, 'Schieringen', 592, 155));
+    territories.push(new Territory(game, 'Schepenbuurt', 580, 245));
+    territories.push(new Territory(game, 'Wielenpôlle', 572, 306));
+    territories.push(new Territory(game, 'De Hemrik', 726, 260));
+    territories.push(new Territory(game, 'Aldlân', 540, 370));
+    territories.push(new Territory(game, 'Zuiderburen', 630, 410));
+    territories.push(new Territory(game, 'Goutum', 470, 440));
+    territories.push(new Territory(game, 'Nijlân', 300, 370));
+    territories.push(new Territory(game, 'Achter de Hoven', 495, 269));
+    territories.push(new Territory(game, 'Huizum-oost', 470, 326));
+    territories.push(new Territory(game, 'Huizum-west', 360, 308));
+    territories.push(new Territory(game, 'Oranjewijk', 435, 244));
+    territories.push(new Territory(game, 'Cambuur', 500, 158));
+    territories.push(new Territory(game, 'Binnenstad', 388, 208));
+    territories.push(new Territory(game, 'Bloemenbuurt', 440, 118));
+    territories.push(new Territory(game, 'Transvaalwijk', 365, 127));
+    territories.push(new Territory(game, 'Vogelwijk', 293, 154));
+    territories.push(new Territory(game, 'Valeriuskwartier', 263, 116));
+    territories.push(new Territory(game, 'Westeinde', 197, 125));
+    territories.push(new Territory(game, 'Vossenparkwijk', 290, 221));
+    territories.push(new Territory(game, 'Industrieterrein-west', 198, 260));
+}

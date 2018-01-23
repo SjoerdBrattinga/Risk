@@ -26,6 +26,13 @@ GameStates.Preloader.prototype = {
         this.load.image('removePlayer4Btn', 'assets/button_remove-player.png');
         this.load.image('removePlayer5Btn', 'assets/button_remove-player.png');
         this.load.image('removePlayer6Btn', 'assets/button_remove-player.png');
+
+        this.load.image('blue_circle',   'assets/circles/blue_circle.png');
+        this.load.image('green_circle',  'assets/circles/green_circle.png');
+        this.load.image('orange_circle', 'assets/circles/orange_circle.png');
+        this.load.image('purple_circle', 'assets/circles/purple_circle.png');
+        this.load.image('red_circle',    'assets/circles/red_circle.png');
+        this.load.image('yellow_circle', 'assets/circles/yellow_circle.png');
     },
 
     create: function () {

@@ -4,30 +4,32 @@
 
 var mapLeeuwarden;
 var continueBtn;
-
+var circleGroup;
+var circleTextGroup;
 
 GameStates.Game.prototype = {
     drawCircles: drawCircles,
     create: function () {
         this.stage.backgroundColor = '4488AA';
-        
+
         mapLeeuwarden = this.add.sprite(this.world.centerX, this.world.centerY, 'mapLeeuwarden');
         mapLeeuwarden.anchor.setTo(0.5, 0.5);
 
         continueBtn = this.add.button(this.world.centerX, this.world.centerY, 'continueBtn', this.continueOnClick, this);
         continueBtn.anchor.setTo(-2, -1.5);
-        
-        //circleGraphics = this.add.graphics(0, 0);
-        
+
+        circleGroup = this.game.add.group();
+        circleTextGroup = this.game.add.group();
+
+        for (var i = 0; i < territories.length; i++) {
+            territories[i].create();
+        }
         assignTerritories();
-        //drawCircles();
-
-
         newGame(this);
     },
     continueOnClick: function () {
-        territories[0].changeCircleColor();
-       
+        territories[0].setOwner(getRandomPlayer());
+
     },
 
     update: function () {
@@ -46,7 +48,7 @@ function drawCircles() {
 }
 
 function DrawNumberOfArmies() {
-    
+
 }
 
 function assignTerritories() {
