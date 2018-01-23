@@ -30,9 +30,14 @@ function newGame(game) {
         //cards = shuffleCards();
         var startingArmies = 30;
 
-        for (var i = 0; i < players.length; i++) {
-            players[i].addArmies = startingArmies;
+        for (var i = 0; i <  players.length; i++){
+            players[i].numberOfArmies = startingArmies;
         }
+        //
+        // for (var i = 0; i < players.length; i++) {
+        //     players[i].numberOfArmies = startingArmies;
+        // }
+        assignArmiesToTerritories(30);
 
         currentPlayer = getRandomPlayer();
         gameState = GameStates.PLACE_ARMIES;
@@ -49,6 +54,21 @@ function newGame(game) {
     //setCurrentPlayer
     //setCards
 
+}
+
+function assignArmiesToTerritories(startingArmies) {
+    for (var i = 0; i < players.length; i++){
+        var playerTerritories = players[i].getTerritoriesOwned();
+
+        for(var j = 0; j < playerTerritories.length; j++){
+
+            var maxArmiesToAssign = startingArmies / (playerTerritories.length - j);
+            var armiesToAssign = Math.floor(Math.random() * maxArmiesToAssign) + 1;
+
+            playerTerritories[j].addArmies(armiesToAssign);
+            startingArmies -= armiesToAssign;
+        }
+    }
 }
 
 
@@ -140,7 +160,12 @@ function placeArmies(armiesToPlace) {
 
 }
 
-function attackTerritory(attacker, defender) {
+function attackTerritory() {
+    debugger;
+    attacker = territories[0];
+    // attacker.addArmies(25);
+    defender = territories[1];
+    // defender.addArmies(10);
     if (attacker !== undefined && defender !== undefined) {
         if (attacker !== null && defender !== null) {
             var attackingPlayer = attacker.getOwner();
@@ -149,9 +174,12 @@ function attackTerritory(attacker, defender) {
 
             var result = battle();
 
-            if (result) {
-                defender.removeArmies(10);
-            }
+            defender.removeArmies(result.defendingArmiesToRemove);
+            defendingPlayer.removeArmies(result.defendingArmiesToRemove);
+
+            attacker.removeArmies(result.attackingArmiesToRemove);
+            attackingPlayer.removeArmies(result.attackingArmiesToRemove);
+
             if (defender.getNumberOfArmies === 0) {
                 conqueredTerritory = defender;
                 conqueredTerritory.setOwner(attackingPlayer);
@@ -163,28 +191,32 @@ function attackTerritory(attacker, defender) {
 
 
 function battle() {
-    debugger;
-    attacker = territories[0];
-    attacker.addArmies(30);
-    defender = territories[1];
-    defender.addArmies(10);
+    var battleResult = {
+        attackingArmiesToRemove: 0,
+        defendingArmiesToRemove: 0
+    };
+
     var numberOfAttackDice = getMaxAttackDice();
     var numberOfDefenseDice = getMaxDefenceDice();
     var attackResult = rollDice(numberOfAttackDice);
     var defenseResult = rollDice(numberOfDefenseDice);
-
-    for (var i = 0; i < defenseResult.length; i++) {
-        if (attackResult[i] > defenseResult[i]) {
-            console.log('attack won');
-            defender.removeArmies(numberOfDefenseDice);
-
-        } else {
-            console.log('defense won');
-            attacker.removeArmies(numberOfDefenseDice);
+    
+    for (var i = 0; i < defenseResult.length; i++){
+        if(attackResult.length === 0){
+            console.log("Can not attack with 1 army left!");
+            break;
         }
-
-    }
-    return attackResult, defenseResult;
+        if(attackResult[i] > defenseResult[i]) {
+            console.log("attack won");
+            battleResult.defendingArmiesToRemove++;
+            // defender.removeArmies(numberOfDefenseDice);
+        } else {
+            console.log("defense won");
+            battleResult.attackingArmiesToRemove++;
+            // attacker.removeArmies(numberOfDefenseDice);
+        }
+        }
+    return battleResult;
 }
 
 function rollDice(numberOfDice) {
@@ -207,7 +239,7 @@ function getMaxAttackDice() {
         maxAttackDice = 2;
     }
     else {
-        maxAttackDice = 1;
+        maxAttackDice = 0;
     }
 
     return maxAttackDice;
