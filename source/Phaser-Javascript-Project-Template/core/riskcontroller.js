@@ -59,14 +59,14 @@ function newGame(game) {
 function assignArmiesToTerritories(startingArmies) {
     for (var i = 0; i < players.length; i++){
         var playerTerritories = players[i].getTerritoriesOwned();
-
+        var armies = startingArmies;
         for(var j = 0; j < playerTerritories.length; j++){
 
-            var maxArmiesToAssign = startingArmies / (playerTerritories.length - j);
+            var maxArmiesToAssign = armies / (playerTerritories.length - j);
             var armiesToAssign = Math.floor(Math.random() * maxArmiesToAssign) + 1;
 
             playerTerritories[j].addArmies(armiesToAssign);
-            startingArmies -= armiesToAssign;
+            armies -= armiesToAssign;
         }
     }
 }
