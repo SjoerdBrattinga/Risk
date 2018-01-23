@@ -200,7 +200,7 @@ function battle() {
     var numberOfDefenseDice = getMaxDefenceDice();
     var attackResult = rollDice(numberOfAttackDice);
     var defenseResult = rollDice(numberOfDefenseDice);
-    
+
     for (var i = 0; i < defenseResult.length; i++){
         if(attackResult.length === 0){
             console.log("Can not attack with 1 army left!");
