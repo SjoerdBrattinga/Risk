@@ -15,20 +15,25 @@
 
 Territory.prototype = {
     create: function () {
-        //debugger;
         this.sprite = this.game.add.sprite(this.positionX, this.positionY, 'red_circle');
-        //this.sprite.width = 25;
         this.sprite.scale.setTo(0.7, 0.7);
         this.sprite.anchor.setTo(0.5, 0.5);
+        this.sprite.inputEnabled = true;
+        this.sprite.events.onInputDown.add(this.listener, this);
+
         circleTextGroup.add(this.sprite);
-        //this.sprite.addChild(this.circleX);
-        //this.setArmiesText();
+
         this.armiesText = this.game.add.text(this.positionX, this.positionY, this.armies, {
             font: '20px Arial',
             fill: '#fff',
             align: 'center'
         }, circleTextGroup);
         this.armiesText.anchor.setTo(0.5, 0.4);
+    },
+
+    listener: function() {
+        console.log(this.name);
+        return this;
     },
 
     setOwner: function (player) {
