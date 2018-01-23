@@ -165,9 +165,9 @@ function attackTerritory(attacker, defender) {
 function battle() {
     debugger;
     attacker = territories[0];
-    attacker.addArmies(3);
+    attacker.addArmies(30);
     defender = territories[1];
-    defender.addArmies(1);
+    defender.addArmies(10);
     var numberOfAttackDice = getMaxAttackDice();
     var numberOfDefenseDice = getMaxDefenceDice();
     var attackResult = rollDice(numberOfAttackDice);
