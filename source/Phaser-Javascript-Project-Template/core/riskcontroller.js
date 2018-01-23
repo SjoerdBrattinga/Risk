@@ -57,12 +57,25 @@ function assignArmiesToTerritories(startingArmies) {
     for (var i = 0; i < players.length; i++) {
         var playerTerritories = players[i].getTerritoriesOwned();
         var armies = startingArmies;
-        for (var j = 0; j < playerTerritories.length; j++) {
+
+        var count = 0;
+        for(var j = 0; j < playerTerritories.length; j++){
+
+
+            if(j === playerTerritories.length - 1){
+                console.log(count);
+                playerTerritories[j].addArmies(armies);
+                count += armies;
+                console.log(count);
+                break;
+            }
 
             var maxArmiesToAssign = armies / (playerTerritories.length - j);
-            var armiesToAssign = Math.floor(Math.random() * maxArmiesToAssign) + 1;
+            maxArmiesToAssign = Math.round(maxArmiesToAssign);
+            var armiesToAssign = Math.round((Math.random() * maxArmiesToAssign) + 1);
 
             playerTerritories[j].addArmies(armiesToAssign);
+            count += armiesToAssign;
             armies -= armiesToAssign;
         }
     }
@@ -202,7 +215,7 @@ function battle() {
 
     var attackResult = rollDice(numberOfAttackDice);
     var defenseResult = rollDice(numberOfDefenseDice);
-
+    
     for (var i = 0; i < defenseResult.length; i++) {
         if (numberOfAttackDice === 0) {
             console.log('Can\'t attack with 1 army!');
