@@ -16,7 +16,8 @@ $('#name').val('');
 
 GameStates.CreateGame.prototype = {
     create: function () {
-        setTerritories();
+        setTerritories(this.game);
+
         text = this.add.text(155, 30, 'Set up your game.', {
             fontSize: '32px', fill: '#fff'
         });

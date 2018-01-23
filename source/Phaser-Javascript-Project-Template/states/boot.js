@@ -29,7 +29,6 @@ GameStates.Boot.prototype = {
         
     },
     create: function () {
-        setTerritories(this.game);
         this.state.start('Preloader');
     }
 };
