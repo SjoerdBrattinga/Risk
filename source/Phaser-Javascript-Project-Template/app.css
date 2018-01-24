@@ -4,9 +4,11 @@
 }
 
 #form1 {
+    width: 100%;
     position: fixed;
     top: 5em;
-    left: 23em;
+    left: 50%;
+    margin-left: -85px;
 }
 
 .green {
