@@ -1,22 +1,33 @@
 ﻿GameStates.Game = function (game) {
-
+    
 };
 
 var mapLeeuwarden;
 var continueBtn;
 var circleGroup;
 var circleTextGroup;
+var currentPlayerText;
+var instructionText;
+//var selectedTerritory;
 
 GameStates.Game.prototype = {
-    drawCircles: drawCircles,
     create: function () {
         this.stage.backgroundColor = '4488AA';
 
         mapLeeuwarden = this.add.sprite(this.world.centerX, this.world.centerY, 'mapLeeuwarden');
-        mapLeeuwarden.anchor.setTo(0.5, 0.5);
+        mapLeeuwarden.anchor.setTo(0.5);
 
-        continueBtn = this.add.button(this.world.centerX, this.world.centerY, 'continueBtn', this.continueOnClick, this);
-        continueBtn.anchor.setTo(-2, -1.5);
+        continueBtn = this.add.button(730, 475, 'continueBtn', this.continueOnClick, this);
+        continueBtn.anchor.setTo(0.5);
+
+        var style = {
+            font: '30px Arial',
+            align: 'left'
+        };
+        currentPlayerText = this.game.add.text(70, 0, '', style);
+        instructionText = this.game.add.text(70, 460, '', style);
+
+        //gameText.anchor.setTo(0.5);
 
         circleGroup = this.game.add.group();
         circleTextGroup = this.game.add.group();
@@ -28,28 +39,24 @@ GameStates.Game.prototype = {
         newGame(this);
     },
     continueOnClick: function () {
-        territories[0].setOwner(getRandomPlayer());
+        endTurn();
+        //territories[0].setOwner(getRandomPlayer());
 
     },
 
     update: function () {
-        //for (var i = 0; i < territories.length; i++) {
-        //    territories[i].setArmieText();
-        //}
+        
     },
 
     render: function () { }
 };
 
-function drawCircles() {
-    for (var i = 0; i < territories.length; i++) {
-        territories[i].drawCircle();
-    }
-}
+//function drawCircles() {
+//    for (var i = 0; i < territories.length; i++) {
+//        territories[i].drawCircle();
+//    }
+//}
 
-function DrawNumberOfArmies() {
-
-}
 
 function assignTerritories() {
     shuffle(territories);
