@@ -76,10 +76,6 @@ function assignArmiesToTerritories(startingArmies) {
             maxArmiesToAssign = Math.round(maxArmiesToAssign);
             var armiesToAssign = Math.round((Math.random() * maxArmiesToAssign) + 1);
 
-            if(players[i] === players[0]){
-                playerTerritories[j].addArmies(armiesToAssign + 5);
-            }
-
             playerTerritories[j].addArmies(armiesToAssign);
             count += armiesToAssign;
             armies -= armiesToAssign;
@@ -212,6 +208,8 @@ function attackTerritory() {
             if (attackingTerritory.armies > 1) {
                 var attackingPlayer = attackingTerritory.getOwner();
                 var defendingPlayer = defendingTerritory.getOwner();
+                debugger;
+                checkBorderTerritories(attackingTerritory, defendingTerritory);
 
                 var result = battle();
 
@@ -225,6 +223,7 @@ function attackTerritory() {
                     conqueredTerritory = true;
                     defendingTerritory.setOwner(attackingPlayer);
                     moveArmies(attackingTerritory,defendingTerritory,1);
+                    moveArmyBtn.visible = true;
 
                     if(attackingTerritory.armies > 1) {
                         assignArmiesAfterVictory();
@@ -234,6 +233,22 @@ function attackTerritory() {
             } else {
                  console.log('To attack a territory you need at least 2 armies!');
             }
+        }
+    }
+}
+
+function checkBorderTerritories(territory1, territory2){
+    debugger;
+    for (var i = 0; i < territory1.borderTerritories.length; i++) {
+        if (i === territory1.borderTerritories.length - 1) {
+            if (territory2 !== territory1.borderTerritories[i]) {
+                console.log("Not in border territory");
+                break;
+            }
+        }
+        if (territory2 === territory1.borderTerritories[i]){
+            console.log("Within border territory, GO!");
+            break;
         }
     }
 }

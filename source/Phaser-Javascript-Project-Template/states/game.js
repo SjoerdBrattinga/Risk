@@ -21,6 +21,7 @@ GameStates.Game.prototype = {
 
         moveArmyBtn = this.add.button(this.world.centerX, this.world.centerY, 'moveArmyBtn', this.moveArmyOnClick, this);
         moveArmyBtn.anchor.setTo(1,1);
+        moveArmyBtn.visible = false;
 
         circleGroup = this.game.add.group();
         circleTextGroup = this.game.add.group();
@@ -42,6 +43,7 @@ GameStates.Game.prototype = {
         moveArmies(attackingTerritory, defendingTerritory, armyNumberToRemove);
         if (armyNumberToMove >= minArmiesToAssign && armyNumberToRemove <= maxArmiesToAssign) {
             $('#form2').hide();
+            moveArmyBtn.visible = false;
         }
     },
 
