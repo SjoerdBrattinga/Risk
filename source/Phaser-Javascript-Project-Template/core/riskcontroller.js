@@ -21,6 +21,8 @@ var playing = false;
 var riskGame;
 var numberOfEyesThrown;
 
+var maxArmiesToAssign;
+var minArmiesToAssign;
 
 function newGame(game) {
     riskGame = game;
@@ -101,6 +103,7 @@ function assignArmiesToTerritories(startingArmies) {
                 break;
             }
 
+
             var maxArmiesToAssign = armies / (playerTerritories.length - j);
             maxArmiesToAssign = Math.round(maxArmiesToAssign);
             var armiesToAssign = Math.round(Math.random() * maxArmiesToAssign) + 1;
@@ -109,6 +112,29 @@ function assignArmiesToTerritories(startingArmies) {
             count += armiesToAssign;
             armies -= armiesToAssign;
         }
+    }
+}
+
+function assignArmiesAfterVictory() {
+
+    maxArmiesToAssign = attackingTerritory.armies - 1;
+    minArmiesToAssign = 1;
+
+    $('#form2').show();
+}
+
+$(function(){
+    $("input[type='number']").prop('min',minArmiesToAssign);
+    $("input[type='number']").prop('max',maxArmiesToAssign);
+});
+
+function moveArmies(territory1, territory2, armiesToMove) {
+    debugger;
+    if (territory1.armies - armiesToMove >= 1){
+        territory1.removeArmies(armiesToMove);
+        territory2.addArmies(armiesToMove);
+    } else {
+        console.log("Can not move more than " + territory1.armies + " - 1");
     }
 }
 
@@ -196,6 +222,7 @@ function placeArmies() {
 }
 
 function attackTerritory() {
+
     //var attackTerritories = players[0].getTerritoriesOwned();
     //attackingTerritory = attackTerritories[0];
     console.log('attacker', GameStates.attackingTerritory);
@@ -209,6 +236,11 @@ function attackTerritory() {
                 var attackingPlayer = GameStates.attackingTerritory.getOwner();
                 var defendingPlayer = GameStates.defendingTerritory.getOwner();
 
+
+ 
+                checkBorderTerritories(GameStates.attackingTerritory, GameStates.defendingTerritory);
+
+
                 var result = battle();
 
                 GameStates.defendingTerritory.removeArmies(result.defendingArmiesToRemove);
@@ -219,12 +251,38 @@ function attackTerritory() {
 
                 if (GameStates.defendingTerritory.armies === 0) {
                     conqueredTerritory = true;
+
                     GameStates.defendingTerritory.setOwner(attackingPlayer);
                     console.log(attackingPlayer.name + ' conquered ' + GameStates.defendingTerritory.name + '!');
+
+    
+                    moveArmies(GameStates.attackingTerritory, GameStates.defendingTerritory,1);
+                    moveArmyBtn.visible = true;
+
+                    if (GameStates.attackingTerritory.armies > 1) {
+                        assignArmiesAfterVictory();
+                    }
+                   
+
                 }
             } else {
                 console.log('To attack a territory you need at least 2 armies!');
             }
+        }
+    }
+}
+
+function checkBorderTerritories(territory1, territory2){
+    for (var i = 0; i < territory1.borderTerritories.length; i++) {
+        if (i === territory1.borderTerritories.length - 1) {
+            if (territory2 !== territory1.borderTerritories[i]) {
+                console.log("Not in border territory");
+                break;
+            }
+        }
+        if (territory2 === territory1.borderTerritories[i]){
+            console.log("Within border territory, GO!");
+            break;
         }
     }
 }

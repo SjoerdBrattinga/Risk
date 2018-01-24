@@ -6,9 +6,13 @@ var mapLeeuwarden;
 var continueBtn;
 var circleGroup;
 var circleTextGroup;
+
 var currentPlayerText;
 var instructionText;
 //var selectedTerritory;
+
+var moveArmyBtn;
+
 
 GameStates.Game.prototype = {
     create: function () {
@@ -29,6 +33,10 @@ GameStates.Game.prototype = {
 
         //gameText.anchor.setTo(0.5);
 
+        moveArmyBtn = this.add.button(this.world.centerX, this.world.centerY, 'moveArmyBtn', this.moveArmyOnClick, this);
+        moveArmyBtn.anchor.setTo(1,1);
+        moveArmyBtn.visible = false;
+
         circleGroup = this.game.add.group();
         circleTextGroup = this.game.add.group();
 
@@ -42,6 +50,16 @@ GameStates.Game.prototype = {
         endTurn();
         //territories[0].setOwner(getRandomPlayer());
 
+    },
+
+    moveArmyOnClick: function () {
+        var val = $('#number').val();
+        var armyNumberToMove = parseInt(val);
+        moveArmies(attackingTerritory, defendingTerritory, armyNumberToMove);
+        if (armyNumberToMove >= minArmiesToAssign && armyNumberToMove <= maxArmiesToAssign) {
+            $('#form2').hide();
+            moveArmyBtn.visible = false;
+        }
     },
 
     update: function () {
