@@ -13,7 +13,6 @@ var player5;
 var player6;
 $('#name').val('');
 
-
 GameStates.CreateGame.prototype = {
     create: function () {
         setTerritories(this.game);

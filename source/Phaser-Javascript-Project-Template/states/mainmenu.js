@@ -26,7 +26,6 @@ GameStates.MainMenu.prototype = {
         this.enterKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 
         this.enterKey.onDown.add(this.createGameBtnOnClick, this);
-        $("#form1").hide();
     },
 
     // playGame: function () {

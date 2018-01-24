@@ -6,6 +6,7 @@ var mapLeeuwarden;
 var continueBtn;
 var circleGroup;
 var circleTextGroup;
+var armyNumberToMove;
 
 GameStates.Game.prototype = {
     drawCircles: drawCircles,
@@ -17,6 +18,9 @@ GameStates.Game.prototype = {
 
         continueBtn = this.add.button(this.world.centerX, this.world.centerY, 'continueBtn', this.continueOnClick, this);
         continueBtn.anchor.setTo(-2, -1.5);
+
+        moveArmyBtn = this.add.button(this.world.centerX, this.world.centerY, 'moveArmyBtn', this.moveArmyOnClick, this);
+        moveArmyBtn.anchor.setTo(1,1);
 
         circleGroup = this.game.add.group();
         circleTextGroup = this.game.add.group();
@@ -30,6 +34,15 @@ GameStates.Game.prototype = {
     continueOnClick: function () {
         territories[0].setOwner(getRandomPlayer());
 
+    },
+
+    moveArmyOnClick: function () {
+        var armyNumberToMove = $('#number').val();
+        armyNumberToRemove = parseInt(armyNumberToMove);
+        moveArmies(attackingTerritory, defendingTerritory, armyNumberToRemove);
+        if (armyNumberToMove >= minArmiesToAssign && armyNumberToRemove <= maxArmiesToAssign) {
+            $('#form2').hide();
+        }
     },
 
     update: function () {

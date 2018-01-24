@@ -26,7 +26,7 @@ GameStates.Preloader.prototype = {
         this.load.image('removePlayer4Btn', 'assets/button_remove-player.png');
         this.load.image('removePlayer5Btn', 'assets/button_remove-player.png');
         this.load.image('removePlayer6Btn', 'assets/button_remove-player.png');
-
+        this.load.image('moveArmyBtn', 'assets/button_move-army.png');
         this.load.image('blue_circle',   'assets/circles/blue_circle.png');
         this.load.image('green_circle',  'assets/circles/green_circle.png');
         this.load.image('orange_circle', 'assets/circles/orange_circle.png');
@@ -37,6 +37,9 @@ GameStates.Preloader.prototype = {
 
     create: function () {
         //call next state
+        $('#form1').hide();
+        $('#form2').hide();
         this.state.start('MainMenu');
+
     }
 };

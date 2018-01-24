@@ -20,7 +20,8 @@ var conqueredTerritory;
 var playing = false;
 var riskGame;
 var numberOfEyesThrown;
-
+var maxArmiesToAssign;
+var minArmiesToAssign;
 function newGame(game) {
     riskGame = game;
     if (players.length < 2) return;
@@ -70,14 +71,42 @@ function assignArmiesToTerritories(startingArmies) {
                 break;
             }
 
+
             var maxArmiesToAssign = armies / (playerTerritories.length - j);
             maxArmiesToAssign = Math.round(maxArmiesToAssign);
             var armiesToAssign = Math.round((Math.random() * maxArmiesToAssign) + 1);
+
+            if(players[i] === players[0]){
+                playerTerritories[j].addArmies(armiesToAssign + 5);
+            }
 
             playerTerritories[j].addArmies(armiesToAssign);
             count += armiesToAssign;
             armies -= armiesToAssign;
         }
+    }
+}
+
+function assignArmiesAfterVictory() {
+
+    maxArmiesToAssign = attackingTerritory.armies - 1;
+    minArmiesToAssign = 1;
+
+    $('#form2').show();
+}
+
+$(function(){
+    $("input[type='number']").prop('min',minArmiesToAssign);
+    $("input[type='number']").prop('max',maxArmiesToAssign);
+});
+
+function moveArmies(territory1, territory2, armiesToMove) {
+    debugger;
+    if (territory1.armies - armiesToMove >= 1){
+        territory1.removeArmies(armiesToMove);
+        territory2.addArmies(armiesToMove);
+    } else {
+        console.log("Can not move more than " + territory1.armies + " - 1");
     }
 }
 
@@ -195,6 +224,11 @@ function attackTerritory() {
                 if (defendingTerritory.armies === 0) {
                     conqueredTerritory = true;
                     defendingTerritory.setOwner(attackingPlayer);
+                    moveArmies(attackingTerritory,defendingTerritory,1);
+
+                    if(attackingTerritory.armies > 1) {
+                        assignArmiesAfterVictory();
+                    }
                     console.log(attackingPlayer.name + ' conquered ' + defendingTerritory.name + '!');
                 }
             } else {
