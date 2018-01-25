@@ -72,8 +72,8 @@ function setInstructionText() {
     if (GameStates.gameState === GameStates.ATTACK) {
         //console.log('attack');
         if (GameStates.attackingTerritory && GameStates.defendingTerritory === null)
-            instructionText.setText('Attack: ' + GameStates.attackingTerritory.name + ' vs ...' );
-        else if (GameStates.attackingTerritory && GameStates.defendingTerritory) 
+            instructionText.setText('Attack: ' + GameStates.attackingTerritory.name + ' vs ...');
+        else if (GameStates.attackingTerritory && GameStates.defendingTerritory)
             instructionText.setText('Attack: ' + GameStates.attackingTerritory.name + ' vs ' + GameStates.defendingTerritory.name);
         else if (GameStates.attackingTerritory === null && GameStates.defendingTerritory)
             instructionText.setText('Attack: ... vs ' + GameStates.defendingTerritory.name);
@@ -84,7 +84,7 @@ function setInstructionText() {
         console.log('fortifying');
         instructionText.setText('Fortify');
     }
-    
+
 }
 
 function assignArmiesToTerritories(startingArmies) {
@@ -117,24 +117,23 @@ function assignArmiesToTerritories(startingArmies) {
 
 function assignArmiesAfterVictory() {
 
-    maxArmiesToAssign = attackingTerritory.armies - 1;
+    maxArmiesToAssign = GameStates.attackingTerritory.armies - 1;
     minArmiesToAssign = 1;
 
     $('#form2').show();
 }
 
-$(function(){
-    $("input[type='number']").prop('min',minArmiesToAssign);
-    $("input[type='number']").prop('max',maxArmiesToAssign);
+$(function () {
+    $("input[type='number']").prop('min', minArmiesToAssign);
+    $("input[type='number']").prop('max', maxArmiesToAssign);
 });
 
 function moveArmies(territory1, territory2, armiesToMove) {
-    debugger;
-    if (territory1.armies - armiesToMove >= 1){
+    if (territory1.armies - armiesToMove >= 1) {
         territory1.removeArmies(armiesToMove);
         territory2.addArmies(armiesToMove);
     } else {
-        console.log("Can not move more than " + territory1.armies + " - 1");
+        console.log('Can not move more than ' + territory1.armies + ' - 1');
     }
 }
 
@@ -222,12 +221,7 @@ function placeArmies() {
 }
 
 function attackTerritory() {
-
-    //var attackTerritories = players[0].getTerritoriesOwned();
-    //attackingTerritory = attackTerritories[0];
     console.log('attacker', GameStates.attackingTerritory);
-    //var defenderTerritories = players[1].getTerritoriesOwned();
-    //defendingTerritory = defenderTerritories[0];
     console.log('defender', GameStates.defendingTerritory);
 
     if (GameStates.attackingTerritory !== undefined && GameStates.defendingTerritory !== undefined) {
@@ -236,10 +230,7 @@ function attackTerritory() {
                 var attackingPlayer = GameStates.attackingTerritory.getOwner();
                 var defendingPlayer = GameStates.defendingTerritory.getOwner();
 
-
- 
                 checkBorderTerritories(GameStates.attackingTerritory, GameStates.defendingTerritory);
-
 
                 var result = battle();
 
@@ -255,14 +246,15 @@ function attackTerritory() {
                     GameStates.defendingTerritory.setOwner(attackingPlayer);
                     console.log(attackingPlayer.name + ' conquered ' + GameStates.defendingTerritory.name + '!');
 
-    
-                    moveArmies(GameStates.attackingTerritory, GameStates.defendingTerritory,1);
-                    moveArmyBtn.visible = true;
+
+                    moveArmies(GameStates.attackingTerritory, GameStates.defendingTerritory, 1);
+                    
 
                     if (GameStates.attackingTerritory.armies > 1) {
+                        moveArmyBtn.visible = true;
                         assignArmiesAfterVictory();
                     }
-                   
+
 
                 }
             } else {
@@ -272,16 +264,19 @@ function attackTerritory() {
     }
 }
 
-function checkBorderTerritories(territory1, territory2){
+function checkBorderTerritories(territory1, territory2) {
     for (var i = 0; i < territory1.borderTerritories.length; i++) {
-        if (i === territory1.borderTerritories.length - 1) {
-            if (territory2 !== territory1.borderTerritories[i]) {
-                console.log("Not in border territory");
-                break;
-            }
-        }
-        if (territory2 === territory1.borderTerritories[i]){
-            console.log("Within border territory, GO!");
+        //if (i === territory1.borderTerritories.length - 1) {
+        //    if (territory2 !== territory1.borderTerritories[i]) {
+        //        console.log('Not in border territory');
+        //        break;
+        //    }
+        //}
+        if (territory2 === territory1.borderTerritories[i]) {
+            console.log('Within border territory, GO!');
+            break;
+        } else {
+            console.log('Not in border territory');
             break;
         }
     }
@@ -319,16 +314,6 @@ function battle() {
     return battleResult;
 }
 
-function rollDice(numberOfDice) {
-    var result = [];
-
-    for (var i = 0; i < numberOfDice; i++) {
-        result.push(rollDie());
-    }
-
-    return result.sort(function (a, b) { return b - a; });
-}
-
 function getMaxAttackDice() {
     var maxAttackDice;
 
@@ -357,6 +342,16 @@ function getMaxDefenceDice() {
     }
 
     return maxDefenseDice;
+}
+
+function rollDice(numberOfDice) {
+    var result = [];
+
+    for (var i = 0; i < numberOfDice; i++) {
+        result.push(rollDie());
+    }
+
+    return result.sort(function (a, b) { return b - a; });
 }
 
 function rollDie() {

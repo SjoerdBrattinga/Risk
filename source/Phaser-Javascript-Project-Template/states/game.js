@@ -55,7 +55,7 @@ GameStates.Game.prototype = {
     moveArmyOnClick: function () {
         var val = $('#number').val();
         var armyNumberToMove = parseInt(val);
-        moveArmies(attackingTerritory, defendingTerritory, armyNumberToMove);
+        moveArmies(GameStates.attackingTerritory, GameStates.defendingTerritory, armyNumberToMove);
         if (armyNumberToMove >= minArmiesToAssign && armyNumberToMove <= maxArmiesToAssign) {
             $('#form2').hide();
             moveArmyBtn.visible = false;
