@@ -43,7 +43,6 @@ function newGame(game) {
         currentPlayer = players[0];
         setCurrentPlayerText();
         currentPlayer.setArmiesToPlace();
-        debugger;
         if(currentPlayer.type === 1){
             placeArmiesAiEasy();
         }
@@ -155,6 +154,10 @@ function moveArmies(territory1, territory2, armiesToMove) {
 function endTurn() {
     GameStates.gameState = GameStates.PLACE_ARMIES;
     setCurrentPlayer();
+    if (currentPlayer.type === 1){
+        //TODO: Make it so that after every step you have to click the 'continue' button.
+        placeArmiesAiEasy();
+    }
     currentPlayer.setArmiesToPlace();
     setCurrentPlayerText();
 }
@@ -245,6 +248,10 @@ function attackTerritory() {
                     
                     if (attackingTerritory.armies > 1) {
                         getNumberOfArmiesToMove(attackingTerritory);
+                    }
+
+                    if (defendingPlayer.territoriesOwned.length === 0){
+                        debugger;
                     }
 
                 }

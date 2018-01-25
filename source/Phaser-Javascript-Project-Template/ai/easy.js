@@ -8,12 +8,27 @@
         currentPlayer.armiesToPlace--;
         setInstructionText();
     }
+    attackTerritoryAiEasy();
     endTurn();
 }
 
 function attackTerritoryAiEasy() {
-    //TODO: easy bot attacks nearest territory which has less armies than his own.
+    //TODO: easy bot attacks nearest territory (which has less armies than his own.)
 
+    for(var i = 0; i < currentPlayer.territoriesOwned.length; i++) {
+        var connectedTerritories = currentPlayer.territoriesOwned[i].borderTerritories;
+        for (var j = 0; j < connectedTerritories.length; j++){
+            var owner = connectedTerritories[j].owner;
+            if(owner !== currentPlayer && connectedTerritories[j].armies < currentPlayer.territoriesOwned[i].armies){
 
+                GameStates.attackingTerritory = currentPlayer.territoriesOwned[i];
+                GameStates.defendingTerritory = connectedTerritories[j];
+                attackTerritory();
+            }
+        }
+    }
+}
 
+function fortifyTerritoryAiEasy () {
+    // TODO: fortifies territory (for now this can be random, maybe it should be more advanced for the average and / or hard bots)
 }

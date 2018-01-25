@@ -77,6 +77,7 @@ GameStates.Game.prototype = {
     },
 
     moveArmyOnClick: function () {
+        //TODO: This also needs to be implemented for the bots so after the bots turn has ended it does NOT show this button and textbox.
         var val = $('#number').val();
         var armyNumberToMove = parseInt(val);
        
