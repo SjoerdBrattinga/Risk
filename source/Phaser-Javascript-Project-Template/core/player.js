@@ -60,6 +60,9 @@ Player.prototype = {
 
     setArmiesToPlace: function() {
         this.armiesToPlace = Math.floor(this.territoriesOwned.length / 3) + this.extraArmies;
+        if (this.armiesToPlace < 3) {
+            this.armiesToPlace = 3;
+        }
     },
 
     getTerritoriesOwned: function () {

@@ -24,6 +24,7 @@ GameStates.Game.prototype = {
 
         continueBtn = this.add.button(730, 475, 'continueBtn', this.continueOnClick, this);
         continueBtn.anchor.setTo(0.5);
+        continueBtn.visible = false;
 
         var style = {
             font: '30px Arial',
@@ -34,11 +35,11 @@ GameStates.Game.prototype = {
 
         //gameText.anchor.setTo(0.5);
 
-        moveArmyBtn = this.add.button(730, 475, 'moveArmyBtn', this.moveArmyOnClick, this);
+        moveArmyBtn = this.add.button(730, 425, 'moveArmyBtn', this.moveArmyOnClick, this);
         moveArmyBtn.anchor.setTo(0.5);
         moveArmyBtn.visible = false;
 
-        attackBtn = this.add.button(730, 475, 'attackBtn', this.attackOnClick, this);
+        attackBtn = this.add.button(730, 425, 'attackBtn', this.attackOnClick, this);
         attackBtn.anchor.setTo(0.5);
         attackBtn.visible = false;
         //attackBtn.visible = false;
@@ -53,7 +54,24 @@ GameStates.Game.prototype = {
         newGame(this);
     },
     continueOnClick: function () {
-        endTurn();
+        if ($('#form2').is(':visible'))
+            $('#form2').hide();
+        if(GameStates.gameState !== GameStates.END_TURN)
+            GameStates.gameState++;
+
+        GameStates.attackingTerritory = null;
+        GameStates.defendingTerritory = null;
+        if (GameStates.gameState === GameStates.PLACE_ARMIES) {
+            continueBtn.visible = false;
+        } else if (GameStates.gameState === GameStates.FORTIFYING) {
+            attackBtn.visible = false;
+        } else if (GameStates.gameState === GameStates.END_TURN) {
+            endTurn();
+            continueBtn.visible = false;
+        }
+        
+        setInstructionText();
+        //endTurn();
         //territories[0].setOwner(getRandomPlayer());
 
     },
@@ -61,11 +79,21 @@ GameStates.Game.prototype = {
     moveArmyOnClick: function () {
         var val = $('#number').val();
         var armyNumberToMove = parseInt(val);
-        moveArmies(GameStates.attackingTerritory, GameStates.defendingTerritory, armyNumberToMove);
+       
         if (armyNumberToMove >= minArmiesToAssign && armyNumberToMove <= maxArmiesToAssign) {
+            moveArmies(GameStates.attackingTerritory, GameStates.defendingTerritory, armyNumberToMove);
             $('#form2').hide();
             moveArmyBtn.visible = false;
         }
+        GameStates.attackingTerritory = null;
+        GameStates.defendingTerritory = null;
+        if (GameStates.gameState === GameStates.FORTIFYING) {
+            //GameStates.gameState = GameStates.END_TURN;
+            //endTurn();
+            moveArmyBtn.visible = false;
+            //this.continueOnClick();
+        }
+        setInstructionText();
     },
 
     attackOnClick: function() {
