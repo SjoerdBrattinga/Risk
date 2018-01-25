@@ -63,7 +63,7 @@ Territory.prototype = {
             if (this.owner === currentPlayer) {
                 if (this.armies > 1 && GameStates.attackingTerritory === null) {
                     GameStates.attackingTerritory = this;
-                } else if (checkBorderTerritories(GameStates.attackingTerritory, this) && GameStates.attackingTerritory) {
+                } else if (checkIfTerritoriesAreConnected(GameStates.attackingTerritory, this) && GameStates.attackingTerritory) {
                     GameStates.defendingTerritory = this;
                     getNumberOfArmiesToMove(GameStates.attackingTerritory);
                 }

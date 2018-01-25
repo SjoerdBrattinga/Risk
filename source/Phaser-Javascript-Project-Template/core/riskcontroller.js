@@ -43,8 +43,8 @@ function newGame(game) {
         currentPlayer = players[0];
         setCurrentPlayerText();
         currentPlayer.setArmiesToPlace();
-        debugger;
-        if(currentPlayer.type === 1){
+
+        if (currentPlayer.type === 1) {
             placeArmiesAiEasy();
         }
         GameStates.gameState = GameStates.PLACE_ARMIES;
@@ -86,7 +86,7 @@ function setInstructionText() {
             instructionText.setText('Attack');
     } else if (GameStates.gameState === GameStates.FORTIFYING) {
         console.log('fortifying');
-       
+
         if (GameStates.attackingTerritory && GameStates.defendingTerritory === null) {
             instructionText.setText('Moving from: ' + GameStates.attackingTerritory.name);
         } else if (GameStates.attackingTerritory && GameStates.defendingTerritory) {
@@ -233,7 +233,7 @@ function attackTerritory() {
                 attackingPlayer.removeArmies(result.attackingArmiesToRemove);
 
                 if (defendingTerritory.armies === 0) {
-                    
+
                     setInstructionText();
                     conqueredTerritory = true;
                     attackBtn.visible = false;
@@ -242,11 +242,10 @@ function attackTerritory() {
                     console.log(attackingPlayer.name + ' conquered ' + defendingTerritory.name + '!');
 
                     moveArmies(attackingTerritory, defendingTerritory, 1);
-                    
+
                     if (attackingTerritory.armies > 1) {
                         getNumberOfArmiesToMove(attackingTerritory);
                     }
-
                 }
             } else {
                 console.log('To attack a territory you need at least 2 armies!');
@@ -259,10 +258,34 @@ function checkBorderTerritories(territory1, territory2) {
     for (var i = 0; i < territory1.borderTerritories.length; i++) {
         if (territory1.borderTerritories[i] === territory2) {
             return true;
-        } 
+        }
     }
     console.log(territory2.name + ' is not a border territory!');
     return false;
+}
+
+function checkIfTerritoriesAreConnected(territory1, territory2) {
+    var connectedTerritories = territory1.borderTerritories;
+
+    for (var i = 0; i < connectedTerritories.length; i++) {
+        if (checkBorderTerritories(connectedTerritories[i], territory2)) {
+            console.log('connected!');
+            return true;
+        }
+        else {
+            connectedTerritories = borderTerritories[i].borderTerritories;
+            if (checkBorderTerritories(connectedTerritories[i], territory2)) {
+                console.log('connected!');
+                return true;
+            }
+                
+        }
+
+    }
+
+    console.log('not connected');
+    return false;
+
 }
 
 function battle() {
