@@ -238,6 +238,7 @@ function attackTerritory() {
 
  
                 checkBorderTerritories(GameStates.attackingTerritory, GameStates.defendingTerritory);
+                attackBtn.visible = true;
 
 
                 var result = battle();
@@ -250,18 +251,19 @@ function attackTerritory() {
 
                 if (GameStates.defendingTerritory.armies === 0) {
                     conqueredTerritory = true;
+                    attackBtn.visible = false;
 
                     GameStates.defendingTerritory.setOwner(attackingPlayer);
                     console.log(attackingPlayer.name + ' conquered ' + GameStates.defendingTerritory.name + '!');
 
-    
+
                     moveArmies(GameStates.attackingTerritory, GameStates.defendingTerritory,1);
                     moveArmyBtn.visible = true;
 
                     if (GameStates.attackingTerritory.armies > 1) {
                         assignArmiesAfterVictory();
                     }
-                   
+
 
                 }
             } else {

@@ -40,6 +40,7 @@ GameStates.Game.prototype = {
 
         attackBtn = this.add.button(730, 475, 'attackBtn', this.attackOnClick, this);
         attackBtn.anchor.setTo(0.5);
+        attackBtn.visible = false;
         //attackBtn.visible = false;
 
         circleGroup = this.game.add.group();
@@ -65,6 +66,10 @@ GameStates.Game.prototype = {
             $('#form2').hide();
             moveArmyBtn.visible = false;
         }
+    },
+
+    attackOnClick: function() {
+        attackTerritory();
     },
 
     update: function () {
