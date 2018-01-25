@@ -52,7 +52,7 @@ Territory.prototype = {
             }
             
             if (GameStates.attackingTerritory && GameStates.defendingTerritory) {
-                attackTerritory();
+                attackBtn.visible = true;
             }
         }
         GameStates.selectedTerritory = this;

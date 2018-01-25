@@ -242,19 +242,17 @@ function attackTerritory() {
 
                 if (GameStates.defendingTerritory.armies === 0) {
                     conqueredTerritory = true;
+                    attackBtn.visible = false;
 
                     GameStates.defendingTerritory.setOwner(attackingPlayer);
                     console.log(attackingPlayer.name + ' conquered ' + GameStates.defendingTerritory.name + '!');
 
-
                     moveArmies(GameStates.attackingTerritory, GameStates.defendingTerritory, 1);
-                    
 
                     if (GameStates.attackingTerritory.armies > 1) {
                         moveArmyBtn.visible = true;
                         assignArmiesAfterVictory();
                     }
-
 
                 }
             } else {
@@ -266,20 +264,11 @@ function attackTerritory() {
 
 function checkBorderTerritories(territory1, territory2) {
     for (var i = 0; i < territory1.borderTerritories.length; i++) {
-        //if (i === territory1.borderTerritories.length - 1) {
-        //    if (territory2 !== territory1.borderTerritories[i]) {
-        //        console.log('Not in border territory');
-        //        break;
-        //    }
-        //}
-        if (territory2 === territory1.borderTerritories[i]) {
-            console.log('Within border territory, GO!');
-            break;
-        } else {
-            console.log('Not in border territory');
-            break;
-        }
+        if (territory1.borderTerritories[i] === territory2) {
+            return true;
+        } 
     }
+    return false;
 }
 
 function battle() {
@@ -311,6 +300,7 @@ function battle() {
             battleResult.attackingArmiesToRemove++;
         }
     }
+
     return battleResult;
 }
 
