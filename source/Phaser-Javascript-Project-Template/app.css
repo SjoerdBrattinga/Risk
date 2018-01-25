@@ -11,6 +11,14 @@
     margin-left: -85px;
 }
 
+#form2 {
+    width: 100%;
+    position: fixed;
+    top: 5em;
+    left: 50%;
+    margin-left: -85px;
+}
+
 .green {
     background-color: green;
 }

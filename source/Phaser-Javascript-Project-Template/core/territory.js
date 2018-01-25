@@ -33,11 +33,13 @@ Territory.prototype = {
         if (GameStates.gameState === GameStates.PLACE_ARMIES) {
             if (this.owner === currentPlayer && currentPlayer.armiesToPlace > 0) {
                 this.addArmies(1);
+                currentPlayer.addArmies(1);
                 currentPlayer.armiesToPlace--;
                 setInstructionText();
                 if (currentPlayer.armiesToPlace === 0) {
-                    GameStates.gameState++;
-                    setInstructionText();
+                    continueBtn.visible = true;
+                    //GameStates.gameState++;
+                    //setInstructionText();
                 }
             }
         } else if (GameStates.gameState === GameStates.ATTACK) {
@@ -46,18 +48,33 @@ Territory.prototype = {
                 setInstructionText();
                 console.log('Attacking territory', GameStates.attackingTerritory);
             } else {
-                GameStates.defendingTerritory = this;
+                if (checkBorderTerritories(GameStates.attackingTerritory, this)) {
+                    GameStates.defendingTerritory = this;
+                    console.log('Defending territory');
+                } else {
+                    GameStates.defendingTerritory = null;
+                }
                 setInstructionText();
-                console.log('Defending territory');
             }
-            
             if (GameStates.attackingTerritory && GameStates.defendingTerritory) {
-                attackTerritory();
+                attackBtn.visible = true;
             }
+        } else if (GameStates.gameState === GameStates.FORTIFYING) {
+            if (this.owner === currentPlayer) {
+                if (this.armies > 1 && GameStates.attackingTerritory === null) {
+                    GameStates.attackingTerritory = this;
+                } else if (checkBorderTerritories(GameStates.attackingTerritory, this) && GameStates.attackingTerritory) {
+                    GameStates.defendingTerritory = this;
+                    getNumberOfArmiesToMove(GameStates.attackingTerritory);
+                }
+                
+            }
+            setInstructionText();
         }
+
         GameStates.selectedTerritory = this;
         console.log('selected territory', GameStates.selectedTerritory);
-        return this;
+        //return this;
     },
 
     setOwner: function (player) {
