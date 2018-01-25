@@ -44,7 +44,7 @@ function newGame(game) {
         setCurrentPlayerText();
         currentPlayer.setArmiesToPlace();
 
-        if (currentPlayer.type === 1) {
+        if(currentPlayer.type === 1){
             placeArmiesAiEasy();
         }
         GameStates.gameState = GameStates.PLACE_ARMIES;
@@ -155,6 +155,10 @@ function moveArmies(territory1, territory2, armiesToMove) {
 function endTurn() {
     GameStates.gameState = GameStates.PLACE_ARMIES;
     setCurrentPlayer();
+    if (currentPlayer.type === 1){
+        //TODO: Make it so that after every step you have to click the 'continue' button.
+        placeArmiesAiEasy();
+    }
     currentPlayer.setArmiesToPlace();
     setCurrentPlayerText();
 }
