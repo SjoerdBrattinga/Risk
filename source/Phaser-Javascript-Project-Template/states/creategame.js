@@ -2,9 +2,15 @@
 
 };
 
+var setuptext;
+var addbottext;
 var text;
 var startGameBtn;
 var addPlayerBtn;
+var addEasyBotBtn;
+var addAverageBotBtn;
+var addHardBotBtn;
+var easyBot;
 var player1;
 var player2;
 var player3;
@@ -17,11 +23,18 @@ GameStates.CreateGame.prototype = {
     create: function () {
         setTerritories(this.game);
 
-        text = this.add.text(155, 30, 'Set up your game.', {
+        setuptext = this.add.text(155, 30, 'Set up your game.', {
             fontSize: '32px', fill: '#fff'
+        });
+        addbottext = this.add.text(this.world.centerX * 1.75, 245, 'Add a bot', {
+            fontSize: '22px', fill: '#fff'
         });
         startGameBtn = this.add.button(this.world.centerX, 450, 'startGameBtn', this.startGameOnClick, this);
         addPlayerBtn = this.add.button(this.world.centerX, 40, 'addPlayerBtn', this.addPlayerOnClick, this);
+        addEasyBotBtn = this.add.button(this.world.centerX * 1.75, 300, 'addEasyBotBtn', this.addEasyBotOnClick, this);
+        addAverageBotBtn = this.add.button(this.world.centerX * 1.75, 350, 'addAverageBotBtn', this.addAverageBotOnClick, this);
+        addHardBotBtn = this.add.button(this.world.centerX * 1.75, 400, 'addHardBotBtn', this.addHardBotOnClick, this);
+
         //startGameBtn.anchor.setTo(0.7, 0.2);
         //addPlayerBtn.anchor.setTo(0.7, 2);
         startGameBtn.anchor.setTo(0.5);
@@ -54,7 +67,7 @@ GameStates.CreateGame.prototype = {
         //player5.setTextBounds(0, 300, 600, 100);
         //player6.setTextBounds(0, 350, 600, 100);
 
-        text.anchor.setTo(0.5);
+        setuptext.anchor.setTo(0.5);
 
         $('#form1').show();
     },
@@ -66,14 +79,63 @@ GameStates.CreateGame.prototype = {
             });
         }
     },
+
+    addEasyBotOnClick: function() {
+        var botName = 'easybot';
+        var count = 0;
+        for(var i = 0; i < players.length; i++){
+            if (players[i].type === 1){
+                count++;
+            }
+        }
+        if (count > 0) {
+            botName = botName + count;
+        }
+        this.addPlayer(1, botName);
+
+    },
+
+    addAverageBotOnClick: function() {
+        var botName = 'averagebot';
+        var count = 0;
+        for(var i = 0; i < players.length; i++){
+            if (players[i].type === 2){
+                count++;
+            }
+        }
+        if (count > 0) {
+            botName = botName + count;
+        }
+        this.addPlayer(2, botName);
+    },
+
+    addHardBotOnClick: function () {
+        var botName = 'difficultbot';
+        var count = 0;
+        for(var i = 0; i < players.length; i++){
+            if (players[i].type === 3){
+                count++;
+            }
+        }
+        if (count > 0) {
+            botName = botName + count;
+        }
+        this.addPlayer(3, botName);
+    },
+
     addPlayerOnClick: function () {
+        var nameInput = $('#name').val();
+        this.addPlayer(0, nameInput);
+    },
+
+    addPlayer: function(playerType, name){
         if (players.length < GameStates.MAX_PLAYERS) {
-            var nameInput = $('#name').val();
-            
+
+
             var color = getColorFromCOLORS();
-            
-            if (validateNameInput(nameInput)) {
-                var player = addPlayer(0, nameInput, color);
+
+            if (validateName(name)) {
+                var player = addPlayer(playerType, name, color);
 
                 if (players.length === 1) {
                     player1.setText(player.name);
@@ -84,6 +146,7 @@ GameStates.CreateGame.prototype = {
                         removePlayer1Btn.destroy();
                         if (players.length < GameStates.MAX_PLAYERS)
                             addPlayerBtn.visible = true;
+                        $('#form1').show();
                     }, this);
                     removePlayer1Btn.anchor.setTo(0.5);
                 }
@@ -96,6 +159,7 @@ GameStates.CreateGame.prototype = {
                         removePlayer2Btn.destroy();
                         if (players.length < GameStates.MAX_PLAYERS)
                             addPlayerBtn.visible = true;
+                        $('#form1').show();
                     }, this);
                     removePlayer2Btn.anchor.setTo(0.5);
                 }
@@ -108,6 +172,7 @@ GameStates.CreateGame.prototype = {
                         removePlayer3Btn.destroy();
                         if (players.length < GameStates.MAX_PLAYERS)
                             addPlayerBtn.visible = true;
+                        $('#form1').show();
                     }, this);
                     removePlayer3Btn.anchor.setTo(0.5);
                 }
@@ -120,6 +185,7 @@ GameStates.CreateGame.prototype = {
                         removePlayer4Btn.destroy();
                         if (players.length < GameStates.MAX_PLAYERS)
                             addPlayerBtn.visible = true;
+                        $('#form1').show();
                     }, this);
                     removePlayer4Btn.anchor.setTo(0.5);
                 }
@@ -132,6 +198,7 @@ GameStates.CreateGame.prototype = {
                         removePlayer5Btn.destroy();
                         if (players.length < GameStates.MAX_PLAYERS)
                             addPlayerBtn.visible = true;
+                        $('#form1').show();
                     }, this);
                     removePlayer5Btn.anchor.setTo(0.5);
                 }
@@ -142,9 +209,10 @@ GameStates.CreateGame.prototype = {
                         removePlayer(player.name);
                         player6.setText('');
                         removePlayer6Btn.destroy();
-                        if (players.length < GameStates.MAX_PLAYERS)
+                        if (players.length < GameStates.MAX_PLAYERS) {
                             addPlayerBtn.visible = true;
-                        $('#form1').show();
+                            $('#form1').show();
+                        }
                     }, this);
                     removePlayer6Btn.anchor.setTo(0.5);
                 }
@@ -164,25 +232,25 @@ function getColorFromCOLORS() {
     return GameStates.COLORS[players.length];
 }
 
-function checkIfPlayerNameExists(nameInput) {
+function checkIfPlayerNameExists(name) {
     for (var i = 0; i < players.length; i++) {
-        if (nameInput.toLowerCase() === players[i].name.toLowerCase()) {
+        if (name.toLowerCase() === players[i].name.toLowerCase()) {
             return true;
         }
     }
     return false;
 }
 
-function validateNameInput(nameInput) {
+function validateName(name) {
     var message = document.getElementById('message');
     message.innerHTML = '';
-    var playerNameExists = checkIfPlayerNameExists(nameInput);
+    var playerNameExists = checkIfPlayerNameExists(name);
 
-    if (nameInput === '') {
+    if (name === '') {
         message.innerHTML = "<span style='color: red;'>Name can not be empty!</span>";
         return false;
     }
-    else if (!isNaN(nameInput)) {
+    else if (!isNaN(name)) {
         message.innerHTML = "<span style='color: red;'>Name can not contain numbers only.</span>";
         return false;
     }
@@ -209,6 +277,20 @@ function checkIfEnoughPlayersAreAdded() {
     else {
         return true;
     }
+}
+
+function addNewPlayer(playerType, name) {
+
+}
+
+function generateRandomName(text) {
+    text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (var i = 0; i < 5; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
 }
 
 function setTerritories(game) {

@@ -39,10 +39,16 @@ function newGame(game) {
 
         assignArmiesToTerritories(startingArmies);
 
-        currentPlayer = getRandomPlayer();
+        //currentPlayer = getRandomPlayer();
+        currentPlayer = players[0];
         setCurrentPlayerText();
         currentPlayer.setArmiesToPlace();
+        debugger;
+        if(currentPlayer.type === 1){
+            placeArmiesAiEasy();
+        }
         GameStates.gameState = GameStates.PLACE_ARMIES;
+
         setInstructionText();
         conqueredTerritory = false;
         playing = true;
@@ -174,8 +180,8 @@ function getRandomPlayer() {
     return players[Math.floor(Math.random() * players.length)];
 }
 
-function getRandomTerritory() {
-    return territories[Math.floor(Math.random() * territories.length)];
+function getRandomTerritory(territoriesList) {
+    return territoriesList[Math.floor(Math.random() * territoriesList.length)];
 }
 
 function setCurrentPlayer() {

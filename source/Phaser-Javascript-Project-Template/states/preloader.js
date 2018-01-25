@@ -20,6 +20,9 @@ GameStates.Preloader.prototype = {
         this.load.image('backBtn', 'assets/button_return.png');
         this.load.image('continueBtn', 'assets/button_continue.png');
         this.load.image('addPlayerBtn', 'assets/button_add-player.png');
+        this.load.image('addEasyBotBtn', 'assets/button_easy.png');
+        this.load.image('addAverageBotBtn', 'assets/button_average.png');
+        this.load.image('addHardBotBtn', 'assets/button_hard.png');
         this.load.image('removePlayer1Btn', 'assets/button_remove-player.png');
         this.load.image('removePlayer2Btn', 'assets/button_remove-player.png');
         this.load.image('removePlayer3Btn', 'assets/button_remove-player.png');
