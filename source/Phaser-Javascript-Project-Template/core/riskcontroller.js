@@ -117,7 +117,7 @@ function assignArmiesToTerritories(startingArmies) {
 
 function assignArmiesAfterVictory() {
 
-    maxArmiesToAssign = attackingTerritory.armies - 1;
+    maxArmiesToAssign = GameStates.attackingTerritory.armies - 1;
     minArmiesToAssign = 1;
 
     $('#form2').show();
@@ -129,7 +129,6 @@ $(function(){
 });
 
 function moveArmies(territory1, territory2, armiesToMove) {
-    debugger;
     if (territory1.armies - armiesToMove >= 1){
         territory1.removeArmies(armiesToMove);
         territory2.addArmies(armiesToMove);
@@ -274,15 +273,15 @@ function attackTerritory() {
 
 function checkBorderTerritories(territory1, territory2){
     for (var i = 0; i < territory1.borderTerritories.length; i++) {
+        if (territory2 === territory1.borderTerritories[i]){
+            console.log("Within border territory, GO!");
+            break;
+        }
         if (i === territory1.borderTerritories.length - 1) {
             if (territory2 !== territory1.borderTerritories[i]) {
                 console.log("Not in border territory");
                 break;
             }
-        }
-        if (territory2 === territory1.borderTerritories[i]){
-            console.log("Within border territory, GO!");
-            break;
         }
     }
 }
@@ -316,6 +315,7 @@ function battle() {
             battleResult.attackingArmiesToRemove++;
         }
     }
+
     return battleResult;
 }
 

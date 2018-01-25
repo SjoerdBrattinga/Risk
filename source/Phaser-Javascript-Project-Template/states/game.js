@@ -12,6 +12,7 @@ var instructionText;
 //var selectedTerritory;
 
 var moveArmyBtn;
+var attackBtn;
 
 
 GameStates.Game.prototype = {
@@ -33,9 +34,13 @@ GameStates.Game.prototype = {
 
         //gameText.anchor.setTo(0.5);
 
-        moveArmyBtn = this.add.button(this.world.centerX, this.world.centerY, 'moveArmyBtn', this.moveArmyOnClick, this);
-        moveArmyBtn.anchor.setTo(1,1);
+        moveArmyBtn = this.add.button(730, 475, 'moveArmyBtn', this.moveArmyOnClick, this);
+        moveArmyBtn.anchor.setTo(0.5);
         moveArmyBtn.visible = false;
+
+        attackBtn = this.add.button(730, 475, 'attackBtn', this.attackOnClick, this);
+        attackBtn.anchor.setTo(0.5);
+        //attackBtn.visible = false;
 
         circleGroup = this.game.add.group();
         circleTextGroup = this.game.add.group();
@@ -55,7 +60,7 @@ GameStates.Game.prototype = {
     moveArmyOnClick: function () {
         var val = $('#number').val();
         var armyNumberToMove = parseInt(val);
-        moveArmies(attackingTerritory, defendingTerritory, armyNumberToMove);
+        moveArmies(GameStates.attackingTerritory, GameStates.defendingTerritory, armyNumberToMove);
         if (armyNumberToMove >= minArmiesToAssign && armyNumberToMove <= maxArmiesToAssign) {
             $('#form2').hide();
             moveArmyBtn.visible = false;
