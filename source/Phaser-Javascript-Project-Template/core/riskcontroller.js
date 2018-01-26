@@ -1,31 +1,20 @@
-﻿//var STATE_NEW_GAME = 0;
-//var STATE_TRADE_CARDS = 1;
-//var STATE_PLACE_ARMIES = 2;
-//var STATE_ATTACK = 3;
-//var STATE_DEFEND = 4;
-//var STATE_FORTIFYING = 5;
-//var MAX_PLAYERS = 6;
-//var MAX_CARDS = 44;
-
-var players = [];
+﻿var players = [];
 var territories = [];
 var continents = [];
 var currentPlayer = {};
 var cards = [];
 var usedCards = [];
-//var gameState = 0;
-//var attackingTerritory = {};
-//var defendingTerritory = {};
+
 var conqueredTerritory;
 var playing = false;
-var riskGame;
+//var riskGame;
 var numberOfEyesThrown;
 
 var maxArmiesToAssign;
 var minArmiesToAssign;
 
 function newGame(game) {
-    riskGame = game;
+   // riskGame = game;
     if (players.length < 2) return;
 
     if (GameStates.gameState === GameStates.NEW_GAME) {
@@ -269,60 +258,49 @@ function checkBorderTerritories(territory1, territory2) {
 }
 
 function checkIfTerritoriesAreConnected(territory1, territory2) {
-    var connectedTerritories = territory1.borderTerritories;
     var checkList = [];
     var doneList = [];
-    for (var i = 0; i < connectedTerritories.length; i++) {
-        
-        if (connectedTerritories[i].owner === currentPlayer) {
-            if (connectedTerritories[i] === territory2)
-                return true;
-            else
-                checkList.push(connectedTerritories[i]);
-        } 
-    }
+    checkList.push(territory1);
+
     while (checkList.length > 0) {
-        for (var j = 0; j < checkList.length; j++) {
-            
+        var territory = checkList[0];
+        var reachableTerritories = getOwnedBorderTerritories(territory);
+        checkList.splice(0, 1);
+        doneList.push(territory);
+
+        for (var i = 0; i < reachableTerritories.length; i++) {
+            if (reachableTerritories[i] === territory2) {
+                return true;
+            }
+            if (!arrayContainsObject(doneList, reachableTerritories[i])) {
+                checkList.push(reachableTerritories[i]);
+            }
         }
     }
-  
-    //for (var i = 0; i < connectedTerritories.length; i++) {
-    //    if (checkBorderTerritories(connectedTerritories[i], territory2)) {
-    //        console.log('connected!');
-    //        return true;
-    //    }
-    //    else {
-    //        connectedTerritories = borderTerritories[i].borderTerritories;
-    //        if (checkBorderTerritories(connectedTerritories[i], territory2)) {
-    //            console.log('connected!');
-    //            return true;
-    //        }
-
-    //    }
-
-    //}
-
-    //console.log('not connected');
-
+    return false;
 }
 
-//Create two sets of nodes: toDoSet and doneSet
-//Add the source node to the toDoSet 
-//while (toDoSet is not empty) {
-//    Remove the first element from toDoList
-//    Add it to doneList
-//    foreach(node reachable from the removed node) {
-//        if (the node equals the destination node) {
-//            return success
-//        }
-//        if (the node is not in doneSet) {
-//            add it to toDoSet 
-//        }
-//    }
-//}
+function arrayContainsObject(array, object) {
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] === object) {
+            return true;
+        }
+    }
+    return false;
+}
 
-//return failure.
+function getOwnedBorderTerritories(territory) {
+    var borderTerritories = territory.borderTerritories;
+    var ownedBorderTerritories = [];
+    for (var i = 0; i < borderTerritories.length; i++) {
+        var owner = borderTerritories[i].owner;
+    
+        if (owner === currentPlayer) {
+            ownedBorderTerritories.push(borderTerritories[i]);
+        }
+    }
+    return ownedBorderTerritories;
+}
 
 function battle() {
     var battleResult = {
