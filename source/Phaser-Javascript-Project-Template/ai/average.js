@@ -2,7 +2,17 @@
     //TODO: average bot places armies on territory.
     //Could decide if it's worth placing armies if bordering territories are his own.
 
+    currentPlayer.setArmiesToPlace();
+    var count = currentPlayer.armiesToPlace;
+    for (var i = 0; i < currentPlayer.territoriesOwned.length; i++){
+        var borderTerritories = currentPlayer.territoriesOwned[i].borderTerritories;
+        var saveTerritory = [];
+        var borderTerritoriesOwned = getOwnedBorderTerritories(currentPlayer.territoriesOwned[i]);
+        if (borderTerritoriesOwned === borderTerritories){
 
+            saveTerritory.push(currentPlayer.territoriesOwned[i]);
+        }
+    }
 
 }
 
@@ -18,7 +28,6 @@ function fortifyTerritoryAiAverage () {
 
 }
 
-function placeArmiesAiAverageCount () {
-
-
+function compareArrays () {
+    
 }
