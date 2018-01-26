@@ -70,3 +70,13 @@ function arrayContainsObject(array, object) {
     }
     return false;
 }
+
+function compareArrays(array1, array2) {
+    array1.sort();
+    array2.sort();
+
+    if (_.isEqual(array1, array2)){
+        return true;
+    }
+    return false;
+}
