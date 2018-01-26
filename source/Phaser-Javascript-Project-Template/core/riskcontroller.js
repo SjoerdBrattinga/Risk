@@ -270,27 +270,59 @@ function checkBorderTerritories(territory1, territory2) {
 
 function checkIfTerritoriesAreConnected(territory1, territory2) {
     var connectedTerritories = territory1.borderTerritories;
-
+    var checkList = [];
+    var doneList = [];
     for (var i = 0; i < connectedTerritories.length; i++) {
-        if (checkBorderTerritories(connectedTerritories[i], territory2)) {
-            console.log('connected!');
-            return true;
-        }
-        else {
-            connectedTerritories = borderTerritories[i].borderTerritories;
-            if (checkBorderTerritories(connectedTerritories[i], territory2)) {
-                console.log('connected!');
+        
+        if (connectedTerritories[i].owner === currentPlayer) {
+            if (connectedTerritories[i] === territory2)
                 return true;
-            }
-                
-        }
-
+            else
+                checkList.push(connectedTerritories[i]);
+        } 
     }
+    while (checkList.length > 0) {
+        for (var j = 0; j < checkList.length; j++) {
+            
+        }
+    }
+  
+    //for (var i = 0; i < connectedTerritories.length; i++) {
+    //    if (checkBorderTerritories(connectedTerritories[i], territory2)) {
+    //        console.log('connected!');
+    //        return true;
+    //    }
+    //    else {
+    //        connectedTerritories = borderTerritories[i].borderTerritories;
+    //        if (checkBorderTerritories(connectedTerritories[i], territory2)) {
+    //            console.log('connected!');
+    //            return true;
+    //        }
 
-    console.log('not connected');
-    return false;
+    //    }
+
+    //}
+
+    //console.log('not connected');
 
 }
+
+//Create two sets of nodes: toDoSet and doneSet
+//Add the source node to the toDoSet 
+//while (toDoSet is not empty) {
+//    Remove the first element from toDoList
+//    Add it to doneList
+//    foreach(node reachable from the removed node) {
+//        if (the node equals the destination node) {
+//            return success
+//        }
+//        if (the node is not in doneSet) {
+//            add it to toDoSet 
+//        }
+//    }
+//}
+
+//return failure.
 
 function battle() {
     var battleResult = {

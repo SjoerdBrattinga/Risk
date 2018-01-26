@@ -35,17 +35,15 @@ Territory.prototype = {
                 this.addArmies(1);
                 currentPlayer.addArmies(1);
                 currentPlayer.armiesToPlace--;
-                setInstructionText();
+                //setInstructionTex();
                 if (currentPlayer.armiesToPlace === 0) {
                     continueBtn.visible = true;
-                    //GameStates.gameState++;
-                    //setInstructionText();
                 }
             }
         } else if (GameStates.gameState === GameStates.ATTACK) {
             if (this.owner === currentPlayer) {
                 GameStates.attackingTerritory = this;
-                setInstructionText();
+                //setInstructionText();
                 console.log('Attacking territory', GameStates.attackingTerritory);
             } else {
                 if (checkBorderTerritories(GameStates.attackingTerritory, this)) {
@@ -54,7 +52,7 @@ Territory.prototype = {
                 } else {
                     GameStates.defendingTerritory = null;
                 }
-                setInstructionText();
+                //setInstructionText();
             }
             if (GameStates.attackingTerritory && GameStates.defendingTerritory) {
                 attackBtn.visible = true;
@@ -67,17 +65,25 @@ Territory.prototype = {
                     GameStates.defendingTerritory = this;
                     getNumberOfArmiesToMove(GameStates.attackingTerritory);
                 }
-                
-            }
-            setInstructionText();
-        }
 
-        GameStates.selectedTerritory = this;
-        console.log('selected territory', GameStates.selectedTerritory);
+            }
+            //setInstructionText();
+        }
+        setInstructionText();
+        //GameStates.selectedTerritory = this;
+        //console.log('selected territory', GameStates.selectedTerritory);
         //return this;
     },
 
     setOwner: function (player) {
+        if(this.owner && this.owner.territoriesOwned) {
+            for (var i = 0; i < this.owner.territoriesOwned.length; i++) {
+                if (this.owner.territoriesOwned[i] === this) {
+                    this.owner.territoriesOwned.splice(i, 1);
+                    break;
+                }
+            }
+        }
         this.owner = player;
         player.territoriesOwned.push(this);
         this.changeTexture(player.getColor());
