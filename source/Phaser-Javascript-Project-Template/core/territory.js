@@ -58,10 +58,15 @@ Territory.prototype = {
             if (this.owner === currentPlayer) {
                 if (this.armies > 1 && GameStates.attackingTerritory === null) {
                     GameStates.attackingTerritory = this;
+                } else if (GameStates.attackingTerritory === this) {
+                    GameStates.attackingTerritory = null;
+                } else if (GameStates.defendingTerritory === this) {
+                    GameStates.defendingTerritory = null;
                 } else if (checkIfTerritoriesAreConnected(GameStates.attackingTerritory, this) && GameStates.attackingTerritory) {
                     GameStates.defendingTerritory = this;
                     getNumberOfArmiesToMove(GameStates.attackingTerritory);
-                }
+                    moveArmyBtn.visible = true;
+                } 
 
             }
         }
