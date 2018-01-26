@@ -47,6 +47,9 @@ function newGame(game) {
         if(currentPlayer.type === 1){
             placeArmiesAiEasy();
         }
+        if(currentPlayer.type === 2){
+            placeArmiesAiAverage();
+        }
         GameStates.gameState = GameStates.PLACE_ARMIES;
 
         setInstructionText();
@@ -158,6 +161,9 @@ function endTurn() {
     if (currentPlayer.type === 1){
         //TODO: Make it so that after every step you have to click the 'continue' button.
         placeArmiesAiEasy();
+    }
+    if (currentPlayer.type === 2){
+        placeArmiesAiAverage();
     }
     currentPlayer.setArmiesToPlace();
     setCurrentPlayerText();
