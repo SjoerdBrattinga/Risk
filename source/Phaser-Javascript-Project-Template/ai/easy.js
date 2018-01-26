@@ -26,10 +26,10 @@ function attackTerritoryAiEasy() {
                 GameStates.defendingTerritory = connectedTerritories[j];
                 attackTerritory();
                 debugger;
-                fortifyTerritoryAiEasy();
             }
         }
     }
+    fortifyTerritoryAiEasy();
 }
 
 function fortifyTerritoryAiEasy () {
