@@ -2,6 +2,8 @@
     //TODO: average bot places armies on territory.
     //Could decide if it's worth placing armies if bordering territories are his own.
 
+
+
 }
 
 function attackTerritoryAiAverage () {
@@ -13,5 +15,10 @@ function attackTerritoryAiAverage () {
 function fortifyTerritoryAiAverage () {
     //TODO: average bot fortifies territory.
     //Could decide if territory should be fortified depending on bordering territories.
+
+}
+
+function placeArmiesAiAverageCount () {
+
 
 }
