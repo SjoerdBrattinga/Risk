@@ -1,14 +1,54 @@
 ﻿function placeArmiesAiAverage () {
     //TODO: average bot places armies on territory.
+    //TODO: THIS NEEDS TO ALSO WORK WHEN THERES NO SAFETERRITORY!
     //Could decide if it's worth placing armies if bordering territories are his own.
-
     currentPlayer.setArmiesToPlace();
-    var count = currentPlayer.armiesToPlace;
+    var count1 = currentPlayer.armiesToPlace;
+    var safeTerritories = getSafeTerritories();
+    for (var j = 0; j < currentPlayer.territoriesOwned.length; j++){
+        for (var i = 0; i < safeTerritories.length; i++) {
+            var territory = getRandomTerritory(safeTerritories);
+            var getOwnTerritory = getOwnedBorderTerritories(territory);
+            for(var k = 0; k < getOwnTerritory.length; k++) {
+                var connectedTerritories = checkBorderTerritories(getOwnTerritory[k], currentPlayer.territoriesOwned[j]);
+                if (!connectedTerritories) {
+                    i = safeTerritories.length - 1;
+                    j = currentPlayer.territoriesOwned - 1;
+                    console.log("Added " + count1 + " armies to " + getOwnTerritory[k].name);
+                    getOwnTerritory[k].addArmies(count1);
+                    currentPlayer.addArmies(count1);
+                    currentPlayer.armiesToPlace -= count1;
+                    setInstructionText();
+                    break;
+                }
+            }
+        }
+    }
+
+            // for(var j = 0; j < count; j++) {
+            //     territory.addArmies(count1);
+            //     currentPlayer.addArmies(count1);
+            //     currentPlayer.armiesToPlace -= count1;
+            //     //j = count1;
+            //     setInstructionText();
+            // }
+
+    // var territory = getRandomTerritory(safeTerritories);
+    // console.log(territory);
+    // console.log(territory.armies);
+    // territory.addArmies(count1);
+    // currentPlayer.addArmies(count1);
+    // console.log(territory);
+    // console.log(territory.armies);
+    // currentPlayer.armiesToPlace -= count1;
+    // setInstructionText();
+
 }
 
 function attackTerritoryAiAverage () {
     //TODO: average bot attacks territory based.
-    //Could decide if it's worth attacking if it has more armies and has more territories closeby
+    //Could decide if it's worth attacking if it has more armies and has more territories nearby
+
 
 }
 
@@ -31,7 +71,7 @@ function getClusters() {
         return clusters;
     }
     if(safeTerritories.length > 1){
-        count = 0;
+        var count = 0;
         while(count < safeTerritories.length){
             cluster = [];
             for(var i = 0; i < safeTerritories.length; i++){
