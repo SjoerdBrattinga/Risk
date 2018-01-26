@@ -35,8 +35,6 @@ GameStates.CreateGame.prototype = {
         addAverageBotBtn = this.add.button(this.world.centerX * 1.75, 350, 'addAverageBotBtn', this.addAverageBotOnClick, this);
         addHardBotBtn = this.add.button(this.world.centerX * 1.75, 400, 'addHardBotBtn', this.addHardBotOnClick, this);
 
-        //startGameBtn.anchor.setTo(0.7, 0.2);
-        //addPlayerBtn.anchor.setTo(0.7, 2);
         startGameBtn.anchor.setTo(0.5);
         addPlayerBtn.anchor.setTo(0.5);
 
@@ -59,13 +57,6 @@ GameStates.CreateGame.prototype = {
 
         player6 = this.game.add.text(this.world.centerX - 100, 400, '', style);
         player6.anchor.setTo(0.5);
-
-        //player1.setTextBounds(0, 100, 600, 100);
-        //player2.setTextBounds(0, 150, 600, 100);
-        //player3.setTextBounds(0, 200, 600, 100);
-        //player4.setTextBounds(0, 250, 600, 100);
-        //player5.setTextBounds(0, 300, 600, 100);
-        //player6.setTextBounds(0, 350, 600, 100);
 
         setuptext.anchor.setTo(0.5);
 
@@ -130,7 +121,6 @@ GameStates.CreateGame.prototype = {
 
     addPlayer: function(playerType, name){
         if (players.length < GameStates.MAX_PLAYERS) {
-
 
             var color = getColorFromCOLORS();
 
@@ -247,15 +237,15 @@ function validateName(name) {
     var playerNameExists = checkIfPlayerNameExists(name);
 
     if (name === '') {
-        message.innerHTML = "<span style='color: red;'>Name can not be empty!</span>";
+        message.innerHTML = '<span style=\'color: red;\'>Name can not be empty!</span>';
         return false;
     }
     else if (!isNaN(name)) {
-        message.innerHTML = "<span style='color: red;'>Name can not contain numbers only.</span>";
+        message.innerHTML = '<span style=\'color: red;\'>Name can not contain numbers only.</span>';
         return false;
     }
     else if (playerNameExists) {
-        message.innerHTML = "<span style='color: red;'>Name already exists, please choose a different name.</span>";
+        message.innerHTML = '<span style=\'color: red;\'>Name already exists, please choose a different name.</span>';
         return false;
     }
     else {
@@ -267,11 +257,11 @@ function checkIfEnoughPlayersAreAdded() {
     var message = document.getElementById('message');
     message.innerHTML = '';
     if (players.length < 1) {
-        message.innerHTML = "<span style='color: red;'>No players added!</span>";
+        message.innerHTML = '<span style=\'color: red;\'>No players added!</span>';
         return false;
     }
     else if (players.length < 2) {
-        message.innerHTML = "<span style='color: red;'>Need atleast 2 players to play.</span>";
+        message.innerHTML = '<span style=\'color: red;\'>Need atleast 2 players to play.</span>';
         return false;
     }
     else {
@@ -279,13 +269,9 @@ function checkIfEnoughPlayersAreAdded() {
     }
 }
 
-function addNewPlayer(playerType, name) {
-
-}
-
 function generateRandomName(text) {
-    text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    text = '';
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
     for (var i = 0; i < 5; i++)
         text += possible.charAt(Math.floor(Math.random() * possible.length));
@@ -351,7 +337,7 @@ function setTerritories(game) {
     territories.push(industrieterrein_west);
 
     westeinde.setBorderTerritories([industrieterrein_west, valeriuskwartier]);
-    valeriuskwartier.setBorderTerritories([westeinde, industrieterrein_west, vogelwijk]);
+    valeriuskwartier.setBorderTerritories([bilgaard, westeinde, industrieterrein_west, vogelwijk]);
     industrieterrein_west.setBorderTerritories([westeinde, valeriuskwartier, vossenparkwijk, huizum_west, nijlan]);
     vogelwijk.setBorderTerritories([valeriuskwartier, vossenparkwijk, transvaalwijk]);
     vossenparkwijk.setBorderTerritories([vogelwijk, industrieterrein_west, huizum_west, binnenstad]);
@@ -377,33 +363,5 @@ function setTerritories(game) {
     wielenpolle.setBorderTerritories([schepenbuurt, huizum_oost, aldlan, de_hemrik]);
     camminghaburen.setBorderTerritories([heechterp, schieringen, de_hemrik]);
     de_hemrik.setBorderTerritories([aldlan, wielenpolle, schepenbuurt, schieringen, camminghaburen]);
-
-    // territories.push(new Territory(game, 'Bilgaard', 370, 56));
-    // territories.push(new Territory(game, 'Havankpark', 462, 12));
-    // territories.push(new Territory(game, 'Vrijheidswijk', 488, 62));
-    // territories.push(new Territory(game, 'Blitsaerd', 606, 13));
-    // territories.push(new Territory(game, 'Camminghaburen', 712, 123));
-    // territories.push(new Territory(game, 'Heechterp', 574, 94));
-    // territories.push(new Territory(game, 'Schieringen', 592, 155));
-    // territories.push(new Territory(game, 'Schepenbuurt', 580, 245));
-    // territories.push(new Territory(game, 'wielenpolle', 572, 306));
-    // territories.push(new Territory(game, 'De Hemrik', 726, 260));
-    // territories.push(new Territory(game, 'aldlan', 540, 370));
-    // territories.push(new Territory(game, 'Zuiderburen', 630, 410));
-    // territories.push(new Territory(game, 'Goutum', 470, 440));
-    // territories.push(new Territory(game, 'nijlan', 300, 370));
-    // territories.push(new Territory(game, 'Achter de Hoven', 495, 269));
-    // territories.push(new Territory(game, 'Huizum-oost', 470, 326));
-    // territories.push(new Territory(game, 'Huizum-west', 360, 308));
-    // territories.push(new Territory(game, 'Oranjewijk', 435, 244));
-    // territories.push(new Territory(game, 'Cambuur', 500, 158));
-    // territories.push(new Territory(game, 'Binnenstad', 388, 208));
-    // territories.push(new Territory(game, 'Bloemenbuurt', 440, 118));
-    // territories.push(new Territory(game, 'Transvaalwijk', 365, 127));
-    // territories.push(new Territory(game, 'Vogelwijk', 293, 154));
-    // territories.push(new Territory(game, 'Valeriuskwartier', 263, 116));
-    // territories.push(new Territory(game, 'Westeinde', 197, 125));
-    // territories.push(new Territory(game, 'Vossenparkwijk', 290, 221));
-    // territories.push(new Territory(game, 'Industrieterrein-west', 198, 260));
 }
 

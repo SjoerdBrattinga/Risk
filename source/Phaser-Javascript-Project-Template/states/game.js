@@ -61,9 +61,12 @@ GameStates.Game.prototype = {
 
         GameStates.attackingTerritory = null;
         GameStates.defendingTerritory = null;
+
         if (GameStates.gameState === GameStates.PLACE_ARMIES) {
-            continueBtn.visible = false;
+            //continueBtn.visible = false;
         } else if (GameStates.gameState === GameStates.FORTIFYING) {
+            //GameStates.gameState++;
+            moveArmyBtn.visible = false;
             attackBtn.visible = false;
         } else if (GameStates.gameState === GameStates.END_TURN) {
             endTurn();
@@ -84,16 +87,18 @@ GameStates.Game.prototype = {
         if (armyNumberToMove >= minArmiesToAssign && armyNumberToMove <= maxArmiesToAssign) {
             moveArmies(GameStates.attackingTerritory, GameStates.defendingTerritory, armyNumberToMove);
             $('#form2').hide();
-            moveArmyBtn.visible = false;
+            //moveArmyBtn.visible = false;
         }
         GameStates.attackingTerritory = null;
         GameStates.defendingTerritory = null;
         if (GameStates.gameState === GameStates.FORTIFYING) {
-            //GameStates.gameState = GameStates.END_TURN;
+            GameStates.gameState++;
             //endTurn();
-            moveArmyBtn.visible = false;
+           // moveArmyBtn.visible = false;
             //this.continueOnClick();
         }
+        moveArmyBtn.visible = false;
+        $('#number').val('');
         setInstructionText();
     },
 
@@ -108,22 +113,9 @@ GameStates.Game.prototype = {
     render: function () { }
 };
 
-//function drawCircles() {
-//    for (var i = 0; i < territories.length; i++) {
-//        territories[i].drawCircle();
-//    }
-//}
 
 
-function assignTerritories() {
-    shuffle(territories);
 
-    var count = 0;
-    for (var i = 0; i < territories.length; i++) {
-        territories[i].setOwner(players[count]);
-        count++;
-        if (count === players.length) count = 0;
-    }
-}
+
 
 
