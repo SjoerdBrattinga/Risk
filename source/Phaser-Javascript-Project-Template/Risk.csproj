@@ -52,6 +52,7 @@
     <Content Include="assets\spritesheets\LWD.png" />
     <Content Include="core\card.js" />
     <Content Include="core\continent.js" />
+    <Content Include="core\helpermethods.js" />
     <Content Include="core\riskcontroller.js" />
     <Content Include="core\territory.js" />
     <None Include="packages.config" />
