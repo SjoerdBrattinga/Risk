@@ -15,7 +15,7 @@
 
 function attackTerritoryAiEasy() {
     //TODO: easy bot attacks nearest territory (which has less armies than his own.)
-
+    //var clusters = getClusters();
     for(var i = 0; i < currentPlayer.territoriesOwned.length; i++) {
         var connectedTerritories = currentPlayer.territoriesOwned[i].borderTerritories;
         for (var j = 0; j < connectedTerritories.length; j++){
