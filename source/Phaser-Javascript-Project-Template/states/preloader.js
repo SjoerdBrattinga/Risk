@@ -36,7 +36,7 @@ GameStates.Preloader.prototype = {
         this.load.image('orange_circle', 'assets/circles/orange_circle.png');
         this.load.image('purple_circle', 'assets/circles/purple_circle.png');
         this.load.image('red_circle',    'assets/circles/red_circle.png');
-        this.load.image('yellow_circle', 'assets/circles/yellow_circle.png');
+        this.load.image('brown_circle', 'assets/circles/brown_circle.png');
     },
 
     create: function () {

@@ -90,7 +90,7 @@ Territory.prototype = {
         else if (color === 'green')
             this.sprite.loadTexture('green_circle');
         else if (color === 'brown')
-            this.sprite.loadTexture('yellow_circle');
+            this.sprite.loadTexture('brown_circle');
         else if (color === 'purple')
             this.sprite.loadTexture('purple_circle');
         else if (color === 'darkorange')

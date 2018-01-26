@@ -25,11 +25,24 @@ function attackTerritoryAiEasy() {
                 GameStates.attackingTerritory = currentPlayer.territoriesOwned[i];
                 GameStates.defendingTerritory = connectedTerritories[j];
                 attackTerritory();
+                debugger;
             }
         }
     }
+    fortifyTerritoryAiEasy();
 }
 
 function fortifyTerritoryAiEasy () {
     // TODO: fortifies territory (for now this can be random, maybe it should be more advanced for the average and / or hard bots)
+
+    for(var i = 0; i < currentPlayer.territoriesOwned.length; i++){
+        var getTerritory = getRandomTerritory(currentPlayer.territoriesOwned);
+        var borderingTerritories = checkBorderTerritories(getTerritory, currentPlayer.territoriesOwned[i]);
+        if (borderingTerritories && getTerritory.armies > 1){
+            var getborderingTerritory = currentPlayer.territoriesOwned[i];
+            var botArmiesToMove = getTerritory.armies - 1;
+            moveArmies(getTerritory,getborderingTerritory, botArmiesToMove);
+        }
+
+    }
 }
