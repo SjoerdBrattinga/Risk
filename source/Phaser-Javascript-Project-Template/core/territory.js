@@ -35,7 +35,6 @@ Territory.prototype = {
                 this.addArmies(1);
                 currentPlayer.addArmies(1);
                 currentPlayer.armiesToPlace--;
-                //setInstructionTex();
                 if (currentPlayer.armiesToPlace === 0) {
                     continueBtn.visible = true;
                 }
@@ -43,7 +42,6 @@ Territory.prototype = {
         } else if (GameStates.gameState === GameStates.ATTACK) {
             if (this.owner === currentPlayer) {
                 GameStates.attackingTerritory = this;
-                //setInstructionText();
                 console.log('Attacking territory', GameStates.attackingTerritory);
             } else {
                 if (checkBorderTerritories(GameStates.attackingTerritory, this)) {
@@ -52,7 +50,6 @@ Territory.prototype = {
                 } else {
                     GameStates.defendingTerritory = null;
                 }
-                //setInstructionText();
             }
             if (GameStates.attackingTerritory && GameStates.defendingTerritory) {
                 attackBtn.visible = true;
@@ -67,12 +64,8 @@ Territory.prototype = {
                 }
 
             }
-            //setInstructionText();
         }
         setInstructionText();
-        //GameStates.selectedTerritory = this;
-        //console.log('selected territory', GameStates.selectedTerritory);
-        //return this;
     },
 
     setOwner: function (player) {
