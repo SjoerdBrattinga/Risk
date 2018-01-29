@@ -23,11 +23,8 @@ Player.prototype = {
     },
 
     getHexaColor: function() {
-        //var color;
         for (var i = 0; i < GameStates.COLORS.length; i++) {
-            //console.log(GameStates.HEXA_COLORS[i]);
             if (GameStates.COLORS[i] === this.getColor()) {
-                //console.log(this.getColor());
                 return GameStates.HEXA_COLORS[i];
             }
         }

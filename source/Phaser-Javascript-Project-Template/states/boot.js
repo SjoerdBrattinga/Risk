@@ -15,6 +15,7 @@ var GameStates = {
     //DEFEND: 4,
     FORTIFYING: 4,
     END_TURN: 5,
+    GAME_OVER: 6,
 
     MAX_PLAYERS: 6,
     MAX_CARDS: 44,
