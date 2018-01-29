@@ -52,6 +52,19 @@ function getOwnedBorderTerritories(territory) {
     return ownedBorderTerritories;
 }
 
+function getNotOwnedBorderTerritories(territory) {
+    var borderTerritories = territory.borderTerritories;
+    var notOwnedBorderTerritories = [];
+    for (var i = 0; i < borderTerritories.length; i++) {
+        var owner = borderTerritories[i].owner;
+
+        if (owner !== currentPlayer) {
+            notOwnedBorderTerritories.push(borderTerritories[i]);
+        }
+    }
+    return notOwnedBorderTerritories;
+}
+
 function shuffle(a) {
     var j, x, i;
     for (i = a.length - 1; i > 0; i--) {

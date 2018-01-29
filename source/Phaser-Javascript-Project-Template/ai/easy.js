@@ -1,5 +1,4 @@
 ﻿function placeArmiesAiEasy() {
-    //TODO: easy bot places armies on territory (RANDOM)
     currentPlayer.setArmiesToPlace();
     var count = currentPlayer.armiesToPlace;
     for (var i = 0; i < count; i++){
@@ -14,7 +13,6 @@
 }
 
 function attackTerritoryAiEasy() {
-    //TODO: easy bot attacks nearest territory (which has less armies than his own.)
     //var clusters = getClusters();
     for(var i = 0; i < currentPlayer.territoriesOwned.length; i++) {
         var connectedTerritories = currentPlayer.territoriesOwned[i].borderTerritories;
@@ -32,8 +30,6 @@ function attackTerritoryAiEasy() {
 }
 
 function fortifyTerritoryAiEasy () {
-    // TODO: fortifies territory (for now this can be random, maybe it should be more advanced for the average and / or hard bots)
-
     for(var i = 0; i < currentPlayer.territoriesOwned.length; i++){
         var territory = getRandomTerritory(currentPlayer.territoriesOwned);
         var borderingTerritories = checkBorderTerritories(territory, currentPlayer.territoriesOwned[i]);

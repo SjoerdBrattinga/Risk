@@ -28,8 +28,8 @@ function newGame(game) {
 
         assignArmiesToTerritories(startingArmies);
 
-        currentPlayer = getRandomPlayer();
-        //currentPlayer = players[0];
+        //currentPlayer = getRandomPlayer();
+        currentPlayer = players[0];
         
         conqueredTerritory = false;
         playing = true;
@@ -153,6 +153,14 @@ function moveArmies(territory1, territory2, armiesToMove) {
     }
 }
 
+
+function checkIfPlayerIsEliminated () {
+    //TODO: Return true or false whether player has any territories left.
+}
+
+function checkIfPlayerHasWon () {
+    //TODO: Return true or false whether player has won. (Owns all 27 territories / Is only player left).
+}
 
 function endTurn() {
     //GameStates.gameState = GameStates.PLACE_ARMIES;
