@@ -1,6 +1,8 @@
 ﻿body {
     font-family: 'Segoe UI', sans-serif;
     background: blue;
+
+    
 }
 
 #form1 {
@@ -8,8 +10,10 @@
     position: fixed;
     top: 5em;
     left: 50%;
-    margin-left: -85px;
+    margin-left: 232px;
 }
+
+
 
 #form2 {
     width: 100%;
@@ -34,10 +38,6 @@
 canvas {
     margin: auto;
     display: block;
-    /*top: 50%;
-    width: 50%;
-    border: 3px solid black;
-    padding: 10px;*/
 }
 
 span {

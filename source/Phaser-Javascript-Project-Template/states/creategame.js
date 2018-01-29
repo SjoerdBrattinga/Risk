@@ -2,8 +2,6 @@
 
 };
 
-var setuptext;
-var addbottext;
 var text;
 var startGameBtn;
 var addPlayerBtn;
@@ -23,42 +21,55 @@ GameStates.CreateGame.prototype = {
     create: function () {
         setTerritories(this.game);
 
-        setuptext = this.add.text(155, 30, 'Set up your game.', {
-            fontSize: '32px', fill: '#fff'
-        });
-        addbottext = this.add.text(this.world.centerX * 1.75, 245, 'Add a bot', {
-            fontSize: '22px', fill: '#fff'
-        });
-        startGameBtn = this.add.button(this.world.centerX, 450, 'startGameBtn', this.startGameOnClick, this);
-        addPlayerBtn = this.add.button(this.world.centerX, 40, 'addPlayerBtn', this.addPlayerOnClick, this);
-        addEasyBotBtn = this.add.button(this.world.centerX * 1.75, 300, 'addEasyBotBtn', this.addEasyBotOnClick, this);
-        addAverageBotBtn = this.add.button(this.world.centerX * 1.75, 350, 'addAverageBotBtn', this.addAverageBotOnClick, this);
-        addHardBotBtn = this.add.button(this.world.centerX * 1.75, 400, 'addHardBotBtn', this.addHardBotOnClick, this);
+        var backGround = this.add.sprite(this.world.centerX, this.world.centerY, 'creategame-background');
+        backGround.anchor.setTo(0.5, 0.5);
 
+        var setuptext = this.add.text(20, 30, 'Set up your game', {
+            fontSize: '40px', fill: '#000000'
+        });
+        setuptext.anchor.setTo(0, 0.5);
+
+        var addBotText = this.add.text(770, 245, 'Add a bot', {
+            fontSize: '30px', fill: '#000000'
+        });
+        addBotText.anchor.setTo(0.5);
+
+        startGameBtn = this.add.button(this.world.centerX, 450, 'startGameBtn', this.startGameOnClick, this);
         startGameBtn.anchor.setTo(0.5);
+
+        addPlayerBtn = this.add.button(770, 40, 'addPlayerBtn', this.addPlayerOnClick, this);
         addPlayerBtn.anchor.setTo(0.5);
 
-        var style = { font: 'bold 32px Arial'};
+        addEasyBotBtn = this.add.button(770, 300, 'addEasyBotBtn', this.addEasyBotOnClick, this);
+        addEasyBotBtn.anchor.setTo(0.5);
 
-        player1 = this.game.add.text(this.world.centerX - 100, 150, '', style);
-        player1.anchor.setTo(0.5);
+        addAverageBotBtn = this.add.button(770, 350, 'addAverageBotBtn', this.addAverageBotOnClick, this);
+        addAverageBotBtn.anchor.setTo(0.5);
 
-        player2 = this.game.add.text(this.world.centerX - 100, 200, '', style);
-        player2.anchor.setTo(0.5);
+        addHardBotBtn = this.add.button(770, 400, 'addHardBotBtn', this.addHardBotOnClick, this);
+        addHardBotBtn.anchor.setTo(0.5);
 
-        player3 = this.game.add.text(this.world.centerX - 100, 250, '', style);
-        player3.anchor.setTo(0.5);
+        var style = { font: 'bold 32px Arial' };
 
-        player4 = this.game.add.text(this.world.centerX - 100, 300, '', style);
-        player4.anchor.setTo(0.5);
+        player1 = this.game.add.text(100, 150, '', style);
+        player1.anchor.setTo(0, 0.5);
 
-        player5 = this.game.add.text(this.world.centerX - 100, 350, '', style);
-        player5.anchor.setTo(0.5);
+        player2 = this.game.add.text(100, 200, '', style);
+        player2.anchor.setTo(0, 0.5);
 
-        player6 = this.game.add.text(this.world.centerX - 100, 400, '', style);
-        player6.anchor.setTo(0.5);
+        player3 = this.game.add.text(100, 250, '', style);
+        player3.anchor.setTo(0, 0.5);
 
-        setuptext.anchor.setTo(0.5);
+        player4 = this.game.add.text(100, 300, '', style);
+        player4.anchor.setTo(0, 0.5);
+
+        player5 = this.game.add.text(100, 350, '', style);
+        player5.anchor.setTo(0, 0.5);
+
+        player6 = this.game.add.text(100, 400, '', style);
+        player6.anchor.setTo(0, 0.5);
+
+
 
         $('#form1').show();
     },
@@ -71,11 +82,11 @@ GameStates.CreateGame.prototype = {
         }
     },
 
-    addEasyBotOnClick: function() {
+    addEasyBotOnClick: function () {
         var botName = 'easybot';
         var count = 0;
-        for(var i = 0; i < players.length; i++){
-            if (players[i].type === 1){
+        for (var i = 0; i < players.length; i++) {
+            if (players[i].type === 1) {
                 count++;
             }
         }
@@ -86,11 +97,11 @@ GameStates.CreateGame.prototype = {
 
     },
 
-    addAverageBotOnClick: function() {
+    addAverageBotOnClick: function () {
         var botName = 'averagebot';
         var count = 0;
-        for(var i = 0; i < players.length; i++){
-            if (players[i].type === 2){
+        for (var i = 0; i < players.length; i++) {
+            if (players[i].type === 2) {
                 count++;
             }
         }
@@ -103,8 +114,8 @@ GameStates.CreateGame.prototype = {
     addHardBotOnClick: function () {
         var botName = 'difficultbot';
         var count = 0;
-        for(var i = 0; i < players.length; i++){
-            if (players[i].type === 3){
+        for (var i = 0; i < players.length; i++) {
+            if (players[i].type === 3) {
                 count++;
             }
         }
@@ -119,7 +130,7 @@ GameStates.CreateGame.prototype = {
         this.addPlayer(0, nameInput);
     },
 
-    addPlayer: function(playerType, name){
+    addPlayer: function (playerType, name) {
         if (players.length < GameStates.MAX_PLAYERS) {
 
             var color = getColorFromCOLORS();
@@ -130,7 +141,7 @@ GameStates.CreateGame.prototype = {
                 if (players.length === 1) {
                     player1.setText(player.name);
                     player1.addColor(player.getHexaColor(), 0);
-                    var removePlayer1Btn = this.add.button(this.world.centerX + 100, 150, 'removePlayer1Btn', function () {
+                    var removePlayer1Btn = this.add.button(this.world.centerX - 120, 150, 'removePlayer1Btn', function () {
                         removePlayer(player.name);
                         player1.setText('');
                         removePlayer1Btn.destroy();
@@ -143,7 +154,7 @@ GameStates.CreateGame.prototype = {
                 if (players.length === 2) {
                     player2.setText(player.name);
                     player2.addColor(player.getHexaColor(), 0);
-                    var removePlayer2Btn = this.add.button(this.world.centerX + 100, 200, 'removePlayer2Btn', function () {
+                    var removePlayer2Btn = this.add.button(this.world.centerX - 120, 200, 'removePlayer2Btn', function () {
                         removePlayer(player.name);
                         player2.setText('');
                         removePlayer2Btn.destroy();
@@ -156,7 +167,7 @@ GameStates.CreateGame.prototype = {
                 if (players.length === 3) {
                     player3.setText(player.name);
                     player3.addColor(player.getHexaColor(), 0);
-                    var removePlayer3Btn = this.add.button(this.world.centerX + 100, 250, 'removePlayer3Btn', function () {
+                    var removePlayer3Btn = this.add.button(this.world.centerX - 120, 250, 'removePlayer3Btn', function () {
                         removePlayer(player.name);
                         player3.setText('');
                         removePlayer3Btn.destroy();
@@ -169,7 +180,7 @@ GameStates.CreateGame.prototype = {
                 if (players.length === 4) {
                     player4.setText(player.name);
                     player4.addColor(player.getHexaColor(), 0);
-                    var removePlayer4Btn = this.add.button(this.world.centerX + 100, 300, 'removePlayer4Btn', function () {
+                    var removePlayer4Btn = this.add.button(this.world.centerX - 120, 300, 'removePlayer4Btn', function () {
                         removePlayer(player.name);
                         player4.setText('');
                         removePlayer4Btn.destroy();
@@ -182,7 +193,7 @@ GameStates.CreateGame.prototype = {
                 if (players.length === 5) {
                     player5.setText(player.name);
                     player5.addColor(player.getHexaColor(), 0);
-                    var removePlayer5Btn = this.add.button(this.world.centerX + 100, 350, 'removePlayer5Btn', function () {
+                    var removePlayer5Btn = this.add.button(this.world.centerX - 120, 350, 'removePlayer5Btn', function () {
                         removePlayer(player.name);
                         player5.setText('');
                         removePlayer5Btn.destroy();
@@ -195,7 +206,7 @@ GameStates.CreateGame.prototype = {
                 if (players.length === 6) {
                     player6.setText(player.name);
                     player6.addColor(player.getHexaColor(), 0);
-                    var removePlayer6Btn = this.add.button(this.world.centerX + 100, 400, 'removePlayer6Btn', function () {
+                    var removePlayer6Btn = this.add.button(this.world.centerX - 120, 400, 'removePlayer6Btn', function () {
                         removePlayer(player.name);
                         player6.setText('');
                         removePlayer6Btn.destroy();
@@ -217,19 +228,6 @@ GameStates.CreateGame.prototype = {
         }
     }
 };
-
-function getColorFromCOLORS() {
-    return GameStates.COLORS[players.length];
-}
-
-function checkIfPlayerNameExists(name) {
-    for (var i = 0; i < players.length; i++) {
-        if (name.toLowerCase() === players[i].name.toLowerCase()) {
-            return true;
-        }
-    }
-    return false;
-}
 
 function validateName(name) {
     var message = document.getElementById('message');

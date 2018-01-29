@@ -12,7 +12,6 @@ function checkBorderTerritories(territory1, territory2) {
             return true;
         }
     }
-    //console.log(territory2.name + ' is not a border territory!');
     return false;
 }
 
@@ -75,6 +74,15 @@ function shuffle(a) {
     }
 }
 
+//function shuffleCards() {
+//    for (var i = 0; i < shuffleCnt; i++) {
+//        var rndNo = getRandomInt(1, 52);
+//        var card = cards[i];
+//        cards[i] = cards[rndNo];
+//        cards[rndNo] = card;
+//    }
+//}
+
 function arrayContainsObject(array, object) {
     for (var i = 0; i < array.length; i++) {
         if (array[i] === object) {
@@ -90,6 +98,19 @@ function compareArrays(array1, array2) {
 
     if (_.isEqual(array1, array2)){
         return true;
+    }
+    return false;
+}
+
+function getColorFromCOLORS() {
+    return GameStates.COLORS[players.length];
+}
+
+function checkIfPlayerNameExists(name) {
+    for (var i = 0; i < players.length; i++) {
+        if (name.toLowerCase() === players[i].name.toLowerCase()) {
+            return true;
+        }
     }
     return false;
 }

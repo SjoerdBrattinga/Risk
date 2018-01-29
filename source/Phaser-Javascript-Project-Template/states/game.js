@@ -4,6 +4,7 @@
 
 var mapLeeuwarden;
 var continueBtn;
+var isFirstClick = true;
 var circleGroup;
 var circleTextGroup;
 
@@ -54,6 +55,11 @@ GameStates.Game.prototype = {
         newGame(this);
     },
     continueOnClick: function () {
+        //if (isFirstClick) {
+        //    newGame(this);
+        //    isFirstClick = false;
+        //    continueBtn.visible = false;
+        //}
         if ($('#form2').is(':visible'))
             $('#form2').hide();
         if(GameStates.gameState !== GameStates.END_TURN)
@@ -107,7 +113,9 @@ GameStates.Game.prototype = {
     },
 
     update: function () {
-        
+        if (GameStates.gameState === GameStates.GAME_OVER) {
+            this.state.start('EndScreen');
+        }
     },
 
     render: function () { }

@@ -46,6 +46,8 @@
     <Content Include="assets\circles\purple_circle.png" />
     <Content Include="assets\circles\red_circle.png" />
     <Content Include="assets\circles\yellow_circle.png" />
+    <Content Include="assets\creategame-background.jpg" />
+    <Content Include="assets\mainmenu-background.jpg" />
     <Content Include="assets\mainmenu-background.png" />
     <Content Include="assets\phaser2.png" />
     <Content Include="assets\preloader-bar.png" />

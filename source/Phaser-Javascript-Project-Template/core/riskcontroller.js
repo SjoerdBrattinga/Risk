@@ -7,18 +7,18 @@ var usedCards = [];
 
 var conqueredTerritory;
 var playing = false;
-//var riskGame;
+var game;
 var numberOfEyesThrown;
 
 var maxArmiesToAssign;
 var minArmiesToAssign;
 
-function newGame(game) {
-    // riskGame = game;
+function newGame(thisGame) {
+    game = thisGame;
     if (players.length < 2) return;
 
     if (GameStates.gameState === GameStates.NEW_GAME) {
-        //assignTerritories();
+        
         //cards = shuffleCards();
         var startingArmies = 30;
 
@@ -163,21 +163,9 @@ function checkIfPlayerHasWon () {
 }
 
 function endTurn() {
-    //GameStates.gameState = GameStates.PLACE_ARMIES;
     setCurrentPlayer();
-    //if (currentPlayer.type === 1) {
-    //    //TODO: Make it so that after every step you have to click the 'continue' button.
-    //    placeArmiesAiEasy();
-    //}
-    //if (currentPlayer.type === 2) {
-    //    placeArmiesAiAverage();
-    //}
-    //currentPlayer.setArmiesToPlace();
-    //setCurrentPlayerText();
     newTurn();
 }
-
-
 
 function setCurrentPlayer() {
     var currentIndex = players.indexOf(currentPlayer);
@@ -188,18 +176,11 @@ function setCurrentPlayer() {
         currentPlayer = players[0];
 }
 
-//function shuffleCards() {
-//    for (var i = 0; i < shuffleCnt; i++) {
-//        var rndNo = getRandomInt(1, 52);
-//        var card = cards[i];
-//        cards[i] = cards[rndNo];
-//        cards[rndNo] = card;
-//    }
-//}
 
 function addPlayer(type, name, color) {
     var player = new Player(type, name, color);
     players.push(player);
+
     return player;
 }
 
@@ -244,7 +225,6 @@ function attackTerritory() {
                 attackingPlayer.removeArmies(result.attackingArmiesToRemove);
 
                 if (defendingTerritory.armies === 0) {
-
                     setInstructionText();
                     conqueredTerritory = true;
                     attackBtn.visible = false;
@@ -254,6 +234,13 @@ function attackTerritory() {
 
                     moveArmies(attackingTerritory, defendingTerritory, result.numberOfAttackDice);
 
+                    if (checkIfPlayerIsDefeated(defendingPlayer)) {
+                        console.log(defendingPlayer.name + ' is defeated');
+                        removePlayer(defendingPlayer);
+                        if (checkIfGameOver) {
+                            GameStates.gameState = GameStates.GAME_OVER;
+                        }
+                    }
                     if (attackingTerritory.armies > 1) {
                         getNumberOfArmiesToMove(attackingTerritory);
                     }
@@ -289,14 +276,6 @@ function battle() {
     }
 
     for (var i = 0; i < numberOfDice; i++) {
-        //if (numberOfAttackDice === 0) {
-        //    console.log('Can\'t attack with 1 army!');
-        //    break;
-        //}
-        //if (battleResult.defendingArmiesToRemove === GameStates.defendingTerritory.armies) {
-        //    console.log('Attacker won');
-        //    break;
-        //}
         if (attackResult[i] > defenseResult[i]) {
             console.log('attack won');
             battleResult.defendingArmiesToRemove++;
@@ -351,5 +330,19 @@ function rollDice(numberOfDice) {
 
 function rollDie() {
     return Math.floor(Math.random() * 6) + 1;
+}
+
+function checkIfGameOver() {
+    if (players.length === 1 && players[0] === currentPlayer) {
+        return true;
+    }
+    return false;
+}
+
+function checkIfPlayerIsDefeated(player) {
+    if (player.numberOfArmies === 0 && player.territoriesOwned.length === 0) {
+        return true;
+    }
+    return false;
 }
 
