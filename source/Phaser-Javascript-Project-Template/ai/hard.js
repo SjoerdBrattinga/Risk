@@ -47,9 +47,13 @@ function attackTerritoryAiHard() {
 
                 GameStates.attackingTerritory = currentPlayer.territoriesOwned[i];
                 GameStates.defendingTerritory = connectedTerritories[j];
+
                 //debugger;
                 var defenseValue = currentPlayer.getDefenseValue();
-                while (GameStates.attackingTerritory.armies > GameStates.defendingTerritory.armies) {
+              
+
+                while (GameStates.attackingTerritory.armies > GameStates.defendingTerritory.armies * 1.5){
+
                     attackTerritory();
                     var newDefenseValue = currentPlayer.getDefenseValue();
                     if (newDefenseValue < defenseValue * 0.9)

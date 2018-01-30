@@ -62,7 +62,11 @@ GameStates.Game.prototype = {
         //    isFirstClick = false;
         //    continueBtn.visible = false;
         //}
-        if (GameStates.gameState === GameStates.GAME_OVER) {
+        //if (GameStates.gameState === GameStates.GAME_OVER) {
+        //    this.state.start('MainMenu');
+        //}
+        var gameOver = checkIfGameOver();
+        if (checkIfGameOver()){
             this.state.start('EndScreen');
         }
         GameStates.attackingTerritory = null;

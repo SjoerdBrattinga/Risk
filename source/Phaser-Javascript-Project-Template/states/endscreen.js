@@ -8,12 +8,16 @@ var continueBtn;
 
 GameStates.EndScreen.prototype = {
     create: function () {
-        text = this.add.text(100, 100, 'You win / lose!', {
-            fontSize: '32px', fill: '#fff'});
-        text = this.add.text(100, 130, 'Good job / Better luck next time!', {
-            fontSize: '32px', fill: '#fff'});
-        continueBtn = this.add.button(this.world.centerX, this.world.centerY, 'continueBtn', this.returnOnClick, this);
-        continueBtn.anchor.setTo(-2, 0.2);
+
+        var backGround = this.add.sprite(this.world.centerX, this.world.centerY, 'creategame-background');
+        backGround.anchor.setTo(0.5, 0.5);
+
+        text = this.add.text(100, 20, 'VICTORY! ', {
+            fontSize: '150px', fill: currentPlayer.color});
+        text = this.add.text(110, 180, currentPlayer.name + ' conquered Leeuwarden!', {
+            fontSize: '40px', fill: currentPlayer.color});
+        continueBtn = this.add.button(765, 304, 'continueBtn', this.returnOnClick, this);
+        continueBtn.anchor.setTo(0.5);
     },
 
     returnOnClick: function () {
