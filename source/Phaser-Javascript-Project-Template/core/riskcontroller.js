@@ -39,19 +39,27 @@ function newGame(thisGame) {
 }
 
 function newTurn() {
-    continueBtn.visible = false;
-    moveArmyBtn.visible = false;
-
     setCurrentPlayerText();
     currentPlayer.setArmiesToPlace();
+    moveArmyBtn.visible = false;
 
-    if (currentPlayer.type === 1) {
-        placeArmiesAiEasy();
-    } 
-    if (currentPlayer.type === 2) {
-        placeArmiesAiAverage();
+    if (currentPlayer.type !== 0) {
+        continueBtn.visible = true;
+        if (currentPlayer.type === 1) {
+            placeArmiesAiEasy();
+        }
+        if (currentPlayer.type === 2) {
+            placeArmiesAiAverage();
+        }
+        if (currentPlayer.type === 3) {
+            placeArmiesAiHard();
+        }
+        GameStates.gameState = GameStates.END_TURN;
+
+    } else {
+        continueBtn.visible = false;
+        GameStates.gameState = GameStates.PLACE_ARMIES;
     }
-    GameStates.gameState = GameStates.PLACE_ARMIES;
 
     setInstructionText();
 }
@@ -236,7 +244,8 @@ function attackTerritory() {
 
                     if (checkIfPlayerIsDefeated(defendingPlayer)) {
                         console.log(defendingPlayer.name + ' is defeated');
-                        removePlayer(defendingPlayer);
+                        removePlayer(defendingPlayer.name);
+                        //debugger;
                         if (checkIfGameOver) {
                             GameStates.gameState = GameStates.GAME_OVER;
                         }
