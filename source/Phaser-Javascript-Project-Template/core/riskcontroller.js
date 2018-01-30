@@ -246,7 +246,7 @@ function attackTerritory() {
                         console.log(defendingPlayer.name + ' is defeated');
                         removePlayer(defendingPlayer.name);
                         //debugger;
-                        if (checkIfGameOver) {
+                        if (checkIfGameOver()) {
                             GameStates.gameState = GameStates.GAME_OVER;
                         }
                     }
