@@ -11,7 +11,29 @@
         setInstructionText();
     }
     //placeArmiesAiAverage();
-    attackTerritoryAiHard();
+    if (shouldAttack())
+        attackTerritoryAiHard();
+    else
+        fortifyTerritoryAiHard();
+}
+
+function shouldAttack() {
+    var defenseValue = currentPlayer.getDefenseValue();
+    var otherPlayersDefenseValues = [];
+    var otherPlayersArmies = [];
+    for (var j = 0; j < players.length; j++) {
+        if (players[j].name !== currentPlayer.name) {
+            otherPlayersDefenseValues.push(players[j].getDefenseValue());
+            otherPlayersArmies.push(players[j].numberOfArmies);
+        }
+    }
+    var largestDefenseValue = Math.max.apply(Math, otherPlayersDefenseValues);
+    var largestArmy = Math.max.apply(Math, otherPlayersArmies);
+
+    if (defenseValue > largestDefenseValue * 0.7) return true;
+    else if (largestArmy < currentPlayer.numberOfArmies) return true;
+    else return false;
+
 }
 
 function attackTerritoryAiHard() {
@@ -25,8 +47,19 @@ function attackTerritoryAiHard() {
 
                 GameStates.attackingTerritory = currentPlayer.territoriesOwned[i];
                 GameStates.defendingTerritory = connectedTerritories[j];
-                while (GameStates.attackingTerritory.armies > GameStates.defendingTerritory.armies * 1.5)//
+
+                //debugger;
+                var defenseValue = currentPlayer.getDefenseValue();
+              
+
+                while (GameStates.attackingTerritory.armies > GameStates.defendingTerritory.armies * 1.5){
+
                     attackTerritory();
+                    var newDefenseValue = currentPlayer.getDefenseValue();
+                    if (newDefenseValue < defenseValue * 0.9)
+                        break;
+                }
+                    
             }
         }
     }
