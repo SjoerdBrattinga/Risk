@@ -2,39 +2,40 @@
     //TODO: average bot places armies on territory.
     //TODO: THIS NEEDS TO ALSO WORK WHEN THERES NO SAFETERRITORY!
     //Could decide if it's worth placing armies if bordering territories are his own.
-    var count1 = currentPlayer.armiesToPlace;
+    //var count1 = currentPlayer.armiesToPlace;
     var safeTerritories = getSafeTerritories();
+    var territory;
     if (safeTerritories.length === 0){
-        for (var l = 0; l < count1; l++){
-            var territory = getRandomTerritory(currentPlayer.territoriesOwned);
+        for (var l = 0; l < currentPlayer.armiesToPlace; l++){
+            territory = getRandomTerritory(currentPlayer.territoriesOwned);
             territory.addArmies(1);
             currentPlayer.addArmies(1);
             currentPlayer.armiesToPlace--;
             setInstructionText();
         }
     }
-    for (var j = 0; j < currentPlayer.territoriesOwned.length; j++){
-        for (var i = 0; i < safeTerritories.length; i++) {
+    for (var j = 0; j < currentPlayer.armiesToPlace.length; j++){
+        //for (var i = 0; i < safeTerritories.length; i++) {
             territory = getRandomTerritory(safeTerritories);
             var getOwnTerritory = getOwnedBorderTerritories(territory);
             for(var k = 0; k < getOwnTerritory.length; k++) {
                 var connectedTerritories = checkBorderTerritories(getOwnTerritory[k], currentPlayer.territoriesOwned[j]);
-                if (!connectedTerritories) {
+                if (connectedTerritories) {
                     console.log(connectedTerritories);
-                    i = safeTerritories.length - 1;
-                    j = currentPlayer.territoriesOwned - 1;
-                    console.log("Added " + count1 + " armies to " + getOwnTerritory[k].name);
-                    getOwnTerritory[k].addArmies(count1);
-                    currentPlayer.addArmies(count1);
-                    currentPlayer.armiesToPlace -= count1;
+                   // i = safeTerritories.length - 1;
+                    //j = currentPlayer.territoriesOwned - 1;
+                    //console.log('Added ' + count1 + ' armies to ' + getOwnTerritory[k].name);
+                    getOwnTerritory[k].addArmies(1);
+                    currentPlayer.addArmies(1);
+                    currentPlayer.armiesToPlace --;
                     setInstructionText();
-                    break;
+                   // break;
                 }
             }
-        }
+        //}
     }
     attackTerritoryAiAverage();
-    endTurn();
+    //endTurn();
 }
 
 function attackTerritoryAiAverage () {
@@ -144,7 +145,7 @@ function getSafeTerritories(){
 function getTerritoriesToAttack() {
     var safeTerritories = getSafeTerritories();
     if (safeTerritories.length === 0){
-        console.log("Average is attacking");
+        console.log('Average is attacking');
         // var count = currentPlayer.armiesToPlace;
         // for (var z = 0; z < count; z++){
         //     var territory = getRandomTerritory(currentPlayer.territoriesOwned);

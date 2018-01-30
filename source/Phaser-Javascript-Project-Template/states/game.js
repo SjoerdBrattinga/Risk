@@ -55,33 +55,44 @@ GameStates.Game.prototype = {
         newGame(this);
     },
     continueOnClick: function () {
+
+        console.log(GameStates.gameState);
+        console.log(currentPlayer);
         //if (isFirstClick) {
         //    newGame(this);
         //    isFirstClick = false;
         //    continueBtn.visible = false;
         //}
-        if ($('#form2').is(':visible'))
-            $('#form2').hide();
-        if(GameStates.gameState !== GameStates.END_TURN)
-            GameStates.gameState++;
-
+        //if (GameStates.gameState === GameStates.GAME_OVER) {
+        //    this.state.start('MainMenu');
+        //}
         GameStates.attackingTerritory = null;
         GameStates.defendingTerritory = null;
 
-        if (GameStates.gameState === GameStates.PLACE_ARMIES) {
-            //continueBtn.visible = false;
-        } else if (GameStates.gameState === GameStates.FORTIFYING) {
-            //GameStates.gameState++;
-            moveArmyBtn.visible = false;
-            attackBtn.visible = false;
-        } else if (GameStates.gameState === GameStates.END_TURN) {
+        if ($('#form2').is(':visible'))
+            $('#form2').hide();
+
+        if (currentPlayer.type === 0) {
+            if (GameStates.gameState !== GameStates.END_TURN)
+                GameStates.gameState++;
+
+            if (GameStates.gameState === GameStates.PLACE_ARMIES) {
+                //continueBtn.visible = false;
+            } else if (GameStates.gameState === GameStates.FORTIFYING) {
+                //GameStates.gameState++;
+                moveArmyBtn.visible = false;
+                attackBtn.visible = false;
+            }
+
+            if (GameStates.gameState === GameStates.END_TURN) {
+                endTurn();
+                //continueBtn.visible = false;
+            }
+        } else {
             endTurn();
-            continueBtn.visible = false;
         }
-        
+
         setInstructionText();
-        //endTurn();
-        //territories[0].setOwner(getRandomPlayer());
 
     },
 
@@ -89,7 +100,7 @@ GameStates.Game.prototype = {
         //TODO: This also needs to be implemented for the bots so after the bots turn has ended it does NOT show this button and textbox.
         var val = $('#number').val();
         var armyNumberToMove = parseInt(val);
-       
+
         if (armyNumberToMove >= minArmiesToAssign && armyNumberToMove <= maxArmiesToAssign) {
             moveArmies(GameStates.attackingTerritory, GameStates.defendingTerritory, armyNumberToMove);
             $('#form2').hide();
@@ -100,7 +111,7 @@ GameStates.Game.prototype = {
         if (GameStates.gameState === GameStates.FORTIFYING) {
             GameStates.gameState++;
             //endTurn();
-           // moveArmyBtn.visible = false;
+            // moveArmyBtn.visible = false;
             //this.continueOnClick();
         }
         moveArmyBtn.visible = false;
