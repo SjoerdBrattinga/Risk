@@ -9,7 +9,7 @@
         setInstructionText();
     }
     attackTerritoryAiEasy();
-    endTurn();
+    //endTurn();
 }
 
 function attackTerritoryAiEasy() {

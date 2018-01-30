@@ -130,13 +130,13 @@ function assignArmiesToTerritories(startingArmies) {
 }
 
 function getNumberOfArmiesToMove(attackingTerritory) {
-
     maxArmiesToAssign = attackingTerritory.armies - 1;
     minArmiesToAssign = 0;
 
-    moveArmyBtn.visible = true;
-    if(currentPlayer.type === 0)
+    if (currentPlayer.type === 0) {
+        moveArmyBtn.visible = true;
         $('#form2').show();
+    }
 }
 
 $(function () {
