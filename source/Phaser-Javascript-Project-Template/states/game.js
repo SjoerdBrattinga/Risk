@@ -66,6 +66,10 @@ GameStates.Game.prototype = {
         //if (GameStates.gameState === GameStates.GAME_OVER) {
         //    this.state.start('MainMenu');
         //}
+        var gameOver = checkIfGameOver();
+        if (gameOver){
+            this.state.start('EndScreen');
+        }
         GameStates.attackingTerritory = null;
         GameStates.defendingTerritory = null;
 
