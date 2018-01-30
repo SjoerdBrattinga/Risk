@@ -43,7 +43,6 @@ GameStates.Game.prototype = {
         attackBtn = this.add.button(730, 425, 'attackBtn', this.attackOnClick, this);
         attackBtn.anchor.setTo(0.5);
         attackBtn.visible = false;
-        //attackBtn.visible = false;
 
         circleGroup = this.game.add.group();
         circleTextGroup = this.game.add.group();
@@ -57,7 +56,7 @@ GameStates.Game.prototype = {
     continueOnClick: function () {
 
         console.log(GameStates.gameState);
-        console.log(currentPlayer);
+        console.log(currentPlayer.name);
         //if (isFirstClick) {
         //    newGame(this);
         //    isFirstClick = false;
