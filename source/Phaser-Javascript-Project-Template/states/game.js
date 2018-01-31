@@ -1,8 +1,8 @@
 ﻿GameStates.Game = function (game) {
-    
+
 };
 
-var mapLeeuwarden;
+//var mapLeeuwarden;
 var continueBtn;
 var isFirstClick = true;
 var circleGroup;
@@ -20,7 +20,7 @@ GameStates.Game.prototype = {
     create: function () {
         this.stage.backgroundColor = '4488AA';
 
-        mapLeeuwarden = this.add.sprite(this.world.centerX, this.world.centerY, 'mapLeeuwarden');
+        var mapLeeuwarden = this.add.sprite(this.world.centerX, this.world.centerY, 'mapLeeuwarden');
         mapLeeuwarden.anchor.setTo(0.5);
 
         continueBtn = this.add.button(730, 475, 'continueBtn', this.continueOnClick, this);
@@ -65,8 +65,8 @@ GameStates.Game.prototype = {
         //if (GameStates.gameState === GameStates.GAME_OVER) {
         //    this.state.start('MainMenu');
         //}
-        var gameOver = checkIfGameOver();
-        if (checkIfGameOver()){
+        //var gameOver = checkIfGameOver();
+        if (checkIfGameOver()) {
             this.state.start('EndScreen');
         }
         GameStates.attackingTerritory = null;
@@ -122,9 +122,61 @@ GameStates.Game.prototype = {
         setInstructionText();
     },
 
-    attackOnClick: function() {
+    attackOnClick: function () {
         var battleResult = attackTerritory();
-        debugger;
+        if (!_.isEmpty(battleResult))
+            this.showBattleResult(battleResult.attackResult, battleResult.defenseResult);
+    },
+    attackDice: [],
+    defenseDice: [],
+    showBattleResult: function (attackResult, defenseResult) {
+        for (var k = 0; k < this.attackDice.length; k++) {
+            this.attackDice[k].kill();
+        }
+        for (var l = 0; l < this.defenseDice.length; l++) {
+            this.defenseDice[l].kill();
+        }
+        for (var i = 0; i < attackResult.length; i++) {
+            var attackDieName = '';
+            if (attackResult[i] === 1) {
+                attackDieName = 'attack_die_1';
+            } else if (attackResult[i] === 2) {
+                attackDieName = 'attack_die_2';
+            } else if (attackResult[i] === 3) {
+                attackDieName = 'attack_die_3';
+            } else if (attackResult[i] === 4) {
+                attackDieName = 'attack_die_4';
+            } else if (attackResult[i] === 5) {
+                attackDieName = 'attack_die_5';
+            } else if (attackResult[i] === 6) {
+                attackDieName = 'attack_die_6';
+            }
+
+            this.attackDice.push(this.add.sprite(this.world.centerX - 350 + i * 60, 350, attackDieName));
+            this.attackDice[i].anchor.setTo(0.5);
+
+        }
+        for (var j = 0; j < defenseResult.length; j++) {
+            var defenseDieName = '';
+            if (defenseResult[j] === 1) {
+                defenseDieName = 'defense_die_1';
+            } else if (defenseResult[j] === 2) {
+                defenseDieName = 'defense_die_2';
+            } else if (defenseResult[j] === 3) {
+                defenseDieName = 'defense_die_3';
+            } else if (defenseResult[j] === 4) {
+                defenseDieName = 'defense_die_4';
+            } else if (defenseResult[j] === 5) {
+                defenseDieName = 'defense_die_5';
+            } else if (defenseResult[j] === 6) {
+                defenseDieName = 'defense_die_6';
+            }
+
+            this.defenseDice.push(this.add.sprite(this.world.centerX - 350 + j * 60, 420, defenseDieName));
+            this.defenseDice[j].anchor.setTo(0.5);
+
+        }
+        console.log(attackResult, defenseResult);
     },
 
     update: function () {

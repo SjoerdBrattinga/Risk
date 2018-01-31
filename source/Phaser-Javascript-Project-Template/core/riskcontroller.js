@@ -268,27 +268,29 @@ function battle() {
         defendingArmiesToRemove: 0,
         attackResult: [],
         defenseResult: [],
-        numberOfAttackDice: 0
+        numberOfAttackDice: 0,
+        numberOfDefenseDice: 0
     };
 
-    var numberOfAttackDice = getMaxAttackDice();
-    var numberOfDefenseDice = getMaxDefenceDice();
+    //var numberOfAttackDice = getMaxAttackDice();
+    //var numberOfDefenseDice = getMaxDefenceDice();
 
-    battleResult.numberOfAttackDice = numberOfAttackDice;
+    battleResult.numberOfAttackDice = getMaxAttackDice();
+    battleResult.numberOfDefenseDice = getMaxDefenseDice();
 
-    var attackResult = rollDice(numberOfAttackDice);
-    var defenseResult = rollDice(numberOfDefenseDice);
+    battleResult.attackResult = rollDice(battleResult.numberOfAttackDice);
+    battleResult.defenseResult = rollDice(battleResult.numberOfDefenseDice);
 
     var numberOfDice;
 
-    if (numberOfAttackDice <= numberOfDefenseDice) {
-        numberOfDice = numberOfAttackDice;
+    if (battleResult.numberOfAttackDice <= battleResult.numberOfDefenseDice) {
+        numberOfDice = battleResult.numberOfAttackDice;
     } else {
-        numberOfDice = numberOfDefenseDice;
+        numberOfDice = battleResult.numberOfDefenseDice;
     }
 
     for (var i = 0; i < numberOfDice; i++) {
-        if (attackResult[i] > defenseResult[i]) {
+        if (battleResult.attackResult[i] > battleResult.defenseResult[i]) {
             console.log('attack won');
             battleResult.defendingArmiesToRemove++;
         } else {
@@ -316,7 +318,7 @@ function getMaxAttackDice() {
     return maxAttackDice;
 }
 
-function getMaxDefenceDice() {
+function getMaxDefenseDice() {
     var maxDefenseDice;
 
     if (GameStates.defendingTerritory.armies >= 2) {
