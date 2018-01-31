@@ -14,7 +14,8 @@ var instructionText;
 
 var moveArmyBtn;
 var attackBtn;
-
+var addArmyBtn;
+var removeArmyBtn;
 
 GameStates.Game.prototype = {
     create: function () {
@@ -97,6 +98,25 @@ GameStates.Game.prototype = {
 
         setInstructionText();
 
+    },
+
+    addArmyOnClick: function () {
+        //TODO: button that on click moves 1 army from the attacking territory to the now conquered territory.
+        //Should not be able to move more armies than maxArmiesToAssign.
+        moveArmies(GameStates.attackingTerritory, GameStates.defendingTerritory, 1);
+        maxArmiesToAssign -= 1;
+        if (maxArmiesToAssign === 0){
+            addArmyBtn.visible = false;
+        }
+    },
+
+    removeArmyOnClick: function () {
+        //TODO: button that on click removes 1 army from conquered territory back to the attacking territory.
+        //Should not be able to remove more armies than the minimum that is transfered at first.
+        moveArmies(GameStates.defendingTerritory, GameStates.attackingTerritory, 1);
+        if (GameStates.defendingTerritory.armies === prePlacedArmies) {
+            removeArmyBtn.visible = false;
+        }
     },
 
     moveArmyOnClick: function () {

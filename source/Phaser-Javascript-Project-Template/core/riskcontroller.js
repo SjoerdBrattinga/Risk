@@ -12,6 +12,7 @@ var numberOfEyesThrown;
 
 var maxArmiesToAssign;
 var minArmiesToAssign;
+var prePlacedArmies;
 
 function newGame(thisGame) {
     game = thisGame;
@@ -241,6 +242,7 @@ function attackTerritory() {
                     console.log(attackingPlayer.name + ' conquered ' + defendingTerritory.name + '!');
 
                     moveArmies(attackingTerritory, defendingTerritory, result.numberOfAttackDice);
+                    prePlacedArmies = result.numberOfAttackDice;
 
                     if (checkIfPlayerIsDefeated(defendingPlayer)) {
                         console.log(defendingPlayer.name + ' is defeated');

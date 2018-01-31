@@ -38,6 +38,8 @@ GameStates.Preloader.prototype = {
         this.load.image('purple_circle', 'assets/circles/purple_circle.png');
         this.load.image('red_circle',    'assets/circles/red_circle.png');
         this.load.image('brown_circle', 'assets/circles/brown_circle.png');
+        this.load.image('add_armies', 'assets/button_add-army.png');
+        this.load.image('remove_armies', 'assets/button_remove-army.png');
     },
 
     create: function () {
