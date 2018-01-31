@@ -143,7 +143,8 @@ GameStates.Game.prototype = {
     },
 
     attackOnClick: function() {
-        attackTerritory();
+        var battleResult = attackTerritory();
+        debugger;
     },
 
     update: function () {
