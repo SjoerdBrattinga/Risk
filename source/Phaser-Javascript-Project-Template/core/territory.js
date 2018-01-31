@@ -60,14 +60,48 @@ Territory.prototype = {
                     GameStates.attackingTerritory = this;
                 } else if (GameStates.attackingTerritory === this) {
                     GameStates.attackingTerritory = null;
+                    if(addArmyBtn){
+                        addArmyBtn.visible = false;
+                    }
+                    if(removeArmyBtn) {
+                        removeArmyBtn.visible = false;
+                    }
                 } else if (GameStates.defendingTerritory === this) {
                     GameStates.defendingTerritory = null;
+                    if(addArmyBtn){
+                        addArmyBtn.visible = false;
+                    }
+                    if(removeArmyBtn) {
+                        removeArmyBtn.visible = false;
+                    }
+                } else if(GameStates.attackingTerritory && GameStates.defendingTerritory){
+                    if(addArmyBtn){
+                        addArmyBtn.visible = false;
+                    }
+                    if(removeArmyBtn) {
+                        removeArmyBtn.visible = false;
+                    }
+                    if(checkIfTerritoriesAreConnected(GameStates.attackingTerritory, this)){
+                        GameStates.defendingTerritory = this;
+                        addArmyBtn = this.game.add.button(GameStates.defendingTerritory.positionX + 24, GameStates.defendingTerritory.positionY, 'addArmiesBtn', addArmyOnClick, this);
+                        addArmyBtn.anchor.setTo(0.5);
+                        addArmyBtn.visisble = true;
+
+                        removeArmyBtn = this.game.add.button(GameStates.defendingTerritory.positionX - 24, GameStates.defendingTerritory.positionY, 'removeArmiesBtn', removeArmyOnClick, this);
+                        removeArmyBtn.anchor.setTo(0.5);
+                        removeArmyBtn.visible = false;
+                    }
                 } else if (checkIfTerritoriesAreConnected(GameStates.attackingTerritory, this) && GameStates.attackingTerritory) {
                     GameStates.defendingTerritory = this;
                     getNumberOfArmiesToMove(GameStates.attackingTerritory);
-                    moveArmyBtn.visible = true;
-                } 
+                    addArmyBtn = this.game.add.button(GameStates.defendingTerritory.positionX + 24, GameStates.defendingTerritory.positionY, 'addArmiesBtn', addArmyOnClick, this);
+                    addArmyBtn.anchor.setTo(0.5);
+                    addArmyBtn.visisble = true;
 
+                    removeArmyBtn = this.game.add.button(GameStates.defendingTerritory.positionX - 24, GameStates.defendingTerritory.positionY, 'removeArmiesBtn', removeArmyOnClick, this);
+                    removeArmyBtn.anchor.setTo(0.5);
+                    removeArmyBtn.visible = false;
+                }
             }
         }
         setInstructionText();

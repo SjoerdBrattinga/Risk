@@ -12,6 +12,7 @@ var numberOfEyesThrown;
 
 var maxArmiesToAssign;
 var minArmiesToAssign;
+var prePlacedArmies;
 
 function newGame(thisGame) {
     game = thisGame;
@@ -141,10 +142,10 @@ function getNumberOfArmiesToMove(attackingTerritory) {
     maxArmiesToAssign = attackingTerritory.armies - 1;
     minArmiesToAssign = 0;
 
-    if (currentPlayer.type === 0) {
-        moveArmyBtn.visible = true;
-        $('#form2').show();
-    }
+    // if (currentPlayer.type === 0) {
+    //     moveArmyBtn.visible = true;
+    //     $('#form2').show();
+    // }
 }
 
 $(function () {
@@ -159,15 +160,6 @@ function moveArmies(territory1, territory2, armiesToMove) {
     } else {
         console.log('Can not move more than ' + territory1.armies + ' - 1');
     }
-}
-
-
-function checkIfPlayerIsEliminated () {
-    //TODO: Return true or false whether player has any territories left.
-}
-
-function checkIfPlayerHasWon () {
-    //TODO: Return true or false whether player has won. (Owns all 27 territories / Is only player left).
 }
 
 function endTurn() {
@@ -234,13 +226,14 @@ function attackTerritory() {
 
                 if (defendingTerritory.armies === 0) {
                     setInstructionText();
-                    conqueredTerritory = true;
+                    result.conqueredTerritory = true;
                     attackBtn.visible = false;
 
                     defendingTerritory.setOwner(attackingPlayer);
                     console.log(attackingPlayer.name + ' conquered ' + defendingTerritory.name + '!');
 
                     moveArmies(attackingTerritory, defendingTerritory, result.numberOfAttackDice);
+                    prePlacedArmies = result.numberOfAttackDice;
 
                     if (checkIfPlayerIsDefeated(defendingPlayer)) {
                         console.log(defendingPlayer.name + ' is defeated');
