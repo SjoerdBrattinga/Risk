@@ -213,7 +213,7 @@ function placeArmies() {
 function attackTerritory() {
     console.log('attacker', GameStates.attackingTerritory);
     console.log('defender', GameStates.defendingTerritory);
-
+    var result;
     if (GameStates.attackingTerritory !== undefined && GameStates.defendingTerritory !== undefined) {
         if (GameStates.attackingTerritory !== null && GameStates.defendingTerritory !== null) {
             if (GameStates.attackingTerritory.armies > 1) {
@@ -224,8 +224,8 @@ function attackTerritory() {
 
                 checkBorderTerritories(attackingTerritory, defendingTerritory);
 
-                var result = battle();
-
+                result = battle();
+                result.conqueredTerritory = false;
                 GameStates.defendingTerritory.removeArmies(result.defendingArmiesToRemove);
                 defendingPlayer.removeArmies(result.defendingArmiesToRemove);
 
@@ -259,12 +259,15 @@ function attackTerritory() {
             }
         }
     }
+    return result || {};
 }
 
 function battle() {
     var battleResult = {
         attackingArmiesToRemove: 0,
         defendingArmiesToRemove: 0,
+        attackResult: [],
+        defenseResult: [],
         numberOfAttackDice: 0
     };
 

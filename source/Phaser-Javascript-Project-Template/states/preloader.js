@@ -38,6 +38,20 @@ GameStates.Preloader.prototype = {
         this.load.image('purple_circle', 'assets/circles/purple_circle.png');
         this.load.image('red_circle',    'assets/circles/red_circle.png');
         this.load.image('brown_circle', 'assets/circles/brown_circle.png');
+
+        this.load.image('attack_die_1', 'assets/dice/attack_die_1.png');
+        this.load.image('attack_die_2', 'assets/dice/attack_die_2.png');
+        this.load.image('attack_die_3', 'assets/dice/attack_die_3.png');
+        this.load.image('attack_die_4', 'assets/dice/attack_die_4.png');
+        this.load.image('attack_die_5', 'assets/dice/attack_die_5.png');
+        this.load.image('attack_die_6', 'assets/dice/attack_die_6.png');
+
+        this.load.image('defense_die_1', 'assets/dice/defense_die_1.png');
+        this.load.image('defense_die_2', 'assets/dice/defense_die_2.png');
+        this.load.image('defense_die_3', 'assets/dice/defense_die_3.png');
+        this.load.image('defense_die_4', 'assets/dice/defense_die_4.png');
+        this.load.image('defense_die_5', 'assets/dice/defense_die_5.png');
+        this.load.image('defense_die_6', 'assets/dice/defense_die_6.png');
     },
 
     create: function () {
