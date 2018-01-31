@@ -142,10 +142,10 @@ function getNumberOfArmiesToMove(attackingTerritory) {
     maxArmiesToAssign = attackingTerritory.armies - 1;
     minArmiesToAssign = 0;
 
-    if (currentPlayer.type === 0) {
-        moveArmyBtn.visible = true;
-        $('#form2').show();
-    }
+    // if (currentPlayer.type === 0) {
+    //     moveArmyBtn.visible = true;
+    //     $('#form2').show();
+    // }
 }
 
 $(function () {
@@ -226,7 +226,7 @@ function attackTerritory() {
 
                 if (defendingTerritory.armies === 0) {
                     setInstructionText();
-                    conqueredTerritory = true;
+                    result.conqueredTerritory = true;
                     attackBtn.visible = false;
 
                     defendingTerritory.setOwner(attackingPlayer);
