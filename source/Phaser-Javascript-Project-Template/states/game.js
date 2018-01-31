@@ -86,9 +86,21 @@ GameStates.Game.prototype = {
                 //GameStates.gameState++;
                 moveArmyBtn.visible = false;
                 attackBtn.visible = false;
+                if(addArmyBtn){
+                    addArmyBtn.visible = false;
+                }
+                if(removeArmyBtn) {
+                    removeArmyBtn.visible = false;
+                }
             }
 
             if (GameStates.gameState === GameStates.END_TURN) {
+                if(addArmyBtn){
+                    addArmyBtn.visible = false;
+                }
+                if(removeArmyBtn) {
+                    removeArmyBtn.visible = false;
+                }
                 endTurn();
                 //continueBtn.visible = false;
             }
@@ -100,26 +112,7 @@ GameStates.Game.prototype = {
 
     },
 
-    addArmyOnClick: function () {
-        //TODO: button that on click moves 1 army from the attacking territory to the now conquered territory.
-        //Should not be able to move more armies than maxArmiesToAssign.
-        moveArmies(GameStates.attackingTerritory, GameStates.defendingTerritory, 1);
-        maxArmiesToAssign--;
-        if (maxArmiesToAssign === 0){
-            addArmyBtn.visible = false;
-        }
-        removeArmyBtn.visible = true;
-    },
 
-    removeArmyOnClick: function () {
-        //TODO: button that on click removes 1 army from conquered territory back to the attacking territory.
-        //Should not be able to remove more armies than the minimum that is transfered at first.
-        moveArmies(GameStates.defendingTerritory, GameStates.attackingTerritory, 1);
-        maxArmiesToAssign++;
-        if (GameStates.defendingTerritory.armies === prePlacedArmies) {
-            removeArmyBtn.visible = false;
-        }
-    },
 
     // moveArmyOnClick: function () {
     //     //TODO: This also needs to be implemented for the bots so after the bots turn has ended it does NOT show this button and textbox.
@@ -147,14 +140,20 @@ GameStates.Game.prototype = {
     attackOnClick: function() {
         var battleResult = attackTerritory();
         if(battleResult.conqueredTerritory){
-            addArmyBtn = this.add.button(GameStates.defendingTerritory.positionX + 24, GameStates.defendingTerritory.positionY, 'addArmiesBtn', this.addArmyOnClick, this);
-            addArmyBtn.anchor.setTo(0.5);
-            addArmyBtn.visisble = true;
-
-            removeArmyBtn = this.add.button(GameStates.defendingTerritory.positionX - 34, GameStates.defendingTerritory.positionY, 'removeArmiesBtn', this.removeArmyOnClick, this);
-            removeArmyBtn.anchor.setTo(0.5);
-            removeArmyBtn.visible = false;
+            if(GameStates.attackingTerritory.armies > 1) {
+                this.createAddAndRemoveArmyBtn();
+            }
         }
+    },
+
+    createAddAndRemoveArmyBtn: function () {
+        addArmyBtn = this.add.button(GameStates.defendingTerritory.positionX + 24, GameStates.defendingTerritory.positionY, 'addArmiesBtn', addArmyOnClick, this);
+        addArmyBtn.anchor.setTo(0.5);
+        addArmyBtn.visisble = true;
+
+        removeArmyBtn = this.add.button(GameStates.defendingTerritory.positionX - 24, GameStates.defendingTerritory.positionY, 'removeArmiesBtn', removeArmyOnClick, this);
+        removeArmyBtn.anchor.setTo(0.5);
+        removeArmyBtn.visible = false;
     },
 
     update: function () {
@@ -167,7 +166,27 @@ GameStates.Game.prototype = {
 };
 
 
+function addArmyOnClick() {
+    //TODO: button that on click moves 1 army from the attacking territory to the now conquered territory.
+    //Should not be able to move more armies than maxArmiesToAssign.
+    moveArmies(GameStates.attackingTerritory, GameStates.defendingTerritory, 1);
+    maxArmiesToAssign--;
+    if (maxArmiesToAssign === 0){
+        addArmyBtn.visible = false;
+    }
+    removeArmyBtn.visible = true;
+}
 
+function removeArmyOnClick() {
+    //TODO: button that on click removes 1 army from conquered territory back to the attacking territory.
+    //Should not be able to remove more armies than the minimum that is transfered at first.
+    moveArmies(GameStates.defendingTerritory, GameStates.attackingTerritory, 1);
+    maxArmiesToAssign++;
+    if (GameStates.defendingTerritory.armies === prePlacedArmies) {
+        removeArmyBtn.visible = false;
+    }
+    addArmyBtn.visible = true;
+}
 
 
 
