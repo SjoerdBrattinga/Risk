@@ -53,6 +53,8 @@ GameStates.Preloader.prototype = {
         this.load.image('defense_die_5', 'assets/dice/defense_die_5.png');
         this.load.image('defense_die_6', 'assets/dice/defense_die_6.png');
         this.load.image('arrow', 'assets/arrow_sprite.png');
+        this.load.image('arrow_head', 'assets/arrow/arrow-head.png');
+        this.load.image('arrow_shaft', 'assets/arrow/arrow_shaft.png');
     },
 
     create: function () {
