@@ -60,9 +60,6 @@ GameStates.Game.prototype = {
             territories[i].create();
         }
         assignTerritories();
-
-        drawArrow(this);
-
         newGame(this);
     },
     continueOnClick: function () {
@@ -86,6 +83,11 @@ GameStates.Game.prototype = {
 
         if ($('#form2').is(':visible'))
             $('#form2').hide();
+
+        if (GameStates.arrow) {
+            GameStates.arrow.kill();
+            GameStates.arrow = null;
+        }
 
         if (currentPlayer.type === 0) {
             if (GameStates.gameState !== GameStates.END_TURN)
@@ -263,10 +265,6 @@ function removeArmyOnClick() {
 }
 
 function drawArrow(game) {
-
-    GameStates.attackingTerritory = territories[0];
-    GameStates.defendingTerritory = territories[1];
-    console.log(territories[0].name, territories[1].name);
     var attackingTerritoryPoint = {
         x: GameStates.attackingTerritory.positionX,
         y: GameStates.attackingTerritory.positionY
@@ -283,11 +281,11 @@ function drawArrow(game) {
 
     //var startingPoint = getStartingPoint(GameStates.attackingTerritory, angle);
     arrow = game.add.group();
-    
+
     var arrowShaft = game.add.sprite(midPoint.x, midPoint.y, 'arrow_shaft');
     arrowShaft.anchor.setTo(0.5);
     var arrowHead = game.add.sprite(0, -30, 'arrow_head');
-    arrowHead.anchor.setTo(0.5,1);
+    arrowHead.anchor.setTo(0.5, 1);
     //arrow.add(arrowShaft);
     //arrow.add(arrowHead);
     arrowShaft.addChild(arrowHead);
@@ -295,6 +293,7 @@ function drawArrow(game) {
 
     arrowShaft.angle = angle - 180;
 
+    GameStates.arrow = arrowShaft;
     //arrowShaft.addChild(game.add.sprite(arrowShaft.top.x,arrowShaft.top.y,'arrow_head'));
 
 
