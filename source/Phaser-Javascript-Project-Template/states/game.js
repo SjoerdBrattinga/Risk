@@ -16,6 +16,7 @@ var moveArmyBtn;
 var attackBtn;
 var addArmyBtn;
 var removeArmyBtn;
+var arrow;
 
 GameStates.Game.prototype = {
     create: function () {
@@ -27,6 +28,11 @@ GameStates.Game.prototype = {
         continueBtn = this.add.button(730, 475, 'continueBtn', this.continueOnClick, this);
         continueBtn.anchor.setTo(0.5);
         continueBtn.visible = false;
+
+        arrow = this.add.sprite(this.world.centerX, this.world.centerY, 'arrow');
+        arrow.anchor.setTo(0.5);
+        arrow.width;
+        arrow.angle;
 
         var style = {
             font: '30px Arial',
