@@ -16,7 +16,6 @@ var moveArmyBtn;
 var attackBtn;
 var addArmyBtn;
 var removeArmyBtn;
-var arrow;
 
 GameStates.Game.prototype = {
     create: function () {
