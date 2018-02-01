@@ -29,10 +29,10 @@ GameStates.Game.prototype = {
         continueBtn.anchor.setTo(0.5);
         continueBtn.visible = false;
 
-        arrow = this.add.sprite(this.world.centerX, this.world.centerY, 'arrow');
-        arrow.anchor.setTo(0.5);
-        arrow.width;
-        arrow.angle;
+        //arrow = this.add.sprite(this.world.centerX, this.world.centerY, 'arrow');
+        //arrow.anchor.setTo(0.5);
+        //arrow.width;
+        //arrow.angle;
 
         var style = {
             font: '30px Arial',
@@ -58,6 +58,9 @@ GameStates.Game.prototype = {
             territories[i].create();
         }
         assignTerritories();
+        //40px
+        //startpunt 
+        //get startingpoint{ return }
         newGame(this);
     },
     continueOnClick: function () {
@@ -155,15 +158,18 @@ GameStates.Game.prototype = {
             }
         }
     },
-    attackDice: [],
-    defenseDice: [],
+    //attackDice: [],
+    //defenseDice: [],
     showBattleResult: function (attackResult, defenseResult) {
-        for (var k = 0; k < this.attackDice.length; k++) {
-            this.attackDice[k].kill();
-        }
-        for (var l = 0; l < this.defenseDice.length; l++) {
-            this.defenseDice[l].kill();
-        }
+        //for (var k = 0; k < this.attackDice.length; k++) {
+        //    this.attackDice[k].kill();
+        //}
+        //for (var l = 0; l < this.defenseDice.length; l++) {
+        //    this.defenseDice[l].kill();
+        //}
+        var attackDice = [];
+        var defenseDice = [];
+
         for (var i = 0; i < attackResult.length; i++) {
             var attackDieName = '';
             if (attackResult[i] === 1) {
@@ -179,9 +185,13 @@ GameStates.Game.prototype = {
             } else if (attackResult[i] === 6) {
                 attackDieName = 'attack_die_6';
             }
-
-            this.attackDice.push(this.add.sprite(this.world.centerX - 350 + i * 60, 350, attackDieName));
-            this.attackDice[i].anchor.setTo(0.5);
+            attackDice.push(this.add.sprite(100 + i * 60, 350, attackDieName));
+            attackDice[i].anchor.setTo(0.5);
+            //attackDice[i].lifespan = 2000;
+     
+                //game.add.tween(attackDice[i]).to({ y: 0 }, 1500, Phaser.Easing.Linear.None, true);
+                game.add.tween(attackDice[i]).to({ alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
+        
 
         }
         for (var j = 0; j < defenseResult.length; j++) {
@@ -199,14 +209,12 @@ GameStates.Game.prototype = {
             } else if (defenseResult[j] === 6) {
                 defenseDieName = 'defense_die_6';
             }
+            defenseDice.push(this.add.sprite(100 + j * 60, 410, defenseDieName));
+            defenseDice[j].anchor.setTo(0.5);
 
-            this.defenseDice.push(this.add.sprite(this.world.centerX - 350 + j * 60, 420, defenseDieName));
-            this.defenseDice[j].anchor.setTo(0.5);
-
+            game.add.tween(defenseDice[j]).to({ alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
         }
         console.log(attackResult, defenseResult);
-
-
     },
 
     createAddAndRemoveArmyBtn: function () {

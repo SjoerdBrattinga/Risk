@@ -116,8 +116,8 @@ function checkIfPlayerNameExists(name) {
 }
 
 //var angleDeg = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI;
-angleDeg = Math.atan2(GameStates.defendingTerritory.positionY - GameStates.attackingTerritory.positionY,
-    GameStates.defendingTerritory.positionX - GameStates,attackingTerritory.positionX) * 180 / Math.PI;
+//angleDeg = Math.atan2(GameStates.defendingTerritory.positionY - GameStates.attackingTerritory.positionY,
+//    GameStates.defendingTerritory.positionX - GameStates,attackingTerritory.positionX) * 180 / Math.PI;
 
 //var xDifference = GameStates.defendingTerritory - GameStates.attackingTerritory;
 //var yDifference = GameStates.defendingTerritory - GameStates.attackingTerritory;
