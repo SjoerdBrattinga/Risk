@@ -116,12 +116,35 @@ function checkIfPlayerNameExists(name) {
 }
 
 //var angleDeg = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI;
-angleDeg = Math.atan2(GameStates.defendingTerritory.positionY - GameStates.attackingTerritory.positionY,
-    GameStates.defendingTerritory.positionX - GameStates,attackingTerritory.positionX) * 180 / Math.PI;
+
+// function toDegrees(angle){
+//     return angle * (Math.PI / 180);
+// }
+
+function getAngle(point1, point2){
+    var offSet = 270;
+    var angleDegree =  (Math.atan2(point2.y - point1.y, point2.x - point1.x) * 180 / Math.PI);
+    angleDegree += offSet;
+    return angleDegree;
+
+}
+// angleDeg = Math.atan2(GameStates.defendingTerritory.positionY - GameStates.attackingTerritory.positionY,
+//     GameStates.defendingTerritory.positionX - GameStates,attackingTerritory.positionX) * 180 / Math.PI;
 
 //var xDifference = GameStates.defendingTerritory - GameStates.attackingTerritory;
 //var yDifference = GameStates.defendingTerritory - GameStates.attackingTerritory;
 
-function pythagorean(xDifference, yDifference){
-    return Math.sqrt(Math.pow(xDifference, 2) + Math.pow(yDifference, 2));
+function getDistance(point1, point2){
+    var differenceX = point2.x - point1.x;
+    var differenceY = point2.y - point1.y;
+    return Math.sqrt(Math.pow(differenceX, 2) + Math.pow(differenceY, 2));
+}
+
+function getMidPoint (point1, point2) {
+    var midPoint = {
+        x: (point1.x + point2.x) / 2,
+        y: (point1.y + point2.y) / 2
+    };
+
+    return midPoint;
 }

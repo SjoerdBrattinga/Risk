@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5351f79-b050-4ec8-8706-655b4c63cd0f" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/core/helpermethods.js" afterPath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/core/helpermethods.js" />
+      <change beforePath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/core/territory.js" afterPath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/core/territory.js" />
+      <change beforePath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/game.js" afterPath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/game.js" />
+      <change beforePath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/preloader.js" afterPath="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/preloader.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,8 +20,8 @@
       <file leaf-file-name="game.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3235">
-              <caret line="32" column="32" lean-forward="true" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
+            <state relative-caret-position="522">
+              <caret line="277" column="4" lean-forward="false" selection-start-line="277" selection-start-column="4" selection-end-line="277" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -33,21 +37,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="territory.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="territory.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/core/territory.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="91" column="54" lean-forward="false" selection-start-line="91" selection-start-column="54" selection-end-line="91" selection-end-column="54" />
+            <state relative-caret-position="289">
+              <caret line="53" column="57" lean-forward="false" selection-start-line="53" selection-start-column="57" selection-end-line="53" selection-end-column="57" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="helpermethods.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="helpermethods.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/core/helpermethods.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="590">
-              <caret line="122" column="2" lean-forward="false" selection-start-line="122" selection-start-column="2" selection-end-line="122" selection-end-column="2" />
+            <state relative-caret-position="607">
+              <caret line="145" column="31" lean-forward="false" selection-start-line="145" selection-start-column="31" selection-end-line="145" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -102,8 +106,8 @@
       <file leaf-file-name="preloader.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/preloader.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="54" column="60" lean-forward="false" selection-start-line="54" selection-start-column="60" selection-end-line="54" selection-end-column="60" />
+            <state relative-caret-position="595">
+              <caret line="56" column="71" lean-forward="false" selection-start-line="56" selection-start-column="71" selection-end-line="56" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -201,10 +205,10 @@
         <option value="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/endscreen.js" />
         <option value="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/core/riskcontroller.js" />
         <option value="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/index.html" />
-        <option value="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/core/territory.js" />
         <option value="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/preloader.js" />
-        <option value="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/game.js" />
         <option value="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/core/helpermethods.js" />
+        <option value="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/game.js" />
+        <option value="$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/core/territory.js" />
       </list>
     </option>
   </component>
@@ -216,8 +220,7 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="793" />
     <option name="width" value="814" />
     <option name="height" value="867" />
   </component>
@@ -347,12 +350,12 @@
       <workItem from="1517300998807" duration="10543000" />
       <workItem from="1517392879083" duration="14000" />
       <workItem from="1517393079764" duration="13139000" />
-      <workItem from="1517477382172" duration="2311000" />
+      <workItem from="1517477382172" duration="15084000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="244098000" />
+    <option name="totallyTimeSpent" value="256871000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -685,14 +688,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/preloader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="54" column="60" lean-forward="false" selection-start-line="54" selection-start-column="60" selection-end-line="54" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="505">
@@ -723,26 +718,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/game.js">
+    <entry file="file://$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/preloader.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3235">
-          <caret line="32" column="32" lean-forward="true" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/core/territory.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="91" column="54" lean-forward="false" selection-start-line="91" selection-start-column="54" selection-end-line="91" selection-end-column="54" />
+        <state relative-caret-position="595">
+          <caret line="56" column="71" lean-forward="false" selection-start-line="56" selection-start-column="71" selection-end-line="56" selection-end-column="71" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/core/helpermethods.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="590">
-          <caret line="122" column="2" lean-forward="false" selection-start-line="122" selection-start-column="2" selection-end-line="122" selection-end-column="2" />
+        <state relative-caret-position="607">
+          <caret line="145" column="31" lean-forward="false" selection-start-line="145" selection-start-column="31" selection-end-line="145" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/states/game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="277" column="4" lean-forward="false" selection-start-line="277" selection-start-column="4" selection-end-line="277" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/Phaser-Javascript-Project-Template/core/territory.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="53" column="57" lean-forward="false" selection-start-line="53" selection-start-column="57" selection-end-line="53" selection-end-column="57" />
           <folding />
         </state>
       </provider>

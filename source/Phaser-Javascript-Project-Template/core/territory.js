@@ -45,6 +45,12 @@ Territory.prototype = {
                 console.log('Attacking territory', GameStates.attackingTerritory);
             } else {
                 if (checkBorderTerritories(GameStates.attackingTerritory, this)) {
+                    if(addArmyBtn){
+                        addArmyBtn.visible = false;
+                    }
+                    if(removeArmyBtn) {
+                        removeArmyBtn.visible = false;
+                    }
                     GameStates.defendingTerritory = this;
                     console.log('Defending territory');
                 } else {

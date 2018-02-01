@@ -29,11 +29,6 @@ GameStates.Game.prototype = {
         continueBtn.anchor.setTo(0.5);
         continueBtn.visible = false;
 
-        arrow = this.add.sprite(this.world.centerX, this.world.centerY, 'arrow');
-        arrow.anchor.setTo(0.5);
-        arrow.width;
-        arrow.angle;
-
         var style = {
             font: '30px Arial',
             align: 'left'
@@ -58,6 +53,7 @@ GameStates.Game.prototype = {
             territories[i].create();
         }
         assignTerritories();
+        drawArrow(this);
         newGame(this);
     },
     continueOnClick: function () {
@@ -251,6 +247,59 @@ function removeArmyOnClick() {
     }
     addArmyBtn.visible = true;
 }
+
+function drawArrow (game) {
+
+    GameStates.attackingTerritory = territories[0];
+    GameStates.defendingTerritory = territories[1];
+    console.log(territories[0].name,territories[1].name);
+     var attackingTerritoryPoint = {
+        x: GameStates.attackingTerritory.positionX,
+        y: GameStates.attackingTerritory.positionY
+    };
+
+    var defendingTerritoryPoint = {
+        x: GameStates.defendingTerritory.positionX,
+        y: GameStates.defendingTerritory.positionY
+    };
+
+    var angle = getAngle(attackingTerritoryPoint, defendingTerritoryPoint);
+    var distance = getDistance(attackingTerritoryPoint, defendingTerritoryPoint);
+    var midPoint = getMidPoint(attackingTerritoryPoint, defendingTerritoryPoint);
+
+    //var startingPoint = getStartingPoint(GameStates.attackingTerritory, angle);
+
+    var arrowShaft = game.add.sprite(midPoint.x, midPoint.y, 'arrow_shaft');
+    arrowShaft.anchor.setTo(0.5);
+    var arrowHead = game.add.sprite(0, -50, 'arrow_head');
+    arrowHead.anchor.setTo(0.5);
+    arrowShaft.height = distance - 60;
+    arrowShaft.addChild(arrowHead);
+    arrowShaft.angle = angle - 180;
+
+    //arrowShaft.addChild(game.add.sprite(arrowShaft.top.x,arrowShaft.top.y,'arrow_head'));
+
+
+
+    // arrowHead.anchor.setTo(0.5);
+    // arrowHead.height = 25;
+    // arrowHead.angle = angle - 180;
+}
+
+// function getStartingPoint (point, angle) {
+//     //Gives starting point for the arrow.
+//
+//     var startingPoint = {
+//         x: point.positionX,
+//         y: point.positionY
+//     };
+//
+//     startingPoint.x += 20 * Math.sin(angle);
+//     startingPoint.y += 20 * Math.cos(angle);
+//
+//     return startingPoint;
+//
+// }
 
 
 
