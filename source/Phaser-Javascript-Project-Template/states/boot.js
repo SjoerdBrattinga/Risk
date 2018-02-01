@@ -7,6 +7,7 @@ var GameStates = {
     attackingTerritory: null,
     defendingTerritory: null,
     gameState: 0,
+    arrow: null,
 
     NEW_GAME: 0,
     TRADE_CARDS: 1,

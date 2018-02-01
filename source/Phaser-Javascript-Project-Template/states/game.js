@@ -52,7 +52,7 @@ GameStates.Game.prototype = {
             territories[i].create();
         }
         assignTerritories();
-        drawArrow(this);
+        //drawArrow(this);
         newGame(this);
     },
     continueOnClick: function () {
@@ -76,6 +76,11 @@ GameStates.Game.prototype = {
 
         if ($('#form2').is(':visible'))
             $('#form2').hide();
+
+        if(GameStates.arrow){
+            GameStates.arrow.kill();
+            GameStates.arrow = null;
+        }
 
         if (currentPlayer.type === 0) {
             if (GameStates.gameState !== GameStates.END_TURN)
@@ -249,9 +254,6 @@ function removeArmyOnClick() {
 
 function drawArrow (game) {
 
-    GameStates.attackingTerritory = territories[0];
-    GameStates.defendingTerritory = territories[1];
-    console.log(territories[0].name,territories[1].name);
      var attackingTerritoryPoint = {
         x: GameStates.attackingTerritory.positionX,
         y: GameStates.attackingTerritory.positionY
@@ -276,6 +278,7 @@ function drawArrow (game) {
     arrowShaft.addChild(arrowHead);
     arrowShaft.angle = angle - 180;
 
+    GameStates.arrow = arrowShaft;
     //arrowShaft.addChild(game.add.sprite(arrowShaft.top.x,arrowShaft.top.y,'arrow_head'));
 
 

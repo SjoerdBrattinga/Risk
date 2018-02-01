@@ -40,6 +40,11 @@ Territory.prototype = {
                 }
             }
         } else if (GameStates.gameState === GameStates.ATTACK) {
+            debugger;
+            if(GameStates.arrow){
+                GameStates.arrow.kill();
+                GameStates.arrow = null;
+            }
             if (this.owner === currentPlayer) {
                 GameStates.attackingTerritory = this;
                 console.log('Attacking territory', GameStates.attackingTerritory);
@@ -52,15 +57,23 @@ Territory.prototype = {
                         removeArmyBtn.visible = false;
                     }
                     GameStates.defendingTerritory = this;
+                    drawArrow(this.game);
                     console.log('Defending territory');
                 } else {
                     GameStates.defendingTerritory = null;
                 }
             }
             if (GameStates.attackingTerritory && GameStates.defendingTerritory) {
-                attackBtn.visible = true;
+                if(checkBorderTerritories(GameStates.attackingTerritory, GameStates.defendingTerritory)) {
+                    attackBtn.visible = true;
+                }
+
             }
         } else if (GameStates.gameState === GameStates.FORTIFYING) {
+            if(GameStates.arrow){
+                GameStates.arrow.kill();
+                GameStates.arrow = null;
+            }
             if (this.owner === currentPlayer) {
                 if (this.armies > 1 && GameStates.attackingTerritory === null) {
                     GameStates.attackingTerritory = this;
@@ -89,6 +102,7 @@ Territory.prototype = {
                     }
                     if(checkIfTerritoriesAreConnected(GameStates.attackingTerritory, this)){
                         GameStates.defendingTerritory = this;
+                        drawArrow(this.game);
                         addArmyBtn = this.game.add.button(GameStates.defendingTerritory.positionX + 24, GameStates.defendingTerritory.positionY, 'addArmiesBtn', addArmyOnClick, this);
                         addArmyBtn.anchor.setTo(0.5);
                         addArmyBtn.visisble = true;
@@ -99,6 +113,7 @@ Territory.prototype = {
                     }
                 } else if (checkIfTerritoriesAreConnected(GameStates.attackingTerritory, this) && GameStates.attackingTerritory) {
                     GameStates.defendingTerritory = this;
+                    drawArrow(this.game);
                     getNumberOfArmiesToMove(GameStates.attackingTerritory);
                     addArmyBtn = this.game.add.button(GameStates.defendingTerritory.positionX + 24, GameStates.defendingTerritory.positionY, 'addArmiesBtn', addArmyOnClick, this);
                     addArmyBtn.anchor.setTo(0.5);
