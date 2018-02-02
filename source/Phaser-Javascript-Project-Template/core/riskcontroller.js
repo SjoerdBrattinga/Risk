@@ -132,18 +132,13 @@ function assignArmiesToTerritories(startingArmies) {
             count += armiesToAssign;
             armies -= armiesToAssign;
 
-            if (j === playerTerritories.length - 1 && playerTerritories[j].armies >= 30) {
+            if (j === playerTerritories.length - 1) {
                 console.log(count);
                 playerTerritories[j].addArmies(armies);
                 count += armies;
                 console.log(count);
                 break;
             }
-        }
-    }
-    for (var k = 0; k < territories.length; k++){
-        if (territories[k].armies === 0){
-            console.log('error, 0 armies');
         }
     }
 }
