@@ -7,6 +7,7 @@ var continueBtn;
 var isFirstClick = true;
 var circleGroup;
 var circleTextGroup;
+var arrow;
 
 var currentPlayerText;
 var instructionText;
@@ -83,7 +84,7 @@ GameStates.Game.prototype = {
         if ($('#form2').is(':visible'))
             $('#form2').hide();
 
-        if(GameStates.arrow){
+        if (GameStates.arrow) {
             GameStates.arrow.kill();
             GameStates.arrow = null;
         }
@@ -98,19 +99,19 @@ GameStates.Game.prototype = {
                 //GameStates.gameState++;
                 moveArmyBtn.visible = false;
                 attackBtn.visible = false;
-                if(addArmyBtn){
+                if (addArmyBtn) {
                     addArmyBtn.visible = false;
                 }
-                if(removeArmyBtn) {
+                if (removeArmyBtn) {
                     removeArmyBtn.visible = false;
                 }
             }
 
             if (GameStates.gameState === GameStates.END_TURN) {
-                if(addArmyBtn){
+                if (addArmyBtn) {
                     addArmyBtn.visible = false;
                 }
-                if(removeArmyBtn) {
+                if (removeArmyBtn) {
                     removeArmyBtn.visible = false;
                 }
                 endTurn();
@@ -190,11 +191,10 @@ GameStates.Game.prototype = {
             }
             attackDice.push(this.add.sprite(100 + i * 60, 350, attackDieName));
             attackDice[i].anchor.setTo(0.5);
-            //attackDice[i].lifespan = 2000;
-     
-                //game.add.tween(attackDice[i]).to({ y: 0 }, 1500, Phaser.Easing.Linear.None, true);
-                game.add.tween(attackDice[i]).to({ alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
-        
+            attackDice[i].lifespan = 3000;
+            //game.add.tween(attackDice[i]).to({ y: 0 }, 1500, Phaser.Easing.Linear.None, true);
+            game.add.tween(attackDice[i]).to({ alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
+
 
         }
         for (var j = 0; j < defenseResult.length; j++) {
@@ -214,7 +214,7 @@ GameStates.Game.prototype = {
             }
             defenseDice.push(this.add.sprite(100 + j * 60, 410, defenseDieName));
             defenseDice[j].anchor.setTo(0.5);
-
+            defenseDice[j].lifespan = 3000;
             game.add.tween(defenseDice[j]).to({ alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
         }
         console.log(attackResult, defenseResult);
@@ -246,7 +246,7 @@ function addArmyOnClick() {
     //Should not be able to move more armies than maxArmiesToAssign.
     moveArmies(GameStates.attackingTerritory, GameStates.defendingTerritory, 1);
     maxArmiesToAssign--;
-    if (maxArmiesToAssign === 0){
+    if (maxArmiesToAssign === 0) {
         addArmyBtn.visible = false;
     }
     removeArmyBtn.visible = true;
@@ -254,6 +254,7 @@ function addArmyOnClick() {
 
 function removeArmyOnClick() {
     //TODO: button that on click removes 1 army from conquered territory back to the attacking territory.
+
     //Should not be able to remove more armies than the minimum that is transfered at first.
     moveArmies(GameStates.defendingTerritory, GameStates.attackingTerritory, 1);
     maxArmiesToAssign++;
@@ -263,9 +264,8 @@ function removeArmyOnClick() {
     addArmyBtn.visible = true;
 }
 
-function drawArrow (game) {
-
-     var attackingTerritoryPoint = {
+function drawArrow(game) {
+    var attackingTerritoryPoint = {
         x: GameStates.attackingTerritory.positionX,
         y: GameStates.attackingTerritory.positionY
     };
@@ -280,13 +280,17 @@ function drawArrow (game) {
     var midPoint = getMidPoint(attackingTerritoryPoint, defendingTerritoryPoint);
 
     //var startingPoint = getStartingPoint(GameStates.attackingTerritory, angle);
+    arrow = game.add.group();
 
     var arrowShaft = game.add.sprite(midPoint.x, midPoint.y, 'arrow_shaft');
     arrowShaft.anchor.setTo(0.5);
-    var arrowHead = game.add.sprite(0, -50, 'arrow_head');
-    arrowHead.anchor.setTo(0.5);
-    arrowShaft.height = distance - 60;
+    var arrowHead = game.add.sprite(0, -30, 'arrow_head');
+    arrowHead.anchor.setTo(0.5, 1);
+    //arrow.add(arrowShaft);
+    //arrow.add(arrowHead);
     arrowShaft.addChild(arrowHead);
+    arrowShaft.height = distance - 30;
+
     arrowShaft.angle = angle - 180;
 
     GameStates.arrow = arrowShaft;
