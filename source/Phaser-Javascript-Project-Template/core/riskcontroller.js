@@ -110,6 +110,7 @@ function setInstructionText() {
 }
 
 function assignArmiesToTerritories(startingArmies) {
+    debugger;
     for (var i = 0; i < players.length; i++) {
         var playerTerritories = players[i].getTerritoriesOwned();
         var armies = startingArmies;
@@ -117,26 +118,45 @@ function assignArmiesToTerritories(startingArmies) {
         var count = 0;
         for (var j = 0; j < playerTerritories.length; j++) {
 
-            if (j === playerTerritories.length - 1) {
+            var maxArmiesToAssign = armies / (playerTerritories.length - j);
+            maxArmiesToAssign = Math.round(maxArmiesToAssign);
+            //var maxArmiesToAssignDown = Math.floor(maxArmiesToAssign);
+            var armiesToAssign = Math.round(Math.random() * maxArmiesToAssign) + 1;
+            if (armiesToAssign > maxArmiesToAssign){
+                armiesToAssign = maxArmiesToAssign;
+            }
+            // if (armiesToAssign < 1) {
+            //     armiesToAssign = 1;
+            // }
+            playerTerritories[j].addArmies(armiesToAssign);
+            count += armiesToAssign;
+            armies -= armiesToAssign;
+
+            if (j === playerTerritories.length - 1 && playerTerritories[j].armies >= 30) {
+                debugger;
                 console.log(count);
                 playerTerritories[j].addArmies(armies);
                 count += armies;
                 console.log(count);
                 break;
             }
-
-            var maxArmiesToAssign = armies / (playerTerritories.length - j);
-            maxArmiesToAssign = Math.round(maxArmiesToAssign);
-            var armiesToAssign = Math.round(Math.random() * maxArmiesToAssign) + 1;
-            if (armiesToAssign < 1) {
-                armiesToAssign = 1;
-            }
-            playerTerritories[j].addArmies(armiesToAssign);
-            count += armiesToAssign;
-            armies -= armiesToAssign;
+        }
+    }
+    for (var k = 0; k < territories.length; k++){
+        if (territories[k].armies === 0){
+            console.log('error, 0 armies');
         }
     }
 }
+
+// function debugAssignArmiesToTerritories(){
+//     for (var j = 0; j < 10000; j++) {
+//         for(var i = 0; i < territories.length; i++){
+//             territories[i].removeArmies(territories[i].armies);
+//         }
+//         assignArmiesToTerritories(30);
+//     }
+// }
 
 function getNumberOfArmiesToMove(attackingTerritory) {
     maxArmiesToAssign = attackingTerritory.armies - 1;
