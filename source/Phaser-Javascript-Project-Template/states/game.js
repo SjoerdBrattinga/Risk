@@ -193,7 +193,7 @@ GameStates.Game.prototype = {
             attackDice[i].anchor.setTo(0.5);
             attackDice[i].lifespan = 3000;
             //game.add.tween(attackDice[i]).to({ y: 0 }, 1500, Phaser.Easing.Linear.None, true);
-            game.add.tween(attackDice[i]).to({ alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
+            game.add.tween(attackDice[i]).to({ alpha: 0 }, 10000, Phaser.Easing.Linear.None, true);
 
 
         }
@@ -215,7 +215,7 @@ GameStates.Game.prototype = {
             defenseDice.push(this.add.sprite(100 + j * 60, 410, defenseDieName));
             defenseDice[j].anchor.setTo(0.5);
             defenseDice[j].lifespan = 3000;
-            game.add.tween(defenseDice[j]).to({ alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
+            game.add.tween(defenseDice[j]).to({ alpha: 0 }, 10000, Phaser.Easing.Linear.None, true);
         }
         console.log(attackResult, defenseResult);
     },
