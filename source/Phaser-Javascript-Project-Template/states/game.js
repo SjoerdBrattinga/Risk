@@ -15,8 +15,7 @@ var instructionText;
 
 var moveArmyBtn;
 var attackBtn;
-var addArmyBtn;
-var removeArmyBtn;
+
 
 GameStates.Game.prototype = {
     create: function () {
@@ -28,13 +27,6 @@ GameStates.Game.prototype = {
         continueBtn = this.add.button(730, 475, 'continueBtn', this.continueOnClick, this);
         continueBtn.anchor.setTo(0.5);
         continueBtn.visible = false;
-
-
-        //arrow = this.add.sprite(this.world.centerX, this.world.centerY, 'arrow');
-        //arrow.anchor.setTo(0.5);
-        //arrow.width;
-        //arrow.angle;
-
 
         var style = {
             font: '30px Arial',
@@ -66,23 +58,10 @@ GameStates.Game.prototype = {
 
         console.log(GameStates.gameState);
         console.log(currentPlayer.name);
-        //if (isFirstClick) {
-        //    newGame(this);
-        //    isFirstClick = false;
-        //    continueBtn.visible = false;
-        //}
-        //if (GameStates.gameState === GameStates.GAME_OVER) {
-        //    this.state.start('MainMenu');
-        //}
-        //var gameOver = checkIfGameOver();
+
         if (checkIfGameOver()) {
             this.state.start('EndScreen');
         }
-        GameStates.attackingTerritory = null;
-        GameStates.defendingTerritory = null;
-
-        if ($('#form2').is(':visible'))
-            $('#form2').hide();
 
         if (GameStates.arrow) {
             GameStates.arrow.kill();
@@ -97,58 +76,27 @@ GameStates.Game.prototype = {
                 //continueBtn.visible = false;
             } else if (GameStates.gameState === GameStates.FORTIFYING) {
                 //GameStates.gameState++;
+                //if (GameStates.defendingTerritory) {
+                //    GameStates.defendingTerritory.setMoveArmyBtnsVisibleFalse();
+                //}
                 moveArmyBtn.visible = false;
                 attackBtn.visible = false;
-                if (addArmyBtn) {
-                    addArmyBtn.visible = false;
-                }
-                if (removeArmyBtn) {
-                    removeArmyBtn.visible = false;
-                }
+                
             }
 
             if (GameStates.gameState === GameStates.END_TURN) {
-                if (addArmyBtn) {
-                    addArmyBtn.visible = false;
-                }
-                if (removeArmyBtn) {
-                    removeArmyBtn.visible = false;
+                if (GameStates.defendingTerritory) {
+                    GameStates.defendingTerritory.setMoveArmyBtnsVisibleFalse();
                 }
                 endTurn();
-                //continueBtn.visible = false;
             }
         } else {
             endTurn();
         }
-
+        GameStates.attackingTerritory = null;
+        GameStates.defendingTerritory = null;
         setInstructionText();
-
     },
-
-
-
-    // moveArmyOnClick: function () {
-    //     //TODO: This also needs to be implemented for the bots so after the bots turn has ended it does NOT show this button and textbox.
-    //     var val = $('#number').val();
-    //     var armyNumberToMove = parseInt(val);
-    //
-    //     if (armyNumberToMove >= minArmiesToAssign && armyNumberToMove <= maxArmiesToAssign) {
-    //         moveArmies(GameStates.attackingTerritory, GameStates.defendingTerritory, armyNumberToMove);
-    //         $('#form2').hide();
-    //         //moveArmyBtn.visible = false;
-    //     }
-    //     GameStates.attackingTerritory = null;
-    //     GameStates.defendingTerritory = null;
-    //     if (GameStates.gameState === GameStates.FORTIFYING) {
-    //         GameStates.gameState++;
-    //         //endTurn();
-    //         // moveArmyBtn.visible = false;
-    //         //this.continueOnClick();
-    //     }
-    //     moveArmyBtn.visible = false;
-    //     $('#number').val('');
-    //     setInstructionText();
-    // },
 
     attackOnClick: function () {
         var battleResult = attackTerritory();
@@ -158,19 +106,13 @@ GameStates.Game.prototype = {
 
         if (battleResult.conqueredTerritory) {
             if (GameStates.attackingTerritory.armies > 1) {
-                this.createAddAndRemoveArmyBtn();
+                continueBtn.visible = false;
+                GameStates.defendingTerritory.createMoveArmyBtns();
             }
         }
     },
-    //attackDice: [],
-    //defenseDice: [],
+
     showBattleResult: function (attackResult, defenseResult) {
-        //for (var k = 0; k < this.attackDice.length; k++) {
-        //    this.attackDice[k].kill();
-        //}
-        //for (var l = 0; l < this.defenseDice.length; l++) {
-        //    this.defenseDice[l].kill();
-        //}
         var attackDice = [];
         var defenseDice = [];
 
@@ -192,10 +134,7 @@ GameStates.Game.prototype = {
             attackDice.push(this.add.sprite(100 + i * 60, 350, attackDieName));
             attackDice[i].anchor.setTo(0.5);
             attackDice[i].lifespan = 3000;
-            //game.add.tween(attackDice[i]).to({ y: 0 }, 1500, Phaser.Easing.Linear.None, true);
             game.add.tween(attackDice[i]).to({ alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
-
-
         }
         for (var j = 0; j < defenseResult.length; j++) {
             var defenseDieName = '';
@@ -220,49 +159,11 @@ GameStates.Game.prototype = {
         console.log(attackResult, defenseResult);
     },
 
-    createAddAndRemoveArmyBtn: function () {
-        addArmyBtn = this.add.button(GameStates.defendingTerritory.positionX + 24, GameStates.defendingTerritory.positionY, 'addArmiesBtn', addArmyOnClick, this);
-        addArmyBtn.anchor.setTo(0.5);
-        addArmyBtn.visisble = true;
 
-        removeArmyBtn = this.add.button(GameStates.defendingTerritory.positionX - 24, GameStates.defendingTerritory.positionY, 'removeArmiesBtn', removeArmyOnClick, this);
-        removeArmyBtn.anchor.setTo(0.5);
-        removeArmyBtn.visible = false;
-
-    },
-
-    update: function () {
-        if (GameStates.gameState === GameStates.GAME_OVER) {
-            this.state.start('EndScreen');
-        }
-    },
+    update: function () { },
 
     render: function () { }
 };
-
-
-function addArmyOnClick() {
-    //TODO: button that on click moves 1 army from the attacking territory to the now conquered territory.
-    //Should not be able to move more armies than maxArmiesToAssign.
-    moveArmies(GameStates.attackingTerritory, GameStates.defendingTerritory, 1);
-    maxArmiesToAssign--;
-    if (maxArmiesToAssign === 0) {
-        addArmyBtn.visible = false;
-    }
-    removeArmyBtn.visible = true;
-}
-
-function removeArmyOnClick() {
-    //TODO: button that on click removes 1 army from conquered territory back to the attacking territory.
-
-    //Should not be able to remove more armies than the minimum that is transfered at first.
-    moveArmies(GameStates.defendingTerritory, GameStates.attackingTerritory, 1);
-    maxArmiesToAssign++;
-    if (GameStates.defendingTerritory.armies === prePlacedArmies) {
-        removeArmyBtn.visible = false;
-    }
-    addArmyBtn.visible = true;
-}
 
 function drawArrow(game) {
     var attackingTerritoryPoint = {
@@ -279,44 +180,17 @@ function drawArrow(game) {
     var distance = getDistance(attackingTerritoryPoint, defendingTerritoryPoint);
     var midPoint = getMidPoint(attackingTerritoryPoint, defendingTerritoryPoint);
 
-    //var startingPoint = getStartingPoint(GameStates.attackingTerritory, angle);
-    arrow = game.add.group();
-
-    var arrowShaft = game.add.sprite(midPoint.x, midPoint.y, 'arrow_shaft');
-    arrowShaft.anchor.setTo(0.5);
+    var arrow = game.add.sprite(midPoint.x, midPoint.y, 'arrow_shaft');
+    arrow.anchor.setTo(0.5);
     var arrowHead = game.add.sprite(0, -30, 'arrow_head');
     arrowHead.anchor.setTo(0.5, 1);
-    //arrow.add(arrowShaft);
-    //arrow.add(arrowHead);
-    arrowShaft.addChild(arrowHead);
-    arrowShaft.height = distance - 30;
+    arrow.addChild(arrowHead);
+    arrow.height = distance - 30;
+    arrow.angle = angle - 180;
 
-    arrowShaft.angle = angle - 180;
-
-    GameStates.arrow = arrowShaft;
-    //arrowShaft.addChild(game.add.sprite(arrowShaft.top.x,arrowShaft.top.y,'arrow_head'));
-
-
-
-    // arrowHead.anchor.setTo(0.5);
-    // arrowHead.height = 25;
-    // arrowHead.angle = angle - 180;
+    GameStates.arrow = arrow;
 }
 
-// function getStartingPoint (point, angle) {
-//     //Gives starting point for the arrow.
-//
-//     var startingPoint = {
-//         x: point.positionX,
-//         y: point.positionY
-//     };
-//
-//     startingPoint.x += 20 * Math.sin(angle);
-//     startingPoint.y += 20 * Math.cos(angle);
-//
-//     return startingPoint;
-//
-// }
 
 
 

@@ -14,34 +14,34 @@
 
 Player.prototype = {
 
-    setColor: function(color) {
-      this.color = color;
-    },
+    //setColor: function(color) {
+    //  this.color = color;
+    //},
 
-    getColor: function() {
-        return this.color;
-    },
+    //getColor: function() {
+    //    return this.color;
+    //},
 
     getHexaColor: function() {
         for (var i = 0; i < GameStates.COLORS.length; i++) {
-            if (GameStates.COLORS[i] === this.getColor()) {
+            if (GameStates.COLORS[i] === this.color) {
                 return GameStates.HEXA_COLORS[i];
             }
         }
-        return null;
+        return '';
     },
 
-    getNumberOfArmies: function() {
-        return this.numberOfArmies;
-    },
+    //getNumberOfArmies: function() {
+    //    return this.numberOfArmies;
+    //},
 
-    setNumberOfArmies: function(numberOfArmies) {
-        this.numberOfArmies = numberOfArmies;
-    },
+    //setNumberOfArmies: function(numberOfArmies) {
+    //    this.numberOfArmies = numberOfArmies;
+    //},
 
-    getNumberOfExtraArmies: function() {
-        return this.extraArmies;
-    },
+    //getNumberOfExtraArmies: function() {
+    //    return this.extraArmies;
+    //},
 
     setNumberOfExtraArmies: function(extraArmies) {
         this.extraArmies = extraArmies;
@@ -62,9 +62,9 @@ Player.prototype = {
         }
     },
 
-    getTerritoriesOwned: function () {
-        return this.territoriesOwned;
-    },
+    //getTerritoriesOwned: function () {
+    //    return this.territoriesOwned;
+    //},
 
     getDefenseValue: function () {
         return this.numberOfArmies / this.territoriesOwned.length;

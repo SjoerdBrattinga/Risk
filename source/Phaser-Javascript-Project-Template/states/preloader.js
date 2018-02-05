@@ -20,6 +20,7 @@ GameStates.Preloader.prototype = {
         this.load.image('creategame-background', 'assets/creategame-background.jpg');
         this.load.image('backBtn', 'assets/button_return.png');
         this.load.image('continueBtn', 'assets/button_continue.png');
+        this.load.image('okBtn', 'assets/ok_btn.png');
         this.load.image('addPlayerBtn', 'assets/button_add-player.png');
         this.load.image('addEasyBotBtn', 'assets/button_easy.png');
         this.load.image('addAverageBotBtn', 'assets/button_average.png');
@@ -59,9 +60,6 @@ GameStates.Preloader.prototype = {
 
     create: function () {
         //call next state
-        $('#form1').hide();
-        $('#form2').hide();
         this.state.start('MainMenu');
-
     }
 };

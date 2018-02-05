@@ -26,6 +26,6 @@ function getBorderTerritories() {
     return this.borderTerritories;
 }
 
-function setColor(color) {
-    return this.color;
-}
+//function setColor(color) {
+//    return this.color;
+//}

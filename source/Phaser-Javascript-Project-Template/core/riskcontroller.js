@@ -33,7 +33,7 @@ function newGame(thisGame) {
         currentPlayer = players[0];
         
         conqueredTerritory = false;
-        playing = true;
+        //playing = true;
 
         newTurn();
     }
@@ -42,7 +42,7 @@ function newGame(thisGame) {
 function newTurn() {
     setCurrentPlayerText();
     currentPlayer.setArmiesToPlace();
-    moveArmyBtn.visible = false;
+    GameStates.fortified = false;
 
     if (currentPlayer.type !== 0) {
         continueBtn.visible = true;
@@ -111,13 +111,14 @@ function setInstructionText() {
 
 function assignArmiesToTerritories(startingArmies) {
     for (var i = 0; i < players.length; i++) {
-        var playerTerritories = players[i].getTerritoriesOwned();
+        var playerTerritories = players[i].territoriesOwned;
         var armies = startingArmies;
 
         var count = 0;
         for (var j = 0; j < playerTerritories.length; j++) {
 
-            if (j === playerTerritories.length - 1) {
+            if (j === playerTerritories.length - 1 && playerTerritories[j].armies >= 30) {
+              
                 console.log(count);
                 playerTerritories[j].addArmies(armies);
                 count += armies;
@@ -141,17 +142,7 @@ function assignArmiesToTerritories(startingArmies) {
 function getNumberOfArmiesToMove(attackingTerritory) {
     maxArmiesToAssign = attackingTerritory.armies - 1;
     minArmiesToAssign = 0;
-
-    // if (currentPlayer.type === 0) {
-    //     moveArmyBtn.visible = true;
-    //     $('#form2').show();
-    // }
 }
-
-$(function () {
-    $("input[type='number']").prop('min', minArmiesToAssign);
-    $("input[type='number']").prop('max', maxArmiesToAssign);
-});
 
 function moveArmies(territory1, territory2, armiesToMove) {
     if (territory1.armies - armiesToMove >= 1) {
@@ -197,10 +188,10 @@ function removePlayer(name) {
     }
 }
 
-function placeArmies() {
-    if (currentPlayer.name === selectedTerritory.owner.name)
-        selectedTerritory.addArmies();
-}
+//function placeArmies() {
+//    if (currentPlayer.name === selectedTerritory.owner.name)
+//        selectedTerritory.addArmies();
+//}
 
 function attackTerritory() {
     console.log('attacker', GameStates.attackingTerritory);

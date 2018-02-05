@@ -13,6 +13,9 @@ window.onload = function () {
     game.state.add('Instructions', GameStates.Instructions);
     game.state.add('EndScreen', GameStates.EndScreen);
 
+    $('#form1').hide();
+
+
     //  Now start the Boot state.
     game.state.start('Boot');
 

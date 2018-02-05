@@ -63,6 +63,7 @@
     <Content Include="assets\dice\defense_die_1.png" />
     <Content Include="assets\mainmenu-background.jpg" />
     <Content Include="assets\mainmenu-background.png" />
+    <Content Include="assets\ok_btn.png" />
     <Content Include="assets\phaser2.png" />
     <Content Include="assets\preloader-bar.png" />
     <Content Include="assets\spritesheets\LWD.png" />
