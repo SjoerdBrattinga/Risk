@@ -1,0 +1,18 @@
+Klassendiagram maken / bijwerken.
+player
+territory
+card - laten voor wat het is
+helpermethods
+continent - laten voor wat het is
+ALLE STATES GLOBALE VARIABELEN NIET MEENEMEN (zou in apart diagram kunnen)
+mainmenu 
+game 
+boot
+creategame
+credit
+endscreen
+instructions
+preloader
+
+(ook in apart diagram)
+bots (1 is voldoende)
