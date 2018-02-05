@@ -82,7 +82,7 @@ Territory.prototype = {
                         if (!GameStates.fortified) {
                             continueBtn.visible = false;
                             drawArrow(this.game);
-                            getNumberOfArmiesToMove(GameStates.attackingTerritory);
+                            getMaxArmiesToAssign(GameStates.attackingTerritory);
                             this.createMoveArmyBtns();
                         }
                     }
@@ -148,13 +148,13 @@ Territory.prototype = {
             this.sprite.loadTexture('orange_circle');
     },
 
-    getOwner: function () {
-        return this.owner;
-    },
+    //getOwner: function () {
+    //    return this.owner;
+    //},
 
-    getNumberOfArmies: function () {
-        return this.armies;
-    },
+    //getNumberOfArmies: function () {
+    //    return this.armies;
+    //},
 
     addArmies: function (armiesToAdd) {
         this.armies += armiesToAdd;
@@ -174,9 +174,9 @@ Territory.prototype = {
         });
     },
 
-    getBorderTerritories: function () {
-        return this.borderTerritories;
-    },
+    //getBorderTerritories: function () {
+    //    return this.borderTerritories;
+    //},
 
     setBorderTerritories: function (borderTerritories) {
         this.borderTerritories = borderTerritories;
@@ -217,8 +217,8 @@ Territory.prototype = {
 
         moveArmies(GameStates.attackingTerritory, GameStates.defendingTerritory, 1);
 
-        maxArmiesToAssign--;
-        if (maxArmiesToAssign === 0) {
+        GameStates.maxArmiesToAssign--;
+        if (GameStates.maxArmiesToAssign === 0) {
             this.addArmyBtn.visible = false;
         }
         this.removeArmyBtn.visible = true;
@@ -226,8 +226,8 @@ Territory.prototype = {
 
     removeArmyOnClick: function () {
         moveArmies(GameStates.defendingTerritory, GameStates.attackingTerritory, 1);
-        maxArmiesToAssign++;
-        if (GameStates.gameState === GameStates.ATTACK && GameStates.defendingTerritory.armies === prePlacedArmies) {
+        GameStates.maxArmiesToAssign++;
+        if (GameStates.gameState === GameStates.ATTACK && GameStates.defendingTerritory.armies === GameStates.prePlacedArmies) {
             this.removeArmyBtn.visible = false;
         } else if (GameStates.defendingTerritory.armies === 1) {
             this.removeArmyBtn.visible = false;
@@ -260,23 +260,6 @@ Territory.prototype = {
             }
         }
     }
-
-    //drawCircle: function () {
-    //    //var circle = this.game.add.graphics(0, 0);
-    //    //circle.beginFill(this.owner.getHexaColor(), 1);
-    //    //circle.drawCircle(this.positionX, this.positionY, 25);
-    //    this.circleX = this.game.add.graphics(0, 0);
-    //    this.circleX.beginFill(this.owner.getHexaColor(), 1);
-    //    this.circleX.drawCircle(this.positionX, this.positionY, 25);
-    //    this.setArmiesText();
-    //},
-
-    //changeCircleColor: function () {
-    //    var circle = this.game.add.graphics(0, 0);
-    //    circle.beginFill(GameStates.HEXA_COLORS[Math.floor(Math.random() * GameStates.HEXA_COLORS.length)], 1);
-    //    circle.drawCircle(this.positionX, this.positionY, 25);
-    //    this.setArmiesText();
-    //}
 };
 
 

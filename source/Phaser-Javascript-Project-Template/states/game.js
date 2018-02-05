@@ -4,10 +4,10 @@
 
 //var mapLeeuwarden;
 var continueBtn;
-var isFirstClick = true;
+//var isFirstClick = true;
 var circleGroup;
 var circleTextGroup;
-var arrow;
+
 
 var currentPlayerText;
 var instructionText;
@@ -135,7 +135,7 @@ GameStates.Game.prototype = {
             attackDice[i].anchor.setTo(0.5);
             attackDice[i].lifespan = 3000;
 
-            game.add.tween(attackDice[i]).to({ alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
+            this.add.tween(attackDice[i]).to({ alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
 
         }
         for (var j = 0; j < defenseResult.length; j++) {
@@ -156,7 +156,7 @@ GameStates.Game.prototype = {
             defenseDice.push(this.add.sprite(100 + j * 60, 410, defenseDieName));
             defenseDice[j].anchor.setTo(0.5);
             defenseDice[j].lifespan = 3000;
-            game.add.tween(defenseDice[j]).to({ alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
+            this.add.tween(defenseDice[j]).to({ alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
         }
         console.log(attackResult, defenseResult);
     },

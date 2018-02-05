@@ -6,16 +6,12 @@ var cards = [];
 var usedCards = [];
 
 var conqueredTerritory;
-var playing = false;
-var game;
-var numberOfEyesThrown;
 
-var maxArmiesToAssign;
-var minArmiesToAssign;
-var prePlacedArmies;
+//var maxArmiesToAssign;
+//var minArmiesToAssign;
+//var prePlacedArmies;
 
-function newGame(thisGame) {
-    game = thisGame;
+function newGame() {
     if (players.length < 2) return;
 
     if (GameStates.gameState === GameStates.NEW_GAME) {
@@ -28,13 +24,9 @@ function newGame(thisGame) {
         }
 
         assignArmiesToTerritories(startingArmies);
-
         //currentPlayer = getRandomPlayer();
         currentPlayer = players[0];
-        
         conqueredTerritory = false;
-        //playing = true;
-
         newTurn();
     }
 }
@@ -150,9 +142,9 @@ function assignArmiesToTerritories(startingArmies) {
 //     }
 // }
 
-function getNumberOfArmiesToMove(attackingTerritory) {
-    maxArmiesToAssign = attackingTerritory.armies - 1;
-    minArmiesToAssign = 0;
+function getMaxArmiesToAssign(attackingTerritory) {
+    GameStates.maxArmiesToAssign = attackingTerritory.armies - 1;
+    //minArmiesToAssign = 0;
 }
 
 function moveArmies(territory1, territory2, armiesToMove) {
@@ -208,8 +200,8 @@ function attackTerritory() {
             if (GameStates.attackingTerritory.armies > 1) {
                 var attackingTerritory = GameStates.attackingTerritory;
                 var defendingTerritory = GameStates.defendingTerritory;
-                var attackingPlayer = attackingTerritory.getOwner();
-                var defendingPlayer = defendingTerritory.getOwner();
+                var attackingPlayer = attackingTerritory.owner;
+                var defendingPlayer = defendingTerritory.owner;
 
                 checkBorderTerritories(attackingTerritory, defendingTerritory);
 
@@ -230,7 +222,7 @@ function attackTerritory() {
                     console.log(attackingPlayer.name + ' conquered ' + defendingTerritory.name + '!');
 
                     moveArmies(attackingTerritory, defendingTerritory, result.numberOfAttackDice);
-                    prePlacedArmies = result.numberOfAttackDice;
+                    GameStates.prePlacedArmies = result.numberOfAttackDice;
 
                     if (checkIfPlayerIsDefeated(defendingPlayer)) {
                         console.log(defendingPlayer.name + ' is defeated');
@@ -241,7 +233,7 @@ function attackTerritory() {
                         }
                     }
                     if (attackingTerritory.armies > 1) {
-                        getNumberOfArmiesToMove(attackingTerritory);
+                        getMaxArmiesToAssign(attackingTerritory);
                     }
                 }
             } else {
