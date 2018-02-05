@@ -136,7 +136,6 @@ GameStates.Game.prototype = {
             attackDice[i].lifespan = 3000;
 
             this.add.tween(attackDice[i]).to({ alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
-
         }
         for (var j = 0; j < defenseResult.length; j++) {
             var defenseDieName = '';
