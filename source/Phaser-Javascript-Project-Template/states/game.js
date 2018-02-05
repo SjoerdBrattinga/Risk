@@ -134,7 +134,9 @@ GameStates.Game.prototype = {
             attackDice.push(this.add.sprite(100 + i * 60, 350, attackDieName));
             attackDice[i].anchor.setTo(0.5);
             attackDice[i].lifespan = 3000;
+
             game.add.tween(attackDice[i]).to({ alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
+
         }
         for (var j = 0; j < defenseResult.length; j++) {
             var defenseDieName = '';
