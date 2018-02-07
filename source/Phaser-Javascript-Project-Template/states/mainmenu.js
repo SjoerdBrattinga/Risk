@@ -2,14 +2,9 @@
 
 };
 
-var mainMenuBackground;
-var createGameBtn;
-var gameInstructionsBtn;
-var creditsBtn;
-
 GameStates.MainMenu.prototype = {
     create: function () {
-        mainMenuBackground = this.add.sprite(this.world.centerX, this.world.centerY, 'mainmenu-background');
+        var mainMenuBackground = this.add.sprite(this.world.centerX, this.world.centerY, 'mainmenu-background');
         mainMenuBackground.anchor.setTo(0.5, 0.5);
 
         var mainMenuText = this.add.text(this.world.centerX, 30, 'Risk Leeuwarden', {
@@ -17,13 +12,13 @@ GameStates.MainMenu.prototype = {
         });
         mainMenuText.anchor.setTo(0.5);
 
-        createGameBtn = this.add.button(this.world.centerX, 200, 'createGameBtn', this.createGameBtnOnClick, this);
+        var createGameBtn = this.add.button(this.world.centerX, 200, 'createGameBtn', this.createGameBtnOnClick, this);
         createGameBtn.anchor.setTo(0.5, 0.5);
 
-        gameInstructionsBtn = this.add.button(this.world.centerX, 250, 'gameInstructionsBtn', this.createGameInstructionsBtnOnClick, this);
+        var gameInstructionsBtn = this.add.button(this.world.centerX, 250, 'gameInstructionsBtn', this.createGameInstructionsBtnOnClick, this);
         gameInstructionsBtn.anchor.setTo(0.5, 0.5);
 
-        creditsBtn = this.add.button(this.world.centerX, 450, 'creditsBtn', this.createCreditsBtnOnClick, this);
+        var creditsBtn = this.add.button(this.world.centerX, 450, 'creditsBtn', this.createCreditsBtnOnClick, this);
         creditsBtn.anchor.setTo(0.5, 0.5);
 
         this.enterKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);

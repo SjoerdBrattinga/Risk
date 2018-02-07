@@ -6,28 +6,28 @@
     var safeTerritories = getSafeTerritories();
     var territory;
     if (safeTerritories.length === 0){
-        for (var l = 0; l < currentPlayer.armiesToPlace; l++){
-            territory = getRandomTerritory(currentPlayer.territoriesOwned);
+        for (var l = 0; l < GameStates.currentPlayer.armiesToPlace; l++){
+            territory = getRandomTerritory(GameStates.currentPlayer.territoriesOwned);
             territory.addArmies(1);
-            currentPlayer.addArmies(1);
-            currentPlayer.armiesToPlace--;
+            GameStates.currentPlayer.addArmies(1);
+            GameStates.currentPlayer.armiesToPlace--;
             setInstructionText();
         }
     }
-    for (var j = 0; j < currentPlayer.armiesToPlace.length; j++){
+    for (var j = 0; j < GameStates.currentPlayer.armiesToPlace.length; j++){
         //for (var i = 0; i < safeTerritories.length; i++) {
             territory = getRandomTerritory(safeTerritories);
             var getOwnTerritory = getOwnedBorderTerritories(territory);
             for(var k = 0; k < getOwnTerritory.length; k++) {
-                var connectedTerritories = checkBorderTerritories(getOwnTerritory[k], currentPlayer.territoriesOwned[j]);
+                var connectedTerritories = checkBorderTerritories(getOwnTerritory[k], GameStates.currentPlayer.territoriesOwned[j]);
                 if (connectedTerritories) {
                     console.log(connectedTerritories);
                    // i = safeTerritories.length - 1;
                     //j = currentPlayer.territoriesOwned - 1;
                     //console.log('Added ' + count1 + ' armies to ' + getOwnTerritory[k].name);
                     getOwnTerritory[k].addArmies(1);
-                    currentPlayer.addArmies(1);
-                    currentPlayer.armiesToPlace --;
+                    GameStates.currentPlayer.addArmies(1);
+                    GameStates.currentPlayer.armiesToPlace --;
                     setInstructionText();
                    // break;
                 }
@@ -43,7 +43,7 @@ function attackTerritoryAiAverage () {
     //TODO: Make a retreat function which checks how the battle is going, if it's going bad stop attacking territoriy.
     //TODO: function getTerritoryToAttack (check what's a good territory to attack), compare defenseValues,
     //Could decide if it's worth attacking if it has more armies and has more territories nearby
-    var defenseValue = currentPlayer.getDefenseValue();
+    var defenseValue = GameStates.currentPlayer.getDefenseValue();
     var territoriesToAttack = getTerritoriesToAttack();
     for (var i = 0; i < territoriesToAttack.length; i++){
         var attackingTerritory = getAttackingTerritory(territoriesToAttack[i]);
@@ -65,11 +65,11 @@ function fortifyTerritoryAiAverage () {
     //TODO: average bot fortifies territory.
     //Could decide if territory should be fortified depending on bordering territories.
 
-    for(var i = 0; i < currentPlayer.territoriesOwned.length; i++){
-        var territory = getRandomTerritory(currentPlayer.territoriesOwned);
-        var borderingTerritories = checkBorderTerritories(territory, currentPlayer.territoriesOwned[i]);
+    for (var i = 0; i < GameStates.currentPlayer.territoriesOwned.length; i++){
+        var territory = getRandomTerritory(GameStates.currentPlayer.territoriesOwned);
+        var borderingTerritories = checkBorderTerritories(territory, GameStates.currentPlayer.territoriesOwned[i]);
         if (borderingTerritories && territory.armies > 1){
-            var getborderingTerritory = currentPlayer.territoriesOwned[i];
+            var getborderingTerritory = GameStates.currentPlayer.territoriesOwned[i];
             var botArmiesToMove = territory.armies - 1;
             moveArmies(territory,getborderingTerritory, botArmiesToMove);
         }
@@ -115,9 +115,9 @@ function getClusters() {
         }
         if(clusters.length === 0){
 
-            for(var i = 0; i < safeTerritories.length; i++){
+            for(var j = 0; j < safeTerritories.length; j++){
                 cluster = [];
-                cluster.push(safeTerritories[i]);
+                cluster.push(safeTerritories[j]);
                 clusters.push(cluster);
 
             }
@@ -131,12 +131,12 @@ function getClusters() {
 
 function getSafeTerritories(){
     var safeTerritories = [];
-    for (var i = 0; i < currentPlayer.territoriesOwned.length; i++){
-        var borderTerritories = currentPlayer.territoriesOwned[i].borderTerritories;
-        var borderTerritoriesOwned = getOwnedBorderTerritories(currentPlayer.territoriesOwned[i]);
+    for (var i = 0; i < GameStates.currentPlayer.territoriesOwned.length; i++){
+        var borderTerritories = GameStates.currentPlayer.territoriesOwned[i].borderTerritories;
+        var borderTerritoriesOwned = getOwnedBorderTerritories(GameStates.currentPlayer.territoriesOwned[i]);
         if (compareArrays(borderTerritories, borderTerritoriesOwned)){
 
-            safeTerritories.push(currentPlayer.territoriesOwned[i]);
+            safeTerritories.push(GameStates.currentPlayer.territoriesOwned[i]);
         }
     }
     return safeTerritories;
@@ -154,13 +154,13 @@ function getTerritoriesToAttack() {
         //     currentPlayer.armiesToPlace--;
         //     setInstructionText();
         // }
-        for(var z = 0; z < currentPlayer.territoriesOwned.length; z++) {
-            var connectedTerritories = currentPlayer.territoriesOwned[z].borderTerritories;
+        for (var z = 0; z < GameStates.currentPlayer.territoriesOwned.length; z++) {
+            var connectedTerritories = GameStates.currentPlayer.territoriesOwned[z].borderTerritories;
             for (var y = 0; y < connectedTerritories.length; y++){
                 var owner = connectedTerritories[y].owner;
-                if(owner !== currentPlayer && connectedTerritories[y].armies < currentPlayer.territoriesOwned[z].armies){
+                if (owner !== GameStates.currentPlayer && connectedTerritories[y].armies < GameStates.currentPlayer.territoriesOwned[z].armies){
 
-                    GameStates.attackingTerritory = currentPlayer.territoriesOwned[z];
+                    GameStates.attackingTerritory = GameStates.currentPlayer.territoriesOwned[z];
                     GameStates.defendingTerritory = connectedTerritories[y];
                     attackTerritory();
                 }
@@ -168,7 +168,7 @@ function getTerritoriesToAttack() {
         }
     }
     var territoryToAttack = [];
-    for (var i = 0; i < currentPlayer.territoriesOwned.length; i++) {
+    for (var i = 0; i < GameStates.currentPlayer.territoriesOwned.length; i++) {
         for (var k = 0; k < safeTerritories.length; k++){
             var getOwnTerritories = getOwnedBorderTerritories(safeTerritories[k]);
             for (var l = 0; l < getOwnTerritories.length; l++){
@@ -178,7 +178,7 @@ function getTerritoriesToAttack() {
                         territoryToAttack.push(notOwnedBorderTerritory[j]);
                         l = getOwnTerritories.length - 1;
                         k = safeTerritories.length - 1;
-                        i = currentPlayer.territoriesOwned.length - 1;
+                        i = GameStates.currentPlayer.territoriesOwned.length - 1;
                     }
                 }
             }

@@ -9,18 +9,9 @@
 
     this.territoriesOwned = [];
     this.cardOwned = [];
- 
 }
 
 Player.prototype = {
-
-    //setColor: function(color) {
-    //  this.color = color;
-    //},
-
-    //getColor: function() {
-    //    return this.color;
-    //},
 
     getHexaColor: function() {
         for (var i = 0; i < GameStates.COLORS.length; i++) {
@@ -30,18 +21,6 @@ Player.prototype = {
         }
         return '';
     },
-
-    //getNumberOfArmies: function() {
-    //    return this.numberOfArmies;
-    //},
-
-    //setNumberOfArmies: function(numberOfArmies) {
-    //    this.numberOfArmies = numberOfArmies;
-    //},
-
-    //getNumberOfExtraArmies: function() {
-    //    return this.extraArmies;
-    //},
 
     setNumberOfExtraArmies: function(extraArmies) {
         this.extraArmies = extraArmies;
@@ -61,10 +40,6 @@ Player.prototype = {
             this.armiesToPlace = 3;
         }
     },
-
-    //getTerritoriesOwned: function () {
-    //    return this.territoriesOwned;
-    //},
 
     getDefenseValue: function () {
         return this.numberOfArmies / this.territoriesOwned.length;
