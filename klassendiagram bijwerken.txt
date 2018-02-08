@@ -1,18 +1,18 @@
 Klassendiagram maken / bijwerken.
-player
-territory
-card - laten voor wat het is
-helpermethods
-continent - laten voor wat het is
+player	DONE
+territory	DONE
+card - laten voor wat het is (DONE)
+helpermethods	DONE
+continent - laten voor wat het is (DONE)
 ALLE STATES GLOBALE VARIABELEN NIET MEENEMEN (zou in apart diagram kunnen)
-mainmenu 
-game 
-boot
-creategame
-credit
-endscreen
-instructions
-preloader
+mainmenu	DONE
+game 		DONE
+boot		DONE
+creategame	DONE
+credit		DONE
+endscreen	DONE
+instructions	DONE
+preloader	DONE
 
 (ook in apart diagram)
-bots (1 is voldoende)
+bots (1 is voldoende)	DONE
