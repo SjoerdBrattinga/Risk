@@ -69,7 +69,6 @@ Player.prototype = {
     getDefenseValue: function () {
         return this.numberOfArmies / this.territoriesOwned.length;
     },
-
     tradeInCards: function (card1, card2, card3) {
      // TODO...
     }
