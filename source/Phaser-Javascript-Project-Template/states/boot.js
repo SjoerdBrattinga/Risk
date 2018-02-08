@@ -21,6 +21,15 @@ var GameStates = {
     arrow: null,
     fortified: false,
 
+    circleGroup: null,
+    circleTextGroup: null,
+
+    currentPlayerText: null,
+    instructionText: null,
+
+    attackBtn: null,
+    continueBtn: null,
+
     gameState: 0,
 
     NEW_GAME: 0,
@@ -46,7 +55,7 @@ GameStates.Boot.prototype = {
     preload: function () {
         // load assets to be used later in the preloader e.g. for loading screen / splashscreen
         this.load.image('preloaderBar', 'assets/preloader-bar.png');
-        
+
     },
     create: function () {
         this.state.start('Preloader');

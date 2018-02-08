@@ -2,21 +2,6 @@
 
 };
 
-//var mapLeeuwarden;
-var continueBtn;
-//var isFirstClick = true;
-var circleGroup;
-var circleTextGroup;
-
-
-var currentPlayerText;
-var instructionText;
-//var selectedTerritory;
-
-var moveArmyBtn;
-var attackBtn;
-
-
 GameStates.Game.prototype = {
     create: function () {
         this.stage.backgroundColor = '4488AA';
@@ -24,41 +9,34 @@ GameStates.Game.prototype = {
         var mapLeeuwarden = this.add.sprite(this.world.centerX, this.world.centerY, 'mapLeeuwarden');
         mapLeeuwarden.anchor.setTo(0.5);
 
-        continueBtn = this.add.button(730, 475, 'continueBtn', this.continueOnClick, this);
-        continueBtn.anchor.setTo(0.5);
-        continueBtn.visible = false;
+        GameStates.continueBtn = this.add.button(730, 475, 'continueBtn', this.continueOnClick, this);
+        GameStates.continueBtn.anchor.setTo(0.5);
+        GameStates.continueBtn.visible = false;
+  
+        GameStates.attackBtn = this.add.button(730, 425, 'attackBtn', this.attackOnClick, this);
+        GameStates.attackBtn.anchor.setTo(0.5);
+        GameStates.attackBtn.visible = false;
+
+        GameStates.circleGroup = this.game.add.group();
+        GameStates.circleTextGroup = this.game.add.group();
 
         var style = {
             font: '30px Arial',
             align: 'left'
         };
-        currentPlayerText = this.game.add.text(70, 0, '', style);
-        instructionText = this.game.add.text(70, 460, '', style);
 
-        //gameText.anchor.setTo(0.5);
+        GameStates.currentPlayerText = this.game.add.text(70, 0, '', style);
+        GameStates.instructionText = this.game.add.text(70, 460, '', style);
 
-        moveArmyBtn = this.add.button(730, 425, 'moveArmyBtn', this.moveArmyOnClick, this);
-        moveArmyBtn.anchor.setTo(0.5);
-        moveArmyBtn.visible = false;
 
-        attackBtn = this.add.button(730, 425, 'attackBtn', this.attackOnClick, this);
-        attackBtn.anchor.setTo(0.5);
-        attackBtn.visible = false;
-
-        circleGroup = this.game.add.group();
-        circleTextGroup = this.game.add.group();
-
-        for (var i = 0; i < territories.length; i++) {
-            territories[i].create();
+        for (var i = 0; i < GameStates.territories.length; i++) {
+            GameStates.territories[i].create();
         }
+
         assignTerritories();
         newGame(this);
     },
     continueOnClick: function () {
-
-        console.log(GameStates.gameState);
-        console.log(currentPlayer.name);
-
         if (checkIfGameOver()) {
             this.state.start('EndScreen');
         }
@@ -68,23 +46,13 @@ GameStates.Game.prototype = {
             GameStates.arrow = null;
         }
 
-        if (currentPlayer.type === 0) {
+        if (GameStates.currentPlayer.type === 0) {
             if (GameStates.gameState !== GameStates.END_TURN)
                 GameStates.gameState++;
 
-            if (GameStates.gameState === GameStates.PLACE_ARMIES) {
-                //continueBtn.visible = false;
-            } else if (GameStates.gameState === GameStates.FORTIFYING) {
-                //GameStates.gameState++;
-                //if (GameStates.defendingTerritory) {
-                //    GameStates.defendingTerritory.setMoveArmyBtnsVisibleFalse();
-                //}
-                moveArmyBtn.visible = false;
-                attackBtn.visible = false;
-                
-            }
-
-            if (GameStates.gameState === GameStates.END_TURN) {
+            if (GameStates.gameState === GameStates.FORTIFYING) {
+                GameStates.attackBtn.visible = false;
+            } else if (GameStates.gameState === GameStates.END_TURN) {
                 if (GameStates.defendingTerritory) {
                     GameStates.defendingTerritory.setMoveArmyBtnsVisibleFalse();
                 }
@@ -93,6 +61,7 @@ GameStates.Game.prototype = {
         } else {
             endTurn();
         }
+
         GameStates.attackingTerritory = null;
         GameStates.defendingTerritory = null;
         setInstructionText();
@@ -106,7 +75,7 @@ GameStates.Game.prototype = {
 
         if (battleResult.conqueredTerritory) {
             if (GameStates.attackingTerritory.armies > 1) {
-                continueBtn.visible = false;
+                GameStates.continueBtn.visible = false;
                 GameStates.defendingTerritory.createMoveArmyBtns();
             }
         }

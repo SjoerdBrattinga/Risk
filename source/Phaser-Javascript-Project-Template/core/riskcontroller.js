@@ -1,56 +1,42 @@
-﻿var players = [];
-var territories = [];
-var continents = [];
-var currentPlayer = {};
-var cards = [];
-var usedCards = [];
-
-var conqueredTerritory;
-
-//var maxArmiesToAssign;
-//var minArmiesToAssign;
-//var prePlacedArmies;
-
-function newGame() {
-    if (players.length < 2) return;
+﻿function newGame() {
+    if (GameStates.players.length < 2) return;
 
     if (GameStates.gameState === GameStates.NEW_GAME) {
-        
         //cards = shuffleCards();
         var startingArmies = 30;
 
-        for (var i = 0; i < players.length; i++) {
-            players[i].numberOfArmies = startingArmies;
+        for (var i = 0; i < GameStates.players.length; i++) {
+            GameStates.players[i].numberOfArmies = startingArmies;
         }
 
         assignArmiesToTerritories(startingArmies);
         //currentPlayer = getRandomPlayer();
-        currentPlayer = players[0];
-        conqueredTerritory = false;
+        GameStates.currentPlayer = GameStates.players[0];
+        GameStates.conqueredTerritory = false;
         newTurn();
     }
 }
 
 function newTurn() {
     setCurrentPlayerText();
-    currentPlayer.setArmiesToPlace();
+    GameStates.currentPlayer.setArmiesToPlace();
     GameStates.fortified = false;
 
-    if (currentPlayer.type !== 0) {
-        continueBtn.visible = true;
-        if (currentPlayer.type === 1) {
+    if (GameStates.currentPlayer.type !== 0) {
+        GameStates.continueBtn.visible = true;
+        if (GameStates.currentPlayer.type === 1) {
             placeArmiesAiEasy();
         }
-        if (currentPlayer.type === 2) {
+        if (GameStates.currentPlayer.type === 2) {
             placeArmiesAiAverage();
         }
-        if (currentPlayer.type === 3) {
+        if (GameStates.currentPlayer.type === 3) {
             placeArmiesAiHard();
         }
         GameStates.gameState = GameStates.END_TURN;
 
     } else {
-        continueBtn.visible = false;
+        GameStates.continueBtn.visible = false;
         GameStates.gameState = GameStates.PLACE_ARMIES;
     }
 
@@ -58,93 +44,71 @@ function newTurn() {
 }
 
 function assignTerritories() {
-    shuffle(territories);
+    shuffle(GameStates.territories);
 
     var count = 0;
-    for (var i = 0; i < territories.length; i++) {
-        territories[i].setOwner(players[count]);
+    for (var i = 0; i < GameStates.territories.length; i++) {
+        GameStates.territories[i].setOwner(GameStates.players[count]);
         count++;
-        if (count === players.length) count = 0;
+        if (count === GameStates.players.length) count = 0;
     }
 }
 
 function setCurrentPlayerText() {
-    currentPlayerText.setText(currentPlayer.name + '\'s turn');
-    currentPlayerText.addColor(currentPlayer.getHexaColor(), 0);
+    GameStates.currentPlayerText.setText(GameStates.currentPlayer.name + '\'s turn');
+    GameStates.currentPlayerText.addColor(GameStates.currentPlayer.getHexaColor(), 0);
 }
 
 function setInstructionText() {
     if (GameStates.gameState === GameStates.PLACE_ARMIES) {
-        instructionText.setText('Place armies: ' + currentPlayer.armiesToPlace);
+        GameStates.instructionText.setText('Place armies: ' + GameStates.currentPlayer.armiesToPlace);
     } else if (GameStates.gameState === GameStates.ATTACK) {
         if (GameStates.attackingTerritory && GameStates.defendingTerritory === null)
-            instructionText.setText('Attack: ' + GameStates.attackingTerritory.name + ' vs ...');
+            GameStates.instructionText.setText('Attack: ' + GameStates.attackingTerritory.name + ' vs ...');
         else if (GameStates.attackingTerritory && GameStates.defendingTerritory)
-            instructionText.setText('Attack: ' + GameStates.attackingTerritory.name + ' vs ' + GameStates.defendingTerritory.name);
+            GameStates.instructionText.setText('Attack: ' + GameStates.attackingTerritory.name + ' vs ' + GameStates.defendingTerritory.name);
         else if (GameStates.attackingTerritory === null && GameStates.defendingTerritory)
-            instructionText.setText('Attack: ... vs ' + GameStates.defendingTerritory.name);
+            GameStates.instructionText.setText('Attack: ... vs ' + GameStates.defendingTerritory.name);
         else
-            instructionText.setText('Attack');
+            GameStates.instructionText.setText('Attack');
     } else if (GameStates.gameState === GameStates.FORTIFYING) {
         console.log('fortifying');
         if (GameStates.attackingTerritory && GameStates.defendingTerritory === null) {
-            instructionText.setText('Moving from: ' + GameStates.attackingTerritory.name);
+            GameStates.instructionText.setText('Moving from: ' + GameStates.attackingTerritory.name);
         } else if (GameStates.attackingTerritory && GameStates.defendingTerritory) {
-            instructionText.setText('Moving from: ' + GameStates.attackingTerritory.name + ' to ' + GameStates.defendingTerritory.name);
+            GameStates.instructionText.setText('Moving from: ' + GameStates.attackingTerritory.name + ' to ' + GameStates.defendingTerritory.name);
         } else if (GameStates.attackingTerritory === null && GameStates.defendingTerritory) {
-            instructionText.setText('Moving from: ... to ' + GameStates.defendingTerritory.name);
+            GameStates.instructionText.setText('Moving from: ... to ' + GameStates.defendingTerritory.name);
         } else {
-            instructionText.setText('Fortify');
+            GameStates.instructionText.setText('Fortify');
         }
     } else if (GameStates.gameState === GameStates.END_TURN) {
-        instructionText.setText('End turn');
+        GameStates.instructionText.setText('End turn');
     }
 }
 
 function assignArmiesToTerritories(startingArmies) {
-    for (var i = 0; i < players.length; i++) {
-        var playerTerritories = players[i].territoriesOwned;
+    for (var i = 0; i < GameStates.players.length; i++) {
+        var playerTerritories = GameStates.players[i].territoriesOwned;
         var armies = startingArmies;
 
-        var count = 0;
         for (var j = 0; j < playerTerritories.length; j++) {
-
-
             var maxArmiesToAssign = armies / (playerTerritories.length - j);
             maxArmiesToAssign = Math.round(maxArmiesToAssign);
-            //var maxArmiesToAssignDown = Math.floor(maxArmiesToAssign);
+
             var armiesToAssign = Math.round(Math.random() * maxArmiesToAssign) + 1;
             if (armiesToAssign > maxArmiesToAssign){
                 armiesToAssign = maxArmiesToAssign;
             }
 
             playerTerritories[j].addArmies(armiesToAssign);
-            count += armiesToAssign;
             armies -= armiesToAssign;
-
-            if (j === playerTerritories.length - 1) {
-                console.log(count);
-                playerTerritories[j].addArmies(armies);
-                count += armies;
-                console.log(count);
-                break;
-            }
         }
     }
 }
 
-// function debugAssignArmiesToTerritories(){
-//     for (var j = 0; j < 10000; j++) {
-//         for(var i = 0; i < territories.length; i++){
-//             territories[i].removeArmies(territories[i].armies);
-//         }
-//         assignArmiesToTerritories(30);
-//     }
-// }
-
 function getMaxArmiesToAssign(attackingTerritory) {
     GameStates.maxArmiesToAssign = attackingTerritory.armies - 1;
-    //minArmiesToAssign = 0;
 }
 
 function moveArmies(territory1, territory2, armiesToMove) {
@@ -152,7 +116,7 @@ function moveArmies(territory1, territory2, armiesToMove) {
         territory1.removeArmies(armiesToMove);
         territory2.addArmies(armiesToMove);
     } else {
-        console.log('Can not move more than ' + territory1.armies + ' - 1');
+        console.log('Can not move ' + territory1.armies + ' armies');
     }
 }
 
@@ -162,27 +126,27 @@ function endTurn() {
 }
 
 function setCurrentPlayer() {
-    var currentIndex = players.indexOf(currentPlayer);
+    var currentIndex = GameStates.players.indexOf(GameStates.currentPlayer);
 
-    if (currentIndex !== players.length - 1)
-        currentPlayer = players[currentIndex + 1];
+    if (currentIndex !== GameStates.players.length - 1)
+        GameStates.currentPlayer = GameStates.players[currentIndex + 1];
     else
-        currentPlayer = players[0];
+        GameStates.currentPlayer = GameStates.players[0];
 }
 
 
 function addPlayer(type, name, color) {
     var player = new Player(type, name, color);
-    players.push(player);
+    GameStates.players.push(player);
 
     return player;
 }
 
 function removePlayer(name) {
-    if (players.length > 0) {
-        for (var i = 0; i < players.length; i++) {
-            if (players[i].name === name) {
-                players.splice(i, 1);
+    if (GameStates.players.length > 0) {
+        for (var i = 0; i < GameStates.players.length; i++) {
+            if (GameStates.players[i].name === name) {
+                GameStates.players.splice(i, 1);
                 break;
             }
         }
@@ -213,10 +177,16 @@ function attackTerritory() {
                 GameStates.attackingTerritory.removeArmies(result.attackingArmiesToRemove);
                 attackingPlayer.removeArmies(result.attackingArmiesToRemove);
 
-                if (defendingTerritory.armies === 0) {
+                if (GameStates.currentPlayer.type === 0 && attackingTerritory.armies === 1) {
+                    GameStates.arrow.kill();
+                    GameStates.attackBtn.visible = false;
+                    GameStates.attackingTerritory = null;
+                    GameStates.defendingTerritory = null;
+                    setInstructionText();
+                } else if (defendingTerritory.armies === 0) {
                     setInstructionText();
                     result.conqueredTerritory = true;
-                    attackBtn.visible = false;
+                    GameStates.attackBtn.visible = false;
 
                     defendingTerritory.setOwner(attackingPlayer);
                     console.log(attackingPlayer.name + ' conquered ' + defendingTerritory.name + '!');
@@ -227,7 +197,7 @@ function attackTerritory() {
                     if (checkIfPlayerIsDefeated(defendingPlayer)) {
                         console.log(defendingPlayer.name + ' is defeated');
                         removePlayer(defendingPlayer.name);
-                        //debugger;
+                  
                         if (checkIfGameOver()) {
                             GameStates.gameState = GameStates.GAME_OVER;
                         }
@@ -253,9 +223,6 @@ function battle() {
         numberOfAttackDice: 0,
         numberOfDefenseDice: 0
     };
-
-    //var numberOfAttackDice = getMaxAttackDice();
-    //var numberOfDefenseDice = getMaxDefenceDice();
 
     battleResult.numberOfAttackDice = getMaxAttackDice();
     battleResult.numberOfDefenseDice = getMaxDefenseDice();
@@ -329,7 +296,7 @@ function rollDie() {
 }
 
 function checkIfGameOver() {
-    if (players.length === 1 && players[0] === currentPlayer) {
+    if (GameStates.players.length === 1 && GameStates.players[0] === GameStates.currentPlayer) {
         return true;
     }
     return false;

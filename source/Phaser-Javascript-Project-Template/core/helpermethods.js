@@ -1,5 +1,5 @@
 ﻿function getRandomPlayer() {
-    return players[Math.floor(Math.random() * players.length)];
+    return GameStates.players[Math.floor(Math.random() * GameStates.players.length)];
 }
 
 function getRandomTerritory(territoryList) {
@@ -44,7 +44,7 @@ function getOwnedBorderTerritories(territory) {
     for (var i = 0; i < borderTerritories.length; i++) {
         var owner = borderTerritories[i].owner;
 
-        if (owner === currentPlayer) {
+        if (owner === GameStates.currentPlayer) {
             ownedBorderTerritories.push(borderTerritories[i]);
         }
     }
@@ -57,20 +57,20 @@ function getNotOwnedBorderTerritories(territory) {
     for (var i = 0; i < borderTerritories.length; i++) {
         var owner = borderTerritories[i].owner;
 
-        if (owner !== currentPlayer) {
+        if (owner !== GameStates.currentPlayer) {
             notOwnedBorderTerritories.push(borderTerritories[i]);
         }
     }
     return notOwnedBorderTerritories;
 }
 
-function shuffle(a) {
+function shuffle(array) {
     var j, x, i;
-    for (i = a.length - 1; i > 0; i--) {
+    for (i = array.length - 1; i > 0; i--) {
         j = Math.floor(Math.random() * (i + 1));
-        x = a[i];
-        a[i] = a[j];
-        a[j] = x;
+        x = array[i];
+        array[i] = array[j];
+        array[j] = x;
     }
 }
 
@@ -103,12 +103,12 @@ function compareArrays(array1, array2) {
 }
 
 function getColorFromCOLORS() {
-    return GameStates.COLORS[players.length];
+    return GameStates.COLORS[GameStates.players.length];
 }
 
 function checkIfPlayerNameExists(name) {
-    for (var i = 0; i < players.length; i++) {
-        if (name.toLowerCase() === players[i].name.toLowerCase()) {
+    for (var i = 0; i < GameStates.players.length; i++) {
+        if (name.toLowerCase() === GameStates.players[i].name.toLowerCase()) {
             return true;
         }
     }
@@ -119,13 +119,14 @@ function getAngle(point1, point2) {
     var offSet = 270;
     var angleDegree = (Math.atan2(point2.y - point1.y, point2.x - point1.x) * 180 / Math.PI);
     angleDegree += offSet;
-    return angleDegree;
 
+    return angleDegree;
 }
 
 function getDistance(point1, point2) {
     var differenceX = point2.x - point1.x;
     var differenceY = point2.y - point1.y;
+
     return Math.sqrt(Math.pow(differenceX, 2) + Math.pow(differenceY, 2));
 }
 

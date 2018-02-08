@@ -1,16 +1,16 @@
 ﻿function placeArmiesAiHard() {
     //TODO: difficult bot places armies strategically.
     //Pretty much should play like an actual human player.
-    currentPlayer.setArmiesToPlace();
-    var count = currentPlayer.armiesToPlace;
+    GameStates.currentPlayer.setArmiesToPlace();
+    var count = GameStates.currentPlayer.armiesToPlace;
     for (var i = 0; i < count; i++) {
-        var territory = getRandomTerritory(currentPlayer.territoriesOwned);
+        var territory = getRandomTerritory(GameStates.currentPlayer.territoriesOwned);
         territory.addArmies(1);
-        currentPlayer.addArmies(1);
-        currentPlayer.armiesToPlace--;
+        GameStates.currentPlayer.addArmies(1);
+        GameStates.currentPlayer.armiesToPlace--;
         setInstructionText();
     }
-    //placeArmiesAiAverage();
+    
     if (shouldAttack())
         attackTerritoryAiHard();
     else
@@ -18,20 +18,20 @@
 }
 
 function shouldAttack() {
-    var defenseValue = currentPlayer.getDefenseValue();
+    var defenseValue = GameStates.currentPlayer.getDefenseValue();
     var otherPlayersDefenseValues = [];
     var otherPlayersArmies = [];
-    for (var j = 0; j < players.length; j++) {
-        if (players[j].name !== currentPlayer.name) {
-            otherPlayersDefenseValues.push(players[j].getDefenseValue());
-            otherPlayersArmies.push(players[j].numberOfArmies);
+    for (var j = 0; j < GameStates.players.length; j++) {
+        if (GameStates.players[j].name !== GameStates.currentPlayer.name) {
+            otherPlayersDefenseValues.push(GameStates.players[j].getDefenseValue());
+            otherPlayersArmies.push(GameStates.players[j].numberOfArmies);
         }
     }
     var largestDefenseValue = Math.max.apply(Math, otherPlayersDefenseValues);
     var largestArmy = Math.max.apply(Math, otherPlayersArmies);
 
     if (defenseValue > largestDefenseValue * 0.7) return true;
-    else if (largestArmy < currentPlayer.numberOfArmies) return true;
+    else if (largestArmy < GameStates.currentPlayer.numberOfArmies) return true;
     else return false;
 
 }
@@ -39,23 +39,23 @@ function shouldAttack() {
 function attackTerritoryAiHard() {
     //TODO: difficult bot attacks territory strategically.
     //Pretty much should play like an actual human player.
-    for (var i = 0; i < currentPlayer.territoriesOwned.length; i++) {
-        var connectedTerritories = currentPlayer.territoriesOwned[i].borderTerritories;
+    for (var i = 0; i < GameStates.currentPlayer.territoriesOwned.length; i++) {
+        var connectedTerritories = GameStates.currentPlayer.territoriesOwned[i].borderTerritories;
         for (var j = 0; j < connectedTerritories.length; j++) {
             var owner = connectedTerritories[j].owner;
-            if (owner !== currentPlayer && connectedTerritories[j].armies < currentPlayer.territoriesOwned[i].armies) {
+            if (owner !== GameStates.currentPlayer && connectedTerritories[j].armies < GameStates.currentPlayer.territoriesOwned[i].armies) {
 
-                GameStates.attackingTerritory = currentPlayer.territoriesOwned[i];
+                GameStates.attackingTerritory = GameStates.currentPlayer.territoriesOwned[i];
                 GameStates.defendingTerritory = connectedTerritories[j];
 
                 //debugger;
-                var defenseValue = currentPlayer.getDefenseValue();
+                var defenseValue = GameStates.currentPlayer.getDefenseValue();
               
 
                 while (GameStates.attackingTerritory.armies > GameStates.defendingTerritory.armies * 1.5){
 
                     attackTerritory();
-                    var newDefenseValue = currentPlayer.getDefenseValue();
+                    var newDefenseValue = GameStates.currentPlayer.getDefenseValue();
                     if (newDefenseValue < defenseValue * 0.9)
                         break;
                 }
@@ -77,9 +77,9 @@ function fortifyTerritoryAiHard() {
         if (safeTerritoryWithMostArmies.armies > 1) {
             var notOwnedTerritories = [];
 
-            for (var i = 0; i < territories.length; i++) {
-                if (territories[i].owner !== currentPlayer) {
-                    notOwnedTerritories.push(territories[i]);
+            for (var i = 0; i < GameStates.territories.length; i++) {
+                if (GameStates.territories[i].owner !== GameStates.currentPlayer) {
+                    notOwnedTerritories.push(GameStates.territories[i]);
                 }
             }
             var ownedBorderTerritories;

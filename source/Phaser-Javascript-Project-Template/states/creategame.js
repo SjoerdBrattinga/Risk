@@ -1,23 +1,17 @@
 ﻿GameStates.CreateGame = function (game) {
-
+ 
 };
 
-var text;
-var startGameBtn;
-var addPlayerBtn;
-var addEasyBotBtn;
-var addAverageBotBtn;
-var addHardBotBtn;
-var easyBot;
-var player1;
-var player2;
-var player3;
-var player4;
-var player5;
-var player6;
-$('#name').val('');
-
 GameStates.CreateGame.prototype = {
+    startGameBtn: null,
+    addPlayerBtn: null,
+    player1: null,
+    player2: null,
+    player3: null,
+    player4: null,
+    player5: null,
+    player6: null,
+    
     create: function () {
         setTerritories(this.game);
 
@@ -34,43 +28,42 @@ GameStates.CreateGame.prototype = {
         });
         addBotText.anchor.setTo(0.5);
 
-        startGameBtn = this.add.button(this.world.centerX, 450, 'startGameBtn', this.startGameOnClick, this);
-        startGameBtn.anchor.setTo(0.5);
+        this.startGameBtn = this.add.button(this.world.centerX, 450, 'startGameBtn', this.startGameOnClick, this);
+        this.startGameBtn.anchor.setTo(0.5);
 
-        addPlayerBtn = this.add.button(770, 40, 'addPlayerBtn', this.addPlayerOnClick, this);
-        addPlayerBtn.anchor.setTo(0.5);
+        this.addPlayerBtn = this.add.button(770, 40, 'addPlayerBtn', this.addPlayerOnClick, this);
+        this.addPlayerBtn.anchor.setTo(0.5);
 
-        addEasyBotBtn = this.add.button(770, 300, 'addEasyBotBtn', this.addEasyBotOnClick, this);
+        var addEasyBotBtn = this.add.button(770, 300, 'addEasyBotBtn', this.addEasyBotOnClick, this);
         addEasyBotBtn.anchor.setTo(0.5);
 
-        addAverageBotBtn = this.add.button(770, 350, 'addAverageBotBtn', this.addAverageBotOnClick, this);
+        var addAverageBotBtn = this.add.button(770, 350, 'addAverageBotBtn', this.addAverageBotOnClick, this);
         addAverageBotBtn.anchor.setTo(0.5);
 
-        addHardBotBtn = this.add.button(770, 400, 'addHardBotBtn', this.addHardBotOnClick, this);
+        var addHardBotBtn = this.add.button(770, 400, 'addHardBotBtn', this.addHardBotOnClick, this);
         addHardBotBtn.anchor.setTo(0.5);
 
         var style = { font: 'bold 32px Arial' };
 
-        player1 = this.game.add.text(100, 150, '', style);
-        player1.anchor.setTo(0, 0.5);
+        this.player1 = this.game.add.text(100, 150, '', style);
+        this.player1.anchor.setTo(0, 0.5);
 
-        player2 = this.game.add.text(100, 200, '', style);
-        player2.anchor.setTo(0, 0.5);
+        this.player2 = this.game.add.text(100, 200, '', style);
+        this.player2.anchor.setTo(0, 0.5);
 
-        player3 = this.game.add.text(100, 250, '', style);
-        player3.anchor.setTo(0, 0.5);
+        this.player3 = this.game.add.text(100, 250, '', style);
+        this.player3.anchor.setTo(0, 0.5);
 
-        player4 = this.game.add.text(100, 300, '', style);
-        player4.anchor.setTo(0, 0.5);
+        this.player4 = this.game.add.text(100, 300, '', style);
+        this.player4.anchor.setTo(0, 0.5);
 
-        player5 = this.game.add.text(100, 350, '', style);
-        player5.anchor.setTo(0, 0.5);
+        this.player5 = this.game.add.text(100, 350, '', style);
+        this.player5.anchor.setTo(0, 0.5);
 
-        player6 = this.game.add.text(100, 400, '', style);
-        player6.anchor.setTo(0, 0.5);
+        this.player6 = this.game.add.text(100, 400, '', style);
+        this.player6.anchor.setTo(0, 0.5);
 
-
-
+        $('#name').val('');
         $('#form1').show();
     },
     startGameOnClick: function () {
@@ -85,8 +78,8 @@ GameStates.CreateGame.prototype = {
     addEasyBotOnClick: function () {
         var botName = 'easybot';
         var count = 0;
-        for (var i = 0; i < players.length; i++) {
-            if (players[i].type === 1) {
+        for (var i = 0; i < GameStates.players.length; i++) {
+            if (GameStates.players[i].type === 1) {
                 count++;
             }
         }
@@ -100,8 +93,8 @@ GameStates.CreateGame.prototype = {
     addAverageBotOnClick: function () {
         var botName = 'averagebot';
         var count = 0;
-        for (var i = 0; i < players.length; i++) {
-            if (players[i].type === 2) {
+        for (var i = 0; i < GameStates.players.length; i++) {
+            if (GameStates.players[i].type === 2) {
                 count++;
             }
         }
@@ -114,8 +107,8 @@ GameStates.CreateGame.prototype = {
     addHardBotOnClick: function () {
         var botName = 'difficultbot';
         var count = 0;
-        for (var i = 0; i < players.length; i++) {
-            if (players[i].type === 3) {
+        for (var i = 0; i < GameStates.players.length; i++) {
+            if (GameStates.players[i].type === 3) {
                 count++;
             }
         }
@@ -131,96 +124,96 @@ GameStates.CreateGame.prototype = {
     },
 
     addPlayer: function (playerType, name) {
-        if (players.length < GameStates.MAX_PLAYERS) {
+        if (GameStates.players.length < GameStates.MAX_PLAYERS) {
 
             var color = getColorFromCOLORS();
 
             if (validateName(name)) {
                 var player = addPlayer(playerType, name, color);
 
-                if (players.length === 1) {
-                    player1.setText(player.name);
-                    player1.addColor(player.getHexaColor(), 0);
+                if (GameStates.players.length === 1) {
+                    this.player1.setText(player.name);
+                    this.player1.addColor(player.getHexaColor(), 0);
                     var removePlayer1Btn = this.add.button(this.world.centerX - 120, 150, 'removePlayer1Btn', function () {
                         removePlayer(player.name);
-                        player1.setText('');
+                        this.player1.setText('');
                         removePlayer1Btn.destroy();
-                        if (players.length < GameStates.MAX_PLAYERS)
-                            addPlayerBtn.visible = true;
+                        if (GameStates.players.length < GameStates.MAX_PLAYERS)
+                            this.addPlayerBtn.visible = true;
                         $('#form1').show();
                     }, this);
                     removePlayer1Btn.anchor.setTo(0.5);
                 }
-                if (players.length === 2) {
-                    player2.setText(player.name);
-                    player2.addColor(player.getHexaColor(), 0);
+                if (GameStates.players.length === 2) {
+                    this.player2.setText(player.name);
+                    this.player2.addColor(player.getHexaColor(), 0);
                     var removePlayer2Btn = this.add.button(this.world.centerX - 120, 200, 'removePlayer2Btn', function () {
                         removePlayer(player.name);
-                        player2.setText('');
+                        this.player2.setText('');
                         removePlayer2Btn.destroy();
-                        if (players.length < GameStates.MAX_PLAYERS)
-                            addPlayerBtn.visible = true;
+                        if (GameStates.players.length < GameStates.MAX_PLAYERS)
+                            this.addPlayerBtn.visible = true;
                         $('#form1').show();
                     }, this);
                     removePlayer2Btn.anchor.setTo(0.5);
                 }
-                if (players.length === 3) {
-                    player3.setText(player.name);
-                    player3.addColor(player.getHexaColor(), 0);
+                if (GameStates.players.length === 3) {
+                    this.player3.setText(player.name);
+                    this.player3.addColor(player.getHexaColor(), 0);
                     var removePlayer3Btn = this.add.button(this.world.centerX - 120, 250, 'removePlayer3Btn', function () {
                         removePlayer(player.name);
-                        player3.setText('');
+                        this.player3.setText('');
                         removePlayer3Btn.destroy();
-                        if (players.length < GameStates.MAX_PLAYERS)
-                            addPlayerBtn.visible = true;
+                        if (GameStates.players.length < GameStates.MAX_PLAYERS)
+                            this.addPlayerBtn.visible = true;
                         $('#form1').show();
                     }, this);
                     removePlayer3Btn.anchor.setTo(0.5);
                 }
-                if (players.length === 4) {
-                    player4.setText(player.name);
-                    player4.addColor(player.getHexaColor(), 0);
+                if (GameStates.players.length === 4) {
+                    this.player4.setText(player.name);
+                    this.player4.addColor(player.getHexaColor(), 0);
                     var removePlayer4Btn = this.add.button(this.world.centerX - 120, 300, 'removePlayer4Btn', function () {
                         removePlayer(player.name);
-                        player4.setText('');
+                        this.player4.setText('');
                         removePlayer4Btn.destroy();
-                        if (players.length < GameStates.MAX_PLAYERS)
-                            addPlayerBtn.visible = true;
+                        if (GameStates.players.length < GameStates.MAX_PLAYERS)
+                            this.addPlayerBtn.visible = true;
                         $('#form1').show();
                     }, this);
                     removePlayer4Btn.anchor.setTo(0.5);
                 }
-                if (players.length === 5) {
-                    player5.setText(player.name);
-                    player5.addColor(player.getHexaColor(), 0);
+                if (GameStates.players.length === 5) {
+                    this.player5.setText(player.name);
+                    this.player5.addColor(player.getHexaColor(), 0);
                     var removePlayer5Btn = this.add.button(this.world.centerX - 120, 350, 'removePlayer5Btn', function () {
                         removePlayer(player.name);
-                        player5.setText('');
+                        this.player5.setText('');
                         removePlayer5Btn.destroy();
-                        if (players.length < GameStates.MAX_PLAYERS)
-                            addPlayerBtn.visible = true;
+                        if (GameStates.players.length < GameStates.MAX_PLAYERS)
+                            this.addPlayerBtn.visible = true;
                         $('#form1').show();
                     }, this);
                     removePlayer5Btn.anchor.setTo(0.5);
                 }
-                if (players.length === 6) {
-                    player6.setText(player.name);
-                    player6.addColor(player.getHexaColor(), 0);
+                if (GameStates.players.length === 6) {
+                    this.player6.setText(player.name);
+                    this.player6.addColor(player.getHexaColor(), 0);
                     var removePlayer6Btn = this.add.button(this.world.centerX - 120, 400, 'removePlayer6Btn', function () {
                         removePlayer(player.name);
-                        player6.setText('');
+                        this.player6.setText('');
                         removePlayer6Btn.destroy();
-                        if (players.length < GameStates.MAX_PLAYERS) {
-                            addPlayerBtn.visible = true;
+                        if (GameStates.players.length < GameStates.MAX_PLAYERS) {
+                            this.addPlayerBtn.visible = true;
                             $('#form1').show();
                         }
                     }, this);
                     removePlayer6Btn.anchor.setTo(0.5);
                 }
                 console.log(player, 'added');
-                console.log(players);
-                if (players.length === GameStates.MAX_PLAYERS) {
-                    addPlayerBtn.visible = false;
+                console.log(GameStates.players);
+                if (GameStates.players.length === GameStates.MAX_PLAYERS) {
+                    this.addPlayerBtn.visible = false;
                     $('#form1').hide();
                 }
             }
@@ -254,11 +247,11 @@ function validateName(name) {
 function checkIfEnoughPlayersAreAdded() {
     var message = document.getElementById('message');
     message.innerHTML = '';
-    if (players.length < 1) {
+    if (GameStates.players.length < 1) {
         message.innerHTML = '<span style=\'color: red;\'>No players added!</span>';
         return false;
     }
-    else if (players.length < 2) {
+    else if (GameStates.players.length < 2) {
         message.innerHTML = '<span style=\'color: red;\'>Need atleast 2 players to play.</span>';
         return false;
     }
@@ -306,33 +299,33 @@ function setTerritories(game) {
     var vossenparkwijk = new Territory(game, 'Vossenparkwijk', 290, 221);
     var industrieterrein_west = new Territory(game, 'Industrieterrein-west', 198, 260);
 
-    territories.push(bilgaard);
-    territories.push(havankpark);
-    territories.push(vrijheidswijk);
-    territories.push(blitsaerd);
-    territories.push(camminghaburen);
-    territories.push(heechterp);
-    territories.push(schieringen);
-    territories.push(schepenbuurt);
-    territories.push(wielenpolle);
-    territories.push(de_hemrik);
-    territories.push(aldlan);
-    territories.push(zuiderburen);
-    territories.push(goutum);
-    territories.push(nijlan);
-    territories.push(achter_de_hoven);
-    territories.push(huizum_oost);
-    territories.push(huizum_west);
-    territories.push(oranjewijk);
-    territories.push(cambuur);
-    territories.push(binnenstad);
-    territories.push(bloemenbuurt);
-    territories.push(transvaalwijk);
-    territories.push(vogelwijk);
-    territories.push(valeriuskwartier);
-    territories.push(westeinde);
-    territories.push(vossenparkwijk);
-    territories.push(industrieterrein_west);
+    GameStates.territories.push(bilgaard);
+    GameStates.territories.push(havankpark);
+    GameStates.territories.push(vrijheidswijk);
+    GameStates.territories.push(blitsaerd);
+    GameStates.territories.push(camminghaburen);
+    GameStates.territories.push(heechterp);
+    GameStates.territories.push(schieringen);
+    GameStates.territories.push(schepenbuurt);
+    GameStates.territories.push(wielenpolle);
+    GameStates.territories.push(de_hemrik);
+    GameStates.territories.push(aldlan);
+    GameStates.territories.push(zuiderburen);
+    GameStates.territories.push(goutum);
+    GameStates.territories.push(nijlan);
+    GameStates.territories.push(achter_de_hoven);
+    GameStates.territories.push(huizum_oost);
+    GameStates.territories.push(huizum_west);
+    GameStates.territories.push(oranjewijk);
+    GameStates.territories.push(cambuur);
+    GameStates.territories.push(binnenstad);
+    GameStates.territories.push(bloemenbuurt);
+    GameStates.territories.push(transvaalwijk);
+    GameStates.territories.push(vogelwijk);
+    GameStates.territories.push(valeriuskwartier);
+    GameStates.territories.push(westeinde);
+    GameStates.territories.push(vossenparkwijk);
+    GameStates.territories.push(industrieterrein_west);
 
     westeinde.setBorderTerritories([industrieterrein_west, valeriuskwartier]);
     valeriuskwartier.setBorderTerritories([bilgaard, westeinde, industrieterrein_west, vogelwijk]);
