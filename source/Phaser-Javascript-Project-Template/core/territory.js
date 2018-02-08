@@ -44,52 +44,54 @@ Territory.prototype = {
                 }
             }
         } else if (GameStates.gameState === GameStates.ATTACK) {
-            if (GameStates.arrow) {
-                GameStates.arrow.kill();
-                GameStates.arrow = null;
-            }
-            if (this.owner === GameStates.currentPlayer && GameStates.attackingTerritory !== this) {
-                GameStates.attackingTerritory = this;
-                console.log('Attacking territory', GameStates.attackingTerritory);
-            } else {
-                if (checkBorderTerritories(GameStates.attackingTerritory, this)) {
-                    this.setMoveArmyBtnsVisibleFalse();
-                    GameStates.defendingTerritory = this;
-                    drawArrow(this.game);
-                    console.log('Defending territory');
+            if (!GameStates.movedArmies) {
+                if (GameStates.arrow) {
+                    GameStates.arrow.kill();
+                    GameStates.arrow = null;
+                }
+                if (this.owner === GameStates.currentPlayer && GameStates.attackingTerritory !== this) {
+                    GameStates.attackingTerritory = this;
+                    console.log('Attacking territory', GameStates.attackingTerritory);
                 } else {
-                    GameStates.defendingTerritory = null;
+                    if (checkBorderTerritories(GameStates.attackingTerritory, this)) {
+                        this.setMoveArmyBtnsVisibleFalse();
+                        GameStates.defendingTerritory = this;
+                        drawArrow(this.game);
+                        console.log('Defending territory');
+                    } else {
+                        GameStates.defendingTerritory = null;
+                    }
                 }
-            }
-            if (GameStates.attackingTerritory && GameStates.defendingTerritory) {
-                if (checkBorderTerritories(GameStates.attackingTerritory, GameStates.defendingTerritory)) {
-                    GameStates.attackBtn.visible = true;
+                if (GameStates.attackingTerritory && GameStates.defendingTerritory) {
+                    if (checkBorderTerritories(GameStates.attackingTerritory, GameStates.defendingTerritory)) {
+                        GameStates.attackBtn.visible = true;
+                    }
                 }
-
             }
         } else if (GameStates.gameState === GameStates.FORTIFYING) {
-            if (GameStates.arrow) {
-                GameStates.arrow.kill();
-                GameStates.arrow = null;
-            }
-            if (this.owner === GameStates.currentPlayer) {
-                this.destroyMoveArmyBtns();
-                if (GameStates.attackingTerritory === null && this.armies > 1) {
-                    GameStates.attackingTerritory = this;
-                } else if (GameStates.attackingTerritory) {
-                    if (checkIfTerritoriesAreConnected(GameStates.attackingTerritory, this)) {
-                        GameStates.defendingTerritory = this;
-                        if (!GameStates.fortified) {
+            if (!GameStates.movedArmies) {
+                if (GameStates.arrow) {
+                    GameStates.arrow.kill();
+                    GameStates.arrow = null;
+                }
+                if (this.owner === GameStates.currentPlayer) {
+                    this.destroyMoveArmyBtns();
+                    if (GameStates.attackingTerritory === null && this.armies > 1) {
+                        GameStates.attackingTerritory = this;
+                    } else if (GameStates.attackingTerritory) {
+                        if (checkIfTerritoriesAreConnected(GameStates.attackingTerritory, this)) {
+                            GameStates.defendingTerritory = this;
                             GameStates.continueBtn.visible = false;
                             drawArrow(this.game);
                             getMaxArmiesToAssign(GameStates.attackingTerritory);
                             this.createMoveArmyBtns();
                         }
+                    } else if (GameStates.attackingTerritory === this || GameStates.defendingTerritory === this) {
+                        GameStates.attackingTerritory = null;
+                        GameStates.defendingTerritory = null;
                     }
-                } else if (GameStates.attackingTerritory === this || GameStates.defendingTerritory === this) {
-                    GameStates.attackingTerritory = null;
-                    GameStates.defendingTerritory = null;
                 }
+
             }
         }
         setInstructionText();
@@ -152,6 +154,7 @@ Territory.prototype = {
     },
 
     okOnClick: function () {
+        GameStates.movedArmies = false;
         GameStates.defendingTerritory = null;
         GameStates.attackingTerritory = null;
         this.addArmyBtn.visible = false;
@@ -176,9 +179,7 @@ Territory.prototype = {
     },
 
     addArmyOnClick: function () {
-        if (GameStates.gameState === GameStates.FORTIFYING && !GameStates.fortified) {
-            GameStates.fortified = true;
-        }
+        GameStates.movedArmies = true;
 
         moveArmies(GameStates.attackingTerritory, GameStates.defendingTerritory, 1);
 

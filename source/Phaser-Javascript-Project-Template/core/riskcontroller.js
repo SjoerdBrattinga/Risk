@@ -20,7 +20,6 @@
 function newTurn() {
     setCurrentPlayerText();
     GameStates.currentPlayer.setArmiesToPlace();
-    GameStates.fortified = false;
 
     if (GameStates.currentPlayer.type !== 0) {
         GameStates.continueBtn.visible = true;

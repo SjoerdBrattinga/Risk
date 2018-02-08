@@ -3,7 +3,6 @@
 // declare the object that will hold all game states
 var GameStates = {
     //quite common to add game variables/constants in here
-    //selectedTerritory: {},
 
     players: [],
     territories: [],
@@ -12,6 +11,7 @@ var GameStates = {
     cards: [],
     usedCards: [],
     conqueredTerritory: false,
+    movedArmies: false,
 
     maxArmiesToAssign: 0,
     prePlacedArmies: 0,
@@ -19,7 +19,6 @@ var GameStates = {
     attackingTerritory: null,
     defendingTerritory: null,
     arrow: null,
-    fortified: false,
 
     circleGroup: null,
     circleTextGroup: null,
